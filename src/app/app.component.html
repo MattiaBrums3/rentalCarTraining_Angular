@@ -1,0 +1,11 @@
+<div align="center">
+  <h2>{{title}}</h2>
+
+  <app-generic-button (onClick)="functionCall('save')" [buttonConfig]="saveButton"></app-generic-button>
+  &nbsp;&nbsp;
+  <app-generic-button (onClick)="functionCall('edit')" [buttonConfig]="editButton"></app-generic-button>
+  &nbsp;&nbsp;
+  <app-generic-button (onClick)="functionCall('delete')" [buttonConfig]="deleteButton"></app-generic-button>
+
+  <router-outlet></router-outlet>
+</div>
