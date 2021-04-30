@@ -6,6 +6,9 @@
   <app-generic-button (onClick)="functionCall('edit')" [buttonConfig]="editButton"></app-generic-button>
   &nbsp;&nbsp;
   <app-generic-button (onClick)="functionCall('delete')" [buttonConfig]="deleteButton"></app-generic-button>
-
+  &nbsp;&nbsp;
+  <app-generic-table [data]="users"></app-generic-table>
+  &nbsp;&nbsp;
+  <app-generic-table [data]="categories"></app-generic-table>
   <router-outlet></router-outlet>
 </div>

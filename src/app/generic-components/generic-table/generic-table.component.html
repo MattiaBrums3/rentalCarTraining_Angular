@@ -1,0 +1,12 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let key of keys">{{ key }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of data">
+      <td *ngFor="let key of keys">{{ d[key] }}</td>
+    </tr>
+  </tbody>
+</table>
