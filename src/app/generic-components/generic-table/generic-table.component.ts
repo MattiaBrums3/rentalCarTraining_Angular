@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import { MyTableConfig } from '../../classes/my-table-config';
+import { USERTABLE } from '../../classes/my-headers';
 
 @Component({
   selector: 'app-generic-table',
@@ -9,11 +10,10 @@ import { MyTableConfig } from '../../classes/my-table-config';
 export class GenericTableComponent implements OnChanges {
   @Input() tableConfig: MyTableConfig;
   @Input() data: any[];
-  keys: string[];
 
   constructor() { }
 
-  ngOnChanges() {
-    this.keys = Object.keys(this.data[0]);
+  ngOnChanges(): void {
+
   }
 }

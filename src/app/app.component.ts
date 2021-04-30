@@ -4,6 +4,7 @@ import { AppService } from './app-service.service';
 import {User} from './models/user';
 import {Category} from './models/category';
 import {MyTableConfig} from './classes/my-table-config';
+import {USERTABLE} from './classes/my-headers';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent implements OnInit {
   saveButton: MyButtonConfig = {customCssClass: 'btn btn-primary', text: 'Salva', icon: 'save'};
   editButton: MyButtonConfig = {customCssClass: 'btn btn-success', text: 'Modifica', icon: 'edit'};
   deleteButton: MyButtonConfig = {customCssClass: 'btn btn-danger', text: 'Elimina', icon: 'delete'};
+
+  tableConfig = USERTABLE;
 
   users: User[];
   categories: Category[];
