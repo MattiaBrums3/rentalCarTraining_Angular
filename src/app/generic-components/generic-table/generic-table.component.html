@@ -7,6 +7,10 @@
   <tbody>
     <tr *ngFor="let d of data">
       <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
+      <td>
+        <app-generic-button (onClick)="functionCall('edit', d[tableConfig.headers[0].key])" [buttonConfig]="editButton"></app-generic-button>
+        <app-generic-button (onClick)="functionCall('delete', d[tableConfig.headers[0].key])" [buttonConfig]="deleteButton"></app-generic-button>
+      </td>
     </tr>
   </tbody>
 </table>

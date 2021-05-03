@@ -14,8 +14,6 @@ export class AppComponent implements OnInit {
   title = 'Welcome to Rental Car';
 
   saveButton: MyButtonConfig = {customCssClass: 'btn btn-primary', text: 'Salva', icon: 'save'};
-  editButton: MyButtonConfig = {customCssClass: 'btn btn-success', text: 'Modifica', icon: 'edit'};
-  deleteButton: MyButtonConfig = {customCssClass: 'btn btn-danger', text: 'Elimina', icon: 'delete'};
 
   tableConfigUser = USERTABLE;
   tableConfigCategory = CATEGORYTABLE;

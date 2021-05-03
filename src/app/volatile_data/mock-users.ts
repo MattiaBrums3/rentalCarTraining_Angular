@@ -12,7 +12,7 @@ export const USERS: User[] = [
     password: 'fbrss'
   },
   {
-    idUser: 3, name: 'Alfonso', surname: 'Bianchi', dateOfBirth: new Date('1995/10/13'),
+    idUser: 34, name: 'Alfonso', surname: 'Bianchi', dateOfBirth: new Date('1995/10/13'),
     fiscalCode: 'BNCLFN95L13A135R', superUser: false, username: 'a.bianchi',
     password: 'alfonso'
   }
