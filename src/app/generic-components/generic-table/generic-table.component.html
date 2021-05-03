@@ -1,12 +1,15 @@
 <table class="table">
   <thead>
     <tr>
-      <th *ngFor="let headers of tableConfig.headers">{{ headers.label }}</th>
+      <th *ngFor="let value of tableConfig.headers">{{ value.label }}</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let d of data">
-      <td *ngFor="let key of tableConfig.headers">{{ d[key.key] }}</td>
+      <ng-container *ngFor="let value of tableConfig.headers">
+        <td *ngIf="value.key === 'dateOfBirth'">{{ d[value.key] | date: 'dd/MM/yyyy' }}</td>
+        <td *ngIf="value.key !== 'dateOfBirth'">{{ d[value.key] }}</td>
+      </ng-container>
     </tr>
   </tbody>
 </table>
