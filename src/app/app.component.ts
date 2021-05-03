@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { MyButtonConfig } from './classes/my-button-config';
 import { AppService } from './app-service.service';
 import { User } from './models/user';
 import { Category } from './models/category';

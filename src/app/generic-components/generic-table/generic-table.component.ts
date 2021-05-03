@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MyTableConfig } from '../../classes/my-table-config';
 import { NEWBUTTON, EDITBUTTON, DELETEBUTTON } from '../../classes/my-button-config';
 
