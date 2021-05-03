@@ -3,7 +3,7 @@
     <tr>
       <th *ngFor="let value of tableConfig.headers">{{ value.label }}</th>
       <th>
-        <app-generic-button [buttonConfig]="getButton(0)"></app-generic-button>
+        <app-generic-button (onClick)="functionCall($event)" [buttonConfig]="getButton(0)"></app-generic-button>
       </th>
     </tr>
   </thead>
@@ -12,7 +12,7 @@
       <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action !== 0">
-          <app-generic-button [buttonConfig]="getButton(action)"></app-generic-button>
+          <app-generic-button (onClick)="functionCall($event, d[tableConfig.headers[0].key])" [buttonConfig]="getButton(action)"></app-generic-button>
         </td>
       </ng-container>
     </tr>

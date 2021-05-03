@@ -13,8 +13,6 @@ import { CATEGORYTABLE, USERTABLE } from './classes/my-headers';
 export class AppComponent implements OnInit {
   title = 'Welcome to Rental Car';
 
-  saveButton: MyButtonConfig = {customCssClass: 'btn btn-primary', text: 'Salva', icon: 'save'};
-
   tableConfigUser = USERTABLE;
   tableConfigCategory = CATEGORYTABLE;
 

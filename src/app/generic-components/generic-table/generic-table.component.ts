@@ -22,8 +22,13 @@ export class GenericTableComponent implements OnChanges {
 
   }
 
-  functionCall(event: string, id: number) {
-    console.log('functionCall:', event, ', id:', id);
+  functionCall(event: string, id?: number) {
+    if (id === undefined) {
+      console.log('functionCall:', event);
+    } else {
+      console.log('functionCall:', event, ', ID:', id);
+    }
+
   }
 
   getButton(action: number) {
