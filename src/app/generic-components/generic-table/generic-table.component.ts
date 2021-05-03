@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MyTableConfig } from '../../classes/my-table-config';
-import { MyButtonConfig } from '../../classes/my-button-config';
 import { NEWBUTTON, EDITBUTTON, DELETEBUTTON } from '../../classes/my-button-config';
 
 @Component({
@@ -16,10 +15,15 @@ export class GenericTableComponent implements OnChanges {
   editButton = EDITBUTTON;
   deleteButton = DELETEBUTTON;
 
+  defaultOrderColumn: string;
+  defaultOrderType: string;
+
   constructor() { }
 
   ngOnChanges(): void {
-
+    this.defaultOrderColumn = this.tableConfig.order.defaultColumn;
+    this.defaultOrderType = this.tableConfig.order.orderType;
+    this.orderTable(this.defaultOrderColumn);
   }
 
   functionCall(event: string, id?: number) {
@@ -42,6 +46,19 @@ export class GenericTableComponent implements OnChanges {
       case 2:
         return this.deleteButton;
         break;
+    }
+  }
+
+  orderTable(orderColumn: string) {
+    this.defaultOrderColumn = orderColumn;
+    if (this.defaultOrderType === 'asc') {
+      this.data.sort((a, b) => a[orderColumn] < b[orderColumn] ? 1 :
+      a[orderColumn] > b[orderColumn] ? -1 : 0);
+      this.defaultOrderType = 'desc';
+    } else {
+      this.data.sort((a, b) => a[orderColumn] > b[orderColumn] ? 1 :
+        a[orderColumn] < b[orderColumn] ? -1 : 0);
+      this.defaultOrderType = 'asc';
     }
   }
 }

@@ -1,8 +1,12 @@
-<table class="table">
+<table class="table table-striped border mt-1">
   <thead>
     <tr>
-      <th *ngFor="let value of tableConfig.headers">{{ value.label }}</th>
-      <th>
+      <th scope="col" *ngFor="let value of tableConfig.headers" (click)="orderTable(value.key)">
+        {{ value.label }}
+        <span class="material-icons-sharp" *ngIf="defaultOrderType==='desc' && defaultOrderColumn===value.key">north</span>
+        <span class="material-icons-sharp" *ngIf="defaultOrderType==='asc' && defaultOrderColumn===value.key">south</span>
+      </th>
+      <th scope="col">
         <app-generic-button (onClick)="functionCall($event)" [buttonConfig]="getButton(0)"></app-generic-button>
       </th>
     </tr>

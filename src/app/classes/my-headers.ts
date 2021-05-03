@@ -17,10 +17,12 @@ const CATEGORYHEADERS: MyHeaders[] = [
 
 export const USERTABLE: MyTableConfig = {
   headers: USERHEADERS,
+  order: { defaultColumn: 'idUtente', orderType: 'asc' },
   actions: [0, 1, 2]
 };
 
 export const CATEGORYTABLE: MyTableConfig = {
   headers: CATEGORYHEADERS,
+  order: { defaultColumn: 'idCategoria', orderType: 'asc' },
   actions: [0, 1, 2]
 };
