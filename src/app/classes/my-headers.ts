@@ -1,6 +1,6 @@
 import { MyTableConfig, MyHeaders } from './my-table-config';
 
-const HEADERS: MyHeaders[] = [
+const USERHEADERS: MyHeaders[] = [
   { key: 'idUser', label: 'idUtente' },
   { key: 'name', label: 'Nome' },
   { key: 'surname', label: 'Cognome' },
@@ -10,6 +10,15 @@ const HEADERS: MyHeaders[] = [
   { key: 'password', label: 'Password'}
 ];
 
+const CATEGORYHEADERS: MyHeaders[] = [
+  { key: 'idCategory', label: 'idCategoria' },
+  { key: 'typology', label: 'Tipologia' }
+];
+
 export const USERTABLE: MyTableConfig = {
-  headers: HEADERS
+  headers: USERHEADERS
+};
+
+export const CATEGORYTABLE: MyTableConfig = {
+  headers: CATEGORYHEADERS
 };
