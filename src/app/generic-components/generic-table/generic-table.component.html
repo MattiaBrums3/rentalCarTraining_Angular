@@ -6,10 +6,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let d of data">
-      <ng-container *ngFor="let value of tableConfig.headers">
-        <td *ngIf="value.key === 'dateOfBirth'">{{ d[value.key] | date: 'dd/MM/yyyy' }}</td>
-        <td *ngIf="value.key !== 'dateOfBirth'">{{ d[value.key] }}</td>
-      </ng-container>
+      <td *ngFor="let value of tableConfig.headers">{{ d[value.key] }}</td>
     </tr>
   </tbody>
 </table>

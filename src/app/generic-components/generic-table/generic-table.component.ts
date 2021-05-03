@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MyTableConfig } from '../../classes/my-table-config';
 
 @Component({

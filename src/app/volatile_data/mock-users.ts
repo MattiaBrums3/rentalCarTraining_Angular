@@ -1,5 +1,4 @@
 import { User } from '../models/user';
-import { DatePipe } from '@angular/common';
 
 export const USERS: User[] = [
   {
