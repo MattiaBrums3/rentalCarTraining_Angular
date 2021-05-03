@@ -6,7 +6,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let d of data">
-      <td *ngFor="let value of tableConfig.headers">{{ d[value.key] }}</td>
+      <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
     </tr>
   </tbody>
 </table>

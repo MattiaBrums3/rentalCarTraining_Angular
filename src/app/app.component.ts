@@ -4,7 +4,6 @@ import { AppService } from './app-service.service';
 import { User } from './models/user';
 import { Category } from './models/category';
 import { CATEGORYTABLE, USERTABLE } from './classes/my-headers';
-import { CustomDatePipe } from './pipes/custom.datepipe';
 
 @Component({
   selector: 'app-root',
@@ -24,14 +23,9 @@ export class AppComponent implements OnInit {
   users: User[];
   categories: Category[];
 
-  constructor(private service: AppService,
-              private customDatePipe: CustomDatePipe) {
+  constructor(private service: AppService) {
     this.users = this.service.getUsers();
     this.categories = this.service.getCategories();
-
-    for(let i = 0; i < this.users.length; i++) {
-      this.users[i].dateOfBirth = this.customDatePipe.transform(this.users[i].dateOfBirth);
-    }
   }
 
   ngOnInit() {

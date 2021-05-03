@@ -2,7 +2,7 @@ import { User } from '../models/user';
 
 export const USERS: User[] = [
   {
-    idUser: 1, name: 'Mattia', surname: 'Brumana', dateOfBirth: new Date('1996/04/03'),
+    idUser: 1, name: 'Mattia', surname: 'Brumana', dateOfBirth: new Date('1996-04-03T11:44:00Z'),
     fiscalCode: 'BRMMTT96D03A456E', superUser: true, username: 'm.brumana',
     password: 'admin'
   },
