@@ -16,9 +16,11 @@ const CATEGORYHEADERS: MyHeaders[] = [
 ];
 
 export const USERTABLE: MyTableConfig = {
-  headers: USERHEADERS
+  headers: USERHEADERS,
+  actions: [0, 1, 2]
 };
 
 export const CATEGORYTABLE: MyTableConfig = {
-  headers: CATEGORYHEADERS
+  headers: CATEGORYHEADERS,
+  actions: [0, 1, 2]
 };

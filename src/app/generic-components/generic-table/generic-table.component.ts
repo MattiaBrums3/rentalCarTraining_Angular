@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MyTableConfig } from '../../classes/my-table-config';
 import { MyButtonConfig } from '../../classes/my-button-config';
+import { NEWBUTTON, EDITBUTTON, DELETEBUTTON } from '../../classes/my-button-config';
 
 @Component({
   selector: 'app-generic-table',
@@ -11,8 +12,9 @@ export class GenericTableComponent implements OnChanges {
   @Input() tableConfig: MyTableConfig;
   @Input() data: any[];
 
-  editButton: MyButtonConfig = {customCssClass: 'btn btn-success', text: 'Modifica', icon: 'edit'};
-  deleteButton: MyButtonConfig = {customCssClass: 'btn btn-danger', text: 'Elimina', icon: 'delete'};
+  newButton = NEWBUTTON;
+  editButton = EDITBUTTON;
+  deleteButton = DELETEBUTTON;
 
   constructor() { }
 
@@ -22,5 +24,19 @@ export class GenericTableComponent implements OnChanges {
 
   functionCall(event: string, id: number) {
     console.log('functionCall:', event, ', id:', id);
+  }
+
+  getButton(action: number) {
+    switch (action) {
+      case 0:
+        return this.newButton;
+        break;
+      case 1:
+        return this.editButton;
+        break;
+      case 2:
+        return this.deleteButton;
+        break;
+    }
   }
 }

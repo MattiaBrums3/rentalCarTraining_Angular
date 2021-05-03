@@ -2,15 +2,19 @@
   <thead>
     <tr>
       <th *ngFor="let value of tableConfig.headers">{{ value.label }}</th>
+      <th>
+        <app-generic-button [buttonConfig]="getButton(0)"></app-generic-button>
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let d of data">
       <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
-      <td>
-        <app-generic-button (onClick)="functionCall('edit', d[tableConfig.headers[0].key])" [buttonConfig]="editButton"></app-generic-button>
-        <app-generic-button (onClick)="functionCall('delete', d[tableConfig.headers[0].key])" [buttonConfig]="deleteButton"></app-generic-button>
-      </td>
+      <ng-container *ngFor="let action of tableConfig.actions">
+        <td *ngIf="action !== 0">
+          <app-generic-button [buttonConfig]="getButton(action)"></app-generic-button>
+        </td>
+      </ng-container>
     </tr>
   </tbody>
 </table>
