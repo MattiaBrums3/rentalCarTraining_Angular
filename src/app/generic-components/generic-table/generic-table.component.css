@@ -1,3 +1,7 @@
+table {
+  width: 75%;
+}
+
 thead {
   cursor: pointer;
 }

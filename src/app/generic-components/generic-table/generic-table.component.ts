@@ -15,6 +15,9 @@ export class GenericTableComponent implements OnChanges {
   editButton = EDITBUTTON;
   deleteButton = DELETEBUTTON;
 
+  searchToken: string;
+  searchField: any[];
+
   defaultOrderColumn: string;
   defaultOrderType: string;
 
@@ -23,6 +26,7 @@ export class GenericTableComponent implements OnChanges {
   ngOnChanges(): void {
     this.defaultOrderColumn = this.tableConfig.order.defaultColumn;
     this.defaultOrderType = this.tableConfig.order.orderType;
+    this.searchField = this.tableConfig.search.columns;
     this.orderTable(this.defaultOrderColumn);
   }
 
@@ -32,7 +36,6 @@ export class GenericTableComponent implements OnChanges {
     } else {
       console.log('functionCall:', event, ', ID:', id);
     }
-
   }
 
   getButton(action: number) {

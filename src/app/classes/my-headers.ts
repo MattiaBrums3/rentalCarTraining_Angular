@@ -18,11 +18,13 @@ const CATEGORYHEADERS: MyHeaders[] = [
 export const USERTABLE: MyTableConfig = {
   headers: USERHEADERS,
   order: { defaultColumn: 'idUtente', orderType: 'asc' },
+  search: {columns: ['idUtente', 'Nome', 'Cognome', 'Data di Nascita', 'Codice Fiscale']},
   actions: [0, 1, 2]
 };
 
 export const CATEGORYTABLE: MyTableConfig = {
   headers: CATEGORYHEADERS,
   order: { defaultColumn: 'idCategoria', orderType: 'asc' },
+  search: {columns: ['idCategoria', 'Tipologia']},
   actions: [0, 1, 2]
 };

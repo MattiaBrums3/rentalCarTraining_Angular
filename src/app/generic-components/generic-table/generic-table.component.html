@@ -1,3 +1,8 @@
+<select [(ngModel)]="searchField">
+  <option *ngFor="let header of tableConfig.headers">{{header.key}}</option>
+</select>
+<input type="text" placeholder="Ricerca..." [(ngModel)]="searchToken" />
+
 <table class="table table-striped border mt-1">
   <thead>
     <tr>
@@ -12,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let d of data">
+    <tr *ngFor="let d of data | filterPipe: [searchToken,searchField]">
       <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action !== 0">
