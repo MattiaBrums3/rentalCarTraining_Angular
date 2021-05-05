@@ -18,7 +18,8 @@ const CATEGORYHEADERS: MyHeaders[] = [
 export const USERTABLE: MyTableConfig = {
   headers: USERHEADERS,
   order: { defaultColumn: 'idUtente', orderType: 'asc' },
-  search: {columns: ['idUtente', 'Nome', 'Cognome', 'Data di Nascita', 'Codice Fiscale']},
+  search: {columns: ['idUtente', 'Nome', 'Cognome', 'Data di Nascita', 'Codice Fiscale',
+    'Username', 'Password']},
   actions: [0, 1, 2]
 };
 

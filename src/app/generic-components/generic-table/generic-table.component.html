@@ -1,5 +1,5 @@
-<select [(ngModel)]="searchField">
-  <option *ngFor="let header of tableConfig.headers">{{header.key}}</option>
+<select [(ngModel)]="searchField" (ngModelChange)="mapField($event)">
+  <option *ngFor="let header of tableConfig.search.columns">{{header}}</option>
 </select>
 <input type="text" placeholder="Ricerca..." [(ngModel)]="searchToken" />
 
@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let d of data | filterPipe: [searchToken,searchField]">
+    <tr *ngFor="let d of data | filterPipe: [searchToken,searchKey]">
       <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action !== 0">

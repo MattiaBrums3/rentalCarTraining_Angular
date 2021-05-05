@@ -16,7 +16,8 @@ export class GenericTableComponent implements OnChanges {
   deleteButton = DELETEBUTTON;
 
   searchToken: string;
-  searchField: any[];
+  searchField: string;
+  searchKey: string;
 
   defaultOrderColumn: string;
   defaultOrderType: string;
@@ -26,7 +27,6 @@ export class GenericTableComponent implements OnChanges {
   ngOnChanges(): void {
     this.defaultOrderColumn = this.tableConfig.order.defaultColumn;
     this.defaultOrderType = this.tableConfig.order.orderType;
-    this.searchField = this.tableConfig.search.columns;
     this.orderTable(this.defaultOrderColumn);
   }
 
@@ -62,6 +62,18 @@ export class GenericTableComponent implements OnChanges {
       this.data.sort((a, b) => a[orderColumn] > b[orderColumn] ? 1 :
         a[orderColumn] < b[orderColumn] ? -1 : 0);
       this.defaultOrderType = 'asc';
+    }
+  }
+
+  mapField(event: string) {
+    let index = 0;
+    this.searchKey = undefined;
+
+    while (index < this.tableConfig.headers.length && this.searchKey === undefined) {
+      if (this.tableConfig.headers[index].label === event) {
+        this.searchKey = this.tableConfig.headers[index].key;
+      }
+      index++;
     }
   }
 }
