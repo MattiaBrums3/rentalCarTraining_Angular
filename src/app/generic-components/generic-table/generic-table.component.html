@@ -1,4 +1,5 @@
-<select [(ngModel)]="searchField" (ngModelChange)="mapField($event)">
+<select (change)="mapField(selectedField.value)" #selectedField>
+  <option selected disabled>Seleziona...</option>
   <option *ngFor="let header of tableConfig.search.columns">{{header}}</option>
 </select>
 <input type="text" placeholder="Ricerca..." [(ngModel)]="searchToken" />
