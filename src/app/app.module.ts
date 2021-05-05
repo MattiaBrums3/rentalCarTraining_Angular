@@ -9,22 +9,24 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenericTableComponent } from './generic-components/generic-table/generic-table.component';
 import {CustomDatePipe} from './pipes/custom.datepipe';
 import {TableFilterPipe} from './pipes/table.filterpipe';
+import {PaginationPipe} from './pipes/table.paginationpipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    GenericButtonComponent,
-    GenericTableComponent,
-    CustomDatePipe,
-    TableFilterPipe
-  ],
+    declarations: [
+        AppComponent,
+        GenericButtonComponent,
+        GenericTableComponent,
+        CustomDatePipe,
+        TableFilterPipe,
+        PaginationPipe
+    ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     NgbModule
   ],
-  providers: [CustomDatePipe],
+  providers: [CustomDatePipe, PaginationPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

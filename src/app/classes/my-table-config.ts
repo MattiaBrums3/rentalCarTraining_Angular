@@ -2,6 +2,7 @@ export class MyTableConfig {
   headers: MyHeaders[];
   order: MyOrder;
   search: MySearch;
+  pagination: MyPagination;
   actions: MyTableActionEnum[];
 }
 
@@ -17,6 +18,11 @@ export class MyOrder {
 
 export class MySearch {
   columns: string[];
+}
+
+export class MyPagination {
+  itemPerPage: number;
+  itemPerPageOptions: number[];
 }
 
 export enum MyTableActionEnum {

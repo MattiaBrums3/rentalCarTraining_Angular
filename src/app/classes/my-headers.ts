@@ -7,7 +7,7 @@ const USERHEADERS: MyHeaders[] = [
   { key: 'dateOfBirth', label: 'Data di Nascita' },
   { key: 'fiscalCode', label: 'Codice Fiscale' },
   { key: 'username', label: 'Username' },
-  { key: 'password', label: 'Password'}
+  { key: 'password', label: 'Password' }
 ];
 
 const CATEGORYHEADERS: MyHeaders[] = [
@@ -20,6 +20,10 @@ export const USERTABLE: MyTableConfig = {
   order: { defaultColumn: 'idUtente', orderType: 'asc' },
   search: {columns: ['idUtente', 'Nome', 'Cognome', 'Data di Nascita', 'Codice Fiscale',
     'Username', 'Password']},
+  pagination: {
+    itemPerPage: 2,
+    itemPerPageOptions: [2, 5, 10]
+  },
   actions: [0, 1, 2]
 };
 
@@ -27,5 +31,9 @@ export const CATEGORYTABLE: MyTableConfig = {
   headers: CATEGORYHEADERS,
   order: { defaultColumn: 'idCategoria', orderType: 'asc' },
   search: {columns: ['idCategoria', 'Tipologia']},
+  pagination: {
+    itemPerPage: 2,
+    itemPerPageOptions: [2, 5, 10]
+  },
   actions: [0, 1, 2]
 };

@@ -1,24 +1,33 @@
-<select (change)="mapField(selectedField.value)" #selectedField>
+<select #selectedField (change)="mapField(selectedField.value)">
   <option selected disabled>Seleziona...</option>
   <option *ngFor="let header of tableConfig.search.columns">{{header}}</option>
 </select>
 <input type="text" placeholder="Ricerca..." [(ngModel)]="searchToken" />
 
-<table class="table table-striped border mt-1">
-  <thead>
+<div class="main-div">
+  <div class="text-justify mt-2 mb-2 ml-2">
+    Visualizza&nbsp;
+    <select #itemsPerPage (change)="changeItemsPerPage(itemsPerPage.value)">
+      <option *ngFor="let page of tableConfig.pagination.itemPerPageOptions">{{page}}</option>
+    </select>
+    &nbsp;elementi
+  </div>
+
+  <table class="table table-striped border mt-1">
+    <thead>
     <tr>
       <th scope="col" *ngFor="let value of tableConfig.headers" (click)="orderTable(value.key)">
         {{ value.label }}
-        <span class="material-icons-sharp" *ngIf="defaultOrderType==='desc' && defaultOrderColumn===value.key">north</span>
-        <span class="material-icons-sharp" *ngIf="defaultOrderType==='asc' && defaultOrderColumn===value.key">south</span>
+        <span class="material-icons-sharp" *ngIf="defaultOrderType==='desc' && defaultOrderColumn===value.key">keyboard_arrow_up</span>
+        <span class="material-icons-sharp" *ngIf="defaultOrderType==='asc' && defaultOrderColumn===value.key">keyboard_arrow_down</span>
       </th>
       <th scope="col">
         <app-generic-button (onClick)="functionCall($event)" [buttonConfig]="getButton(0)"></app-generic-button>
       </th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let d of data | filterPipe: [searchToken,searchKey]">
+    </thead>
+    <tbody>
+    <tr *ngFor="let d of data | filterPipe: searchToken : searchKey | paginationPipe: currentPage : tableConfig.pagination.itemPerPage">
       <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action !== 0">
@@ -26,5 +35,11 @@
         </td>
       </ng-container>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+
+  <div class="text-right mt-2 mb-2 mr-2">
+    <button [disabled]="currentPage === 0" (click)="changePage(currentPage - 1)">Indietro</button>
+    <button [disabled]="currentPage >= pagesNumber -1" (click)="changePage(currentPage + 1)">Avanti</button>
+  </div>
+</div>

@@ -15,18 +15,21 @@ export class GenericTableComponent implements OnChanges {
   editButton = EDITBUTTON;
   deleteButton = DELETEBUTTON;
 
-  searchToken: string;
-  searchField: string;
-  searchKey: string;
-
   defaultOrderColumn: string;
   defaultOrderType: string;
+
+  searchToken: string;
+  searchKey: string;
+
+  currentPage = 0;
+  pagesNumber: number;
 
   constructor() { }
 
   ngOnChanges(): void {
     this.defaultOrderColumn = this.tableConfig.order.defaultColumn;
     this.defaultOrderType = this.tableConfig.order.orderType;
+    this.pagesNumber = Math.floor((this.tableConfig.headers.length / this.tableConfig.pagination.itemPerPage) - 1);
     this.orderTable(this.defaultOrderColumn);
   }
 
@@ -63,6 +66,17 @@ export class GenericTableComponent implements OnChanges {
         a[orderColumn] < b[orderColumn] ? -1 : 0);
       this.defaultOrderType = 'asc';
     }
+  }
+
+  changeItemsPerPage(item: any) {
+    this.tableConfig.pagination.itemPerPage = +item;
+    this.currentPage = 0;
+    this.pagesNumber = Math.floor(this.tableConfig.headers.length / this.tableConfig.pagination.itemPerPage - 1);
+  }
+
+  changePage(item: any) {
+    console.log('pagesNumber', this.pagesNumber);
+    this.currentPage = +item;
   }
 
   mapField(event: string) {

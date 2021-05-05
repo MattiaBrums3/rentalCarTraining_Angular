@@ -4,14 +4,14 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filterPipe'
 })
 export class TableFilterPipe implements PipeTransform {
-  transform(items: any[], args: any[]) {
-    // args[0]: searchToken; args[1]: searchField
-    if (!args[0] || !args[1]) {
+  transform(items: any[], searchToken: any, searchField: any) {
+    // args[0]: searchToken; args[1]: searchKey
+    if (!searchToken || !searchField) {
       return items;
     }
 
-    args[0] = args[0].toLowerCase();
+    searchToken = searchToken.toLowerCase();
 
-    return items.filter(elem => elem[args[1]].toString().toLowerCase().indexOf(args[0]) > -1);
+    return items.filter(elem => elem[searchField].toString().toLowerCase().indexOf(searchToken) > -1);
   }
 }
