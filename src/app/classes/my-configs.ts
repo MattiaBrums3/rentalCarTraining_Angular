@@ -1,5 +1,38 @@
 import { MyTableConfig, MyHeaders } from './my-table-config';
+import {MyButtonConfig} from './my-button-config';
 
+// BUTTONS
+export const NEWBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Inserisci',
+  icon: 'add'
+};
+
+export const EDITBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-success',
+  text: 'Modifica',
+  icon: 'edit'
+};
+
+export const DELETEBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-danger',
+  text: 'Elimina',
+  icon: 'delete'
+};
+
+export const NEXTBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Avanti',
+  icon: 'skip_next'
+};
+
+export const PREVIOUSBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Indietro',
+  icon: 'skip_previous'
+};
+
+// TABLE HEADERS
 const USERHEADERS: MyHeaders[] = [
   { key: 'idUser', label: 'idUtente' },
   { key: 'name', label: 'Nome' },
@@ -15,6 +48,7 @@ const CATEGORYHEADERS: MyHeaders[] = [
   { key: 'typology', label: 'Tipologia' }
 ];
 
+// TABLES
 export const USERTABLE: MyTableConfig = {
   headers: USERHEADERS,
   order: { defaultColumn: 'idUtente', orderType: 'asc' },
@@ -24,7 +58,7 @@ export const USERTABLE: MyTableConfig = {
     itemPerPage: 2,
     itemPerPageOptions: [2, 5, 10]
   },
-  actions: [0, 1, 2]
+  actions: [NEWBUTTON, EDITBUTTON, DELETEBUTTON]
 };
 
 export const CATEGORYTABLE: MyTableConfig = {
@@ -35,5 +69,5 @@ export const CATEGORYTABLE: MyTableConfig = {
     itemPerPage: 2,
     itemPerPageOptions: [2, 5, 10]
   },
-  actions: [0, 1, 2]
+  actions: [NEWBUTTON, EDITBUTTON, DELETEBUTTON]
 };

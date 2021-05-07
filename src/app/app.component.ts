@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { AppService } from './app-service.service';
 import { User } from './models/user';
 import { Category } from './models/category';
-import { CATEGORYTABLE, USERTABLE } from './classes/my-headers';
+import { CATEGORYTABLE, USERTABLE } from './classes/my-configs';
 
 @Component({
   selector: 'app-root',

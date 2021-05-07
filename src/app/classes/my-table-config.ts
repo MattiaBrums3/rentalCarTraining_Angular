@@ -1,9 +1,11 @@
+import { MyButtonConfig } from './my-button-config';
+
 export class MyTableConfig {
   headers: MyHeaders[];
   order: MyOrder;
   search: MySearch;
   pagination: MyPagination;
-  actions: MyTableActionEnum[];
+  actions: MyButtonConfig[];
 }
 
 export class MyHeaders {
@@ -23,8 +25,4 @@ export class MySearch {
 export class MyPagination {
   itemPerPage: number;
   itemPerPageOptions: number[];
-}
-
-export enum MyTableActionEnum {
-  new, edit, delete
 }

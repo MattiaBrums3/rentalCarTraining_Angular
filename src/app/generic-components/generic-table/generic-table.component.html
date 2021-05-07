@@ -22,7 +22,7 @@
         <span class="material-icons-sharp" *ngIf="defaultOrderType==='asc' && defaultOrderColumn===value.key">keyboard_arrow_down</span>
       </th>
       <th scope="col">
-        <app-generic-button (onClick)="functionCall($event)" [buttonConfig]="getButton(0)"></app-generic-button>
+        <app-generic-button (onClick)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
       </th>
     </tr>
     </thead>
@@ -30,8 +30,8 @@
     <tr *ngFor="let d of data | filterPipe: searchToken : searchKey | paginationPipe: currentPage : tableConfig.pagination.itemPerPage">
       <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
       <ng-container *ngFor="let action of tableConfig.actions">
-        <td *ngIf="action !== 0">
-          <app-generic-button (onClick)="functionCall($event, d[tableConfig.headers[0].key])" [buttonConfig]="getButton(action)"></app-generic-button>
+        <td *ngIf="action.text !== 'Inserisci'">
+          <app-generic-button (onClick)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
         </td>
       </ng-container>
     </tr>

@@ -18,6 +18,5 @@ export class GenericButtonComponent implements OnInit {
 
   onClickButton(event: string) {
     this.onClick.emit(event);
-    console.log('Pulsante', this.buttonConfig.text);
   }
 }
