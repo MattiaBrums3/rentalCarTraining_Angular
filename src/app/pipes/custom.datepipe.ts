@@ -7,10 +7,13 @@ import * as moment from 'moment';
 })
 export class CustomDatePipe extends DatePipe implements PipeTransform {
   transform(value: any, args?: any): any {
-    if (moment(value, moment.ISO_8601).isValid()) {
-      return super.transform(value, 'dd-MM-yyyy');
-    } else {
-      return value;
+    if (typeof value !== 'number') {
+      if (moment(value, moment.ISO_8601).isValid()) {
+        return super.transform(value, 'dd-MM-yyyy');
+      } else {
+        return value;
+      }
     }
+    return value;
   }
 }

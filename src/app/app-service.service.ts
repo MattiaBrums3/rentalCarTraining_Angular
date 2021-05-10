@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from './models/user';
-import { Category } from './models/category';
 import { USERS } from './volatile_data/mock-users';
 import { CATEGORIES } from './volatile_data/mock-categories';
+import { VEHICLES } from './volatile_data/mock-vehicles';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +15,9 @@ export class AppService {
 
   getCategories() {
     return CATEGORIES;
+  }
+
+  getVehicles() {
+    return VEHICLES;
   }
 }

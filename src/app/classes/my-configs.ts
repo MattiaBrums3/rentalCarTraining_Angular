@@ -60,6 +60,14 @@ const CATEGORYHEADERS: MyHeaders[] = [
   { key: 'typology', label: 'Tipologia' }
 ];
 
+const VEHICLEHEADERS: MyHeaders[] = [
+  { key: 'idVehicle', label: 'idVeicolo'},
+  { key: 'model', label: 'Modello'},
+  { key: 'manufacturer', label: 'Casa Produttrice'},
+  { key: 'licensePlate', label: 'Targa' },
+  { key: 'yearOfRegistration', label: 'Anno'}
+];
+
 // TABLES
 export const USERTABLE: MyTableConfig = {
   headers: USERHEADERS,
@@ -77,6 +85,17 @@ export const CATEGORYTABLE: MyTableConfig = {
   headers: CATEGORYHEADERS,
   order: { defaultColumn: 'idCategoria', orderType: 'asc' },
   search: {columns: ['idCategoria', 'Tipologia']},
+  pagination: {
+    itemPerPage: 2,
+    itemPerPageOptions: [2, 5, 10]
+  },
+  actions: [NEWBUTTON, EDITBUTTON, DELETEBUTTON]
+};
+
+export const VEHICLETABLE: MyTableConfig = {
+  headers: VEHICLEHEADERS,
+  order: { defaultColumn: 'idCategoria', orderType: 'asc' },
+  search: {columns: ['idVeicolo', 'Modello', 'Casa Produttrice', 'Targa', 'Anno Immatr.']},
   pagination: {
     itemPerPage: 2,
     itemPerPageOptions: [2, 5, 10]

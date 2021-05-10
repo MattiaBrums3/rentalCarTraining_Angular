@@ -17,6 +17,11 @@ export const USERS: User[] = [
     password: 'alfonso'
   },
   {
+    idUser: 4, name: 'Giovanni', surname: 'Rossi', dateOfBirth: new Date('1990/05/13'),
+    fiscalCode: 'RSSGVN90E13F765D', superUser: false, username: 'g.rossi',
+    password: 'giovanni'
+  },
+  {
     idUser: 5, name: 'Luca', surname: 'Brambilla', dateOfBirth: new Date('1989/04/22'),
     fiscalCode: 'BRMLCA89D22A456P', superUser: false, username: 'l.brambilla',
     password: 'luca89'

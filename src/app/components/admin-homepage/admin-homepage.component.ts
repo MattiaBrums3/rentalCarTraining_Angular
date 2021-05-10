@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CATEGORYBUTTON, USERTABLE, VEHICLEBUTTON} from '../../classes/my-configs';
-import {User} from '../../models/user';
-import {AppService} from '../../app-service.service';
+import { User } from '../../models/user';
+import { AppService } from '../../app-service.service';
 
 @Component({
   selector: 'app-admin-homepage',
