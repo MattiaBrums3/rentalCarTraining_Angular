@@ -20,5 +20,10 @@ export const USERS: User[] = [
     idUser: 5, name: 'Luca', surname: 'Brambilla', dateOfBirth: new Date('1989/04/22'),
     fiscalCode: 'BRMLCA89D22A456P', superUser: false, username: 'l.brambilla',
     password: 'luca89'
+  },
+  {
+    idUser: 6, name: 'Gianpietro', surname: 'Galli', dateOfBirth: new Date('1984/05/25'),
+    fiscalCode: 'GLLGNP84E25G135P', superUser: false, username: 'g.galli',
+    password: 'galli'
   }
 ];

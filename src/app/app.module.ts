@@ -10,6 +10,8 @@ import { GenericTableComponent } from './generic-components/generic-table/generi
 import {CustomDatePipe} from './pipes/custom.datepipe';
 import {TableFilterPipe} from './pipes/table.filterpipe';
 import {PaginationPipe} from './pipes/table.paginationpipe';
+import { NavbarComponent } from './generic-components/navbar/navbar.component';
+import { AdminHomepageComponent } from './components/admin-homepage/admin-homepage.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import {PaginationPipe} from './pipes/table.paginationpipe';
         GenericTableComponent,
         CustomDatePipe,
         TableFilterPipe,
-        PaginationPipe
+        PaginationPipe,
+        NavbarComponent,
+        AdminHomepageComponent
     ],
   imports: [
     BrowserModule,

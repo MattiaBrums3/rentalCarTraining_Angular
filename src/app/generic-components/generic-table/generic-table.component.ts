@@ -1,6 +1,6 @@
 import {
   Component, Input, OnChanges,
-  Output, EventEmitter
+  Output, EventEmitter, SimpleChanges
 } from '@angular/core';
 import { MyTableConfig } from '../../classes/my-table-config';
 
@@ -26,11 +26,12 @@ export class GenericTableComponent implements OnChanges {
 
   constructor() { }
 
-  ngOnChanges(): void {
+  ngOnChanges() {
     this.defaultOrderColumn = this.tableConfig.order.defaultColumn;
     this.defaultOrderType = this.tableConfig.order.orderType;
-    this.pagesNumber = Math.floor((this.tableConfig.headers.length / this.tableConfig.pagination.itemPerPage) - 1);
+    this.pagesNumber = Math.ceil((this.tableConfig.headers.length / this.tableConfig.pagination.itemPerPage) - 1);
     this.orderTable(this.defaultOrderColumn);
+    console.log('onChanges');
   }
 
   onClickButton(event: any, rowId: any, record?: any) {
@@ -54,12 +55,17 @@ export class GenericTableComponent implements OnChanges {
         a[orderColumn] < b[orderColumn] ? -1 : 0);
       this.defaultOrderType = 'asc';
     }
+    this.changePage(0);
   }
 
   changeItemsPerPage(item: any) {
     this.tableConfig.pagination.itemPerPage = +item;
     this.currentPage = 0;
-    this.pagesNumber = Math.floor(this.tableConfig.headers.length / this.tableConfig.pagination.itemPerPage - 1);
+    this.pagesNumber = Math.ceil(this.tableConfig.headers.length / this.tableConfig.pagination.itemPerPage - 1);
+
+    if (this.pagesNumber < 1) {
+      this.pagesNumber = 1;
+    }
   }
 
   changePage(item: any) {

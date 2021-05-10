@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MyButtonConfig } from '../../classes/my-button-config';
 
 @Component({
@@ -6,14 +6,12 @@ import { MyButtonConfig } from '../../classes/my-button-config';
   templateUrl: './generic-button.component.html',
   styleUrls: ['./generic-button.component.css']
 })
-export class GenericButtonComponent implements OnInit {
+export class GenericButtonComponent {
   @Input() buttonConfig: MyButtonConfig;
+
   @Output() onClick = new EventEmitter<any>();
 
   constructor() {
-  }
-
-  ngOnInit() {
   }
 
   onClickButton(event: string) {
