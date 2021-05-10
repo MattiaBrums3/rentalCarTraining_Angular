@@ -32,6 +32,18 @@ export const PREVIOUSBUTTON: MyButtonConfig = {
   icon: 'skip_previous'
 };
 
+export const CATEGORYBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary rounded',
+  text: 'Categorie',
+  icon: 'category'
+};
+
+export const VEHICLEBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary rounded',
+  text: 'Veicoli',
+  icon: 'directions_car'
+};
+
 // TABLE HEADERS
 const USERHEADERS: MyHeaders[] = [
   { key: 'idUser', label: 'idUtente' },

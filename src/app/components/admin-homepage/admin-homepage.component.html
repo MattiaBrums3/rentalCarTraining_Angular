@@ -2,5 +2,17 @@
 
 <div align="center">
   <h1>{{title}}</h1>
-  <app-generic-table [data]="users" [tableConfig]="tableConfigUser"></app-generic-table>
+
+  <div class="admin-links">
+    <a routerLink="/admin/category" routerLinkActive="active">
+      <app-generic-button [buttonConfig]="categoryButton"></app-generic-button>
+    </a>
+    &nbsp;&nbsp;
+    <app-generic-button [buttonConfig]="vehicleButton"></app-generic-button>
+  </div>
+
+  <div align="center">
+    <h2>Lista Utenti</h2>
+    <app-generic-table [data]="users" [tableConfig]="tableConfigUser"></app-generic-table>
+  </div>
 </div>

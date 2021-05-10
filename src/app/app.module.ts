@@ -12,6 +12,8 @@ import {TableFilterPipe} from './pipes/table.filterpipe';
 import {PaginationPipe} from './pipes/table.paginationpipe';
 import { NavbarComponent } from './generic-components/navbar/navbar.component';
 import { AdminHomepageComponent } from './components/admin-homepage/admin-homepage.component';
+import { CategoryComponent } from './components/category/category.component';
+import { LoginComponent } from './generic-components/login/login.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { AdminHomepageComponent } from './components/admin-homepage/admin-homepa
         TableFilterPipe,
         PaginationPipe,
         NavbarComponent,
-        AdminHomepageComponent
+        AdminHomepageComponent,
+        CategoryComponent,
+        LoginComponent
     ],
   imports: [
     BrowserModule,

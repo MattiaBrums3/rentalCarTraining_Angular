@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CATEGORYTABLE, USERTABLE} from '../../classes/my-configs';
+import {CATEGORYBUTTON, USERTABLE, VEHICLEBUTTON} from '../../classes/my-configs';
 import {User} from '../../models/user';
-import {Category} from '../../models/category';
 import {AppService} from '../../app-service.service';
 
 @Component({
@@ -12,6 +11,8 @@ import {AppService} from '../../app-service.service';
 export class AdminHomepageComponent implements OnInit {
   title = 'Admin Homepage';
 
+  categoryButton = CATEGORYBUTTON;
+  vehicleButton = VEHICLEBUTTON;
   tableConfigUser = USERTABLE;
 
   users: User[];
