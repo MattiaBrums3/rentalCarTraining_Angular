@@ -13,7 +13,7 @@ import {PaginationPipe} from './pipes/table.paginationpipe';
 import { NavbarComponent } from './generic-components/navbar/navbar.component';
 import { AdminHomepageComponent } from './components/admin-homepage/admin-homepage.component';
 import { CategoryComponent } from './components/category/category.component';
-import { LoginComponent } from './generic-components/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     declarations: [
