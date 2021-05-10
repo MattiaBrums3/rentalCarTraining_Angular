@@ -22,7 +22,9 @@
         <span class="material-icons-sharp" *ngIf="defaultOrderType==='asc' && defaultOrderColumn===value.key">keyboard_arrow_down</span>
       </th>
       <th scope="col">
-        <app-generic-button (onClick)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
+        <a routerLink="{{currentRoute}}/new" routerLinkActive="active">
+          <app-generic-button (onClick)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
+        </a>
       </th>
     </tr>
     </thead>
@@ -31,7 +33,9 @@
       <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action.text !== 'Inserisci'">
-          <app-generic-button (onClick)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
+          <a routerLink="{{currentRoute}}/{{action.icon}}/{{d['id']}}" routerLinkActive="active">
+            <app-generic-button (onClick)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
+          </a>
         </td>
       </ng-container>
     </tr>

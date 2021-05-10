@@ -15,6 +15,7 @@ import { AdminHomepageComponent } from './components/admin-homepage/admin-homepa
 import { CategoryComponent } from './components/category/category.component';
 import { LoginComponent } from './components/login/login.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { GenericFormComponent } from './generic-components/generic-form/generic-form.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
         AdminHomepageComponent,
         CategoryComponent,
         LoginComponent,
-        VehicleComponent
+        VehicleComponent,
+        GenericFormComponent
     ],
   imports: [
     BrowserModule,

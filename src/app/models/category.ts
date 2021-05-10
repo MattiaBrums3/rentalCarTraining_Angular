@@ -1,4 +1,4 @@
 export interface Category {
-  idCategory: number;
+  id: number;
   typology: string;
 }

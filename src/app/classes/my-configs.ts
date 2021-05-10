@@ -46,7 +46,7 @@ export const VEHICLEBUTTON: MyButtonConfig = {
 
 // TABLE HEADERS
 const USERHEADERS: MyHeaders[] = [
-  { key: 'idUser', label: 'idUtente' },
+  { key: 'id', label: 'idUtente' },
   { key: 'name', label: 'Nome' },
   { key: 'surname', label: 'Cognome' },
   { key: 'dateOfBirth', label: 'Data di Nascita' },
@@ -56,12 +56,12 @@ const USERHEADERS: MyHeaders[] = [
 ];
 
 const CATEGORYHEADERS: MyHeaders[] = [
-  { key: 'idCategory', label: 'idCategoria' },
+  { key: 'id', label: 'idCategoria' },
   { key: 'typology', label: 'Tipologia' }
 ];
 
 const VEHICLEHEADERS: MyHeaders[] = [
-  { key: 'idVehicle', label: 'idVeicolo'},
+  { key: 'id', label: 'idVeicolo'},
   { key: 'model', label: 'Modello'},
   { key: 'manufacturer', label: 'Casa Produttrice'},
   { key: 'licensePlate', label: 'Targa' },

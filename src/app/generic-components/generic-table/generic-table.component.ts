@@ -3,6 +3,7 @@ import {
   Output, EventEmitter, SimpleChanges
 } from '@angular/core';
 import { MyTableConfig } from '../../classes/my-table-config';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-generic-table',
@@ -24,13 +25,16 @@ export class GenericTableComponent implements OnChanges {
   currentPage = 0;
   pagesNumber: number;
 
-  constructor() { }
+  currentRoute: string;
+
+  constructor(private router: Router) { }
 
   ngOnChanges() {
     this.defaultOrderColumn = this.tableConfig.order.defaultColumn;
     this.defaultOrderType = this.tableConfig.order.orderType;
     this.pagesNumber = Math.ceil(this.data.length / this.tableConfig.pagination.itemPerPage);
     this.orderTable(this.defaultOrderColumn);
+    this.currentRoute = this.router.url;
   }
 
   onClickButton(event: any, rowId: any, record?: any) {
@@ -61,7 +65,7 @@ export class GenericTableComponent implements OnChanges {
     this.tableConfig.pagination.itemPerPage = +item;
     this.currentPage = 0;
     this.pagesNumber = Math.ceil(this.data.length / this.tableConfig.pagination.itemPerPage);
-    
+
     if (this.pagesNumber < 1) {
       this.pagesNumber = 1;
     }
