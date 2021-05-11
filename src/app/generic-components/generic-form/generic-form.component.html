@@ -1,3 +1,15 @@
 <app-navbar></app-navbar>
 
 <h1>{{title}}</h1>
+
+<div *ngIf="entity === 'user'">
+  <p>Div utente</p>
+</div>
+
+<div *ngIf="entity === 'category'">
+  <p>Div categoria</p>
+</div>
+
+<div *ngIf="entity === 'vehicle'">
+  <p>Div veicolo</p>
+</div>
