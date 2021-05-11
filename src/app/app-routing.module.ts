@@ -7,22 +7,23 @@ import {VehicleComponent} from './components/vehicle/vehicle.component';
 import {GenericFormComponent} from './generic-components/generic-form/generic-form.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent, pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'admin', children: [
       {path: 'user', children: [
           {path: '', component: AdminHomepageComponent},
-          {path: 'new', component: GenericFormComponent},
-          {path: 'edit/:id', component: GenericFormComponent}
+          {path: ':action', component: GenericFormComponent},
+          {path: ':action/:id', component: GenericFormComponent}
       ]},
       {path: 'category', children: [
           {path: '', component: CategoryComponent},
-          {path: 'new', component: GenericFormComponent},
-          {path: 'edit/:id', component: GenericFormComponent}
+          {path: ':action', component: GenericFormComponent},
+          {path: ':action/:id', component: GenericFormComponent}
       ]},
       {path: 'vehicle', children: [
           {path: '', component: VehicleComponent},
-          {path: 'new', component: GenericFormComponent},
-          {path: 'edit/:id', component: GenericFormComponent}
+          {path: ':action', component: GenericFormComponent},
+          {path: ':action/:id', component: GenericFormComponent}
       ]}
   ]}
 ];
