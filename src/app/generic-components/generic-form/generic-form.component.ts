@@ -1,5 +1,6 @@
-import {Component, OnInit, Output} from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit, Output} from '@angular/core';
+import {AppService} from '../../app-service.service';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-generic-form',
@@ -7,43 +8,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./generic-form.component.css']
 })
 export class GenericFormComponent implements OnInit {
+  @Input() entity: string;
+  @Input() action: string;
+  @Input() object: any;
+
+  @Output() outputEntity: any;
+  @Output() outputAction: any;
+  @Output() outputObject: any;
+
   url: string;
-  entity: string;
   title: string;
 
-  constructor(private router: Router) { }
+  constructor(private service: AppService) { }
 
   ngOnInit(): void {
-    this.url = this.router.url;
-
-    if (this.url.includes('user')) {
-      this.entity = 'user';
-
-      if (this.url.includes('new')) {
-        this.title = 'Nuovo Utente';
-      } else if (this.url.includes('edit')) {
-        this.title = 'Modifica Utente';
-      }
+    switch (this.entity) {
+      case 'users':
+        this.outputEntity = 'users';
+        break;
     }
 
-    if (this.url.includes('category')) {
-      this.entity = 'category';
-
-      if (this.url.includes('new')) {
-        this.title = 'Nuova Categoria';
-      } else if (this.url.includes('edit')) {
-        this.title = 'Modifica Categoria';
-      }
-    }
-
-    if (this.url.includes('vehicle')) {
-      this.entity = 'vehicle';
-
-      if (this.url.includes('new')) {
-        this.title = 'Nuovo Veicolo';
-      } else if (this.url.includes('edit')) {
-        this.title = 'Modifica Veicolo';
-      }
+    switch (this.action) {
+      case 'new':
+        this.outputAction = 'new';
+        break;
+      case 'edit':
+        this.outputAction = 'edit';
+        break;
     }
   }
 

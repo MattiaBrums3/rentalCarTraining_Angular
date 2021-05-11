@@ -1,15 +1,23 @@
-<app-navbar></app-navbar>
-
 <h1>{{title}}</h1>
 
-<div *ngIf="entity === 'user'">
-  <p>Div utente</p>
+<div class="row">
+  <div class="col-sm register-right">
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <ng-container *ngIf="outputEntity === 'users'">
+          <ng-container *ngIf="outputAction === 'new'; else editUser">
+            <h1>Nuovo Utente</h1>
+            <ng-container *ngFor="let key of outputObject">
+              <p>{{key}}</p>
+            </ng-container>
+          </ng-container>
+          <ng-template #editUser>
+            <h1>Modifica Utente</h1>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div *ngIf="entity === 'category'">
-  <p>Div categoria</p>
-</div>
 
-<div *ngIf="entity === 'vehicle'">
-  <p>Div veicolo</p>
-</div>

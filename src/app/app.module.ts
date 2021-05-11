@@ -12,10 +12,14 @@ import {TableFilterPipe} from './pipes/table.filterpipe';
 import {PaginationPipe} from './pipes/table.paginationpipe';
 import { NavbarComponent } from './generic-components/navbar/navbar.component';
 import { AdminHomepageComponent } from './components/admin-homepage/admin-homepage.component';
-import { CategoryComponent } from './components/category/category.component';
 import { LoginComponent } from './components/login/login.component';
-import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { GenericFormComponent } from './generic-components/generic-form/generic-form.component';
+import { CategoryTableComponent } from './components/category/category-table/category-table.component';
+import { CategoryFormComponent } from './components/category/category-form/category-form.component';
+import { VehicleTableComponent } from './components/vehicle/vehicle-table/vehicle-table.component';
+import { VehicleFormComponent } from './components/vehicle/vehicle-form/vehicle-form.component';
+import { UserTableComponent } from './components/user/user-table/user-table.component';
+import { UserFormComponent } from './components/user/user-form/user-form.component';
 
 @NgModule({
     declarations: [
@@ -27,10 +31,15 @@ import { GenericFormComponent } from './generic-components/generic-form/generic-
         PaginationPipe,
         NavbarComponent,
         AdminHomepageComponent,
-        CategoryComponent,
         LoginComponent,
-        VehicleComponent,
-        GenericFormComponent
+        CategoryTableComponent,
+        CategoryFormComponent,
+        VehicleTableComponent,
+        GenericFormComponent,
+        VehicleTableComponent,
+        VehicleFormComponent,
+        UserTableComponent,
+        UserFormComponent,
     ],
   imports: [
     BrowserModule,

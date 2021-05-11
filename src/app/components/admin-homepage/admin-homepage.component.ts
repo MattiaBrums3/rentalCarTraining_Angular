@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {CATEGORYBUTTON, USERTABLE, VEHICLEBUTTON} from '../../classes/my-configs';
-import { User } from '../../models/user';
-import { AppService } from '../../app-service.service';
 
 @Component({
   selector: 'app-admin-homepage',
@@ -13,12 +11,8 @@ export class AdminHomepageComponent implements OnInit {
 
   categoryButton = CATEGORYBUTTON;
   vehicleButton = VEHICLEBUTTON;
-  tableConfigUser = USERTABLE;
 
-  users: User[];
-
-  constructor(private service: AppService) {
-    this.users = this.service.getUsers();
+  constructor() {
   }
 
   ngOnInit(): void {

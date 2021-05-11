@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminHomepageComponent } from './components/admin-homepage/admin-homepage.component';
-import {CategoryComponent} from './components/category/category.component';
 import {LoginComponent} from './components/login/login.component';
-import {VehicleComponent} from './components/vehicle/vehicle.component';
+import {CategoryTableComponent} from './components/category/category-table/category-table.component';
+import {VehicleTableComponent} from './components/vehicle/vehicle-table/vehicle-table.component';
 import {GenericFormComponent} from './generic-components/generic-form/generic-form.component';
+import {UserFormComponent} from './components/user/user-form/user-form.component';
+import {CategoryFormComponent} from './components/category/category-form/category-form.component';
+import {VehicleFormComponent} from './components/vehicle/vehicle-form/vehicle-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -12,18 +15,18 @@ const routes: Routes = [
   {path: 'admin', children: [
       {path: 'user', children: [
           {path: '', component: AdminHomepageComponent},
-          {path: ':action', component: GenericFormComponent},
-          {path: ':action/:id', component: GenericFormComponent}
+          {path: 'new', component: UserFormComponent},
+          {path: 'edit/:id', component: UserFormComponent}
       ]},
       {path: 'category', children: [
-          {path: '', component: CategoryComponent},
-          {path: ':action', component: GenericFormComponent},
-          {path: ':action/:id', component: GenericFormComponent}
+          {path: '', component: CategoryTableComponent},
+          {path: 'new', component: CategoryFormComponent},
+          {path: 'edit/:id', component: CategoryFormComponent}
       ]},
       {path: 'vehicle', children: [
-          {path: '', component: VehicleComponent},
-          {path: ':action', component: GenericFormComponent},
-          {path: ':action/:id', component: GenericFormComponent}
+          {path: '', component: VehicleTableComponent},
+          {path: 'new', component: VehicleFormComponent},
+          {path: 'edit/:id', component: VehicleFormComponent}
       ]}
   ]}
 ];
