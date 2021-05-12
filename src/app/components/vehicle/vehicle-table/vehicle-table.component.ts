@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../../app-service.service';
 import { Vehicle } from '../../../models/vehicle';
 import { VEHICLETABLE } from '../../../classes/my-configs';
+import {VehicleService} from '../../../services/vehicle.service';
 
 @Component({
   selector: 'app-vehicle-table',
@@ -15,7 +15,7 @@ export class VehicleTableComponent implements OnInit {
 
   vehicles: Vehicle[];
 
-  constructor(private service: AppService) {
+  constructor(private service: VehicleService) {
     this.vehicles = this.service.getVehicles();
   }
 

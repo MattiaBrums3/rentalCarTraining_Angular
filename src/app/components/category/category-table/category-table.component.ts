@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category} from '../../../models/category';
 import { CATEGORYTABLE } from '../../../classes/my-configs';
-import { AppService } from '../../../app-service.service';
+import {CategoryService} from '../../../services/category.service';
 
 @Component({
   selector: 'app-category-table',
@@ -15,7 +15,7 @@ export class CategoryTableComponent implements OnInit {
 
   categories: Category[];
 
-  constructor(private service: AppService) {
+  constructor(private service: CategoryService) {
     this.categories = this.service.getCategories();
   }
 

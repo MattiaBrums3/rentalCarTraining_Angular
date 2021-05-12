@@ -1,6 +1,8 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {AppService} from '../../app-service.service';
-import {User} from '../../models/user';
+import {UserService} from '../../services/user.service';
+import {CategoryService} from '../../services/category.service';
+import {VehicleService} from '../../services/vehicle.service';
 
 @Component({
   selector: 'app-generic-form',
@@ -12,12 +14,27 @@ export class GenericFormComponent implements OnInit {
   @Input() action: string;
   @Input() object: any;
 
-  url: string;
-  title: string;
+  service: any;
 
-  constructor(private service: AppService) { }
+  constructor(private userService: UserService,
+              private categoryService: CategoryService,
+              private vehicleService: VehicleService) { }
 
   ngOnInit(): void {
+    this.getService();
   }
 
+  getService() {
+    switch (this.entity) {
+      case 'users':
+        this.service = this.userService;
+        break;
+      case 'categories':
+        this.service = this.categoryService;
+        break;
+      case 'vehicles':
+        this.service = this.vehicleService;
+        break;
+    }
+  }
 }

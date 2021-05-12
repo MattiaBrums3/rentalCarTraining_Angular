@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {USERTABLE} from '../../../classes/my-configs';
 import {User} from '../../../models/user';
-import {AppService} from '../../../app-service.service';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-table',
@@ -15,7 +15,7 @@ export class UserTableComponent implements OnInit {
 
   users: User[];
 
-  constructor(private service: AppService) {
+  constructor(private service: UserService) {
     this.users = this.service.getUsers();
   }
 

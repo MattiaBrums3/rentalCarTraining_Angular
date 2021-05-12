@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {USERHEADERS} from '../../../classes/my-configs';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -13,7 +14,8 @@ export class UserFormComponent implements OnInit {
   object: any;
   objId: number;
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute,
+              private service: UserService) { }
 
   ngOnInit(): void {
     this.getAction();
