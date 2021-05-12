@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
-import { USERS } from '../volatile_data/mock-users';
+import { HttpClient } from '@angular/common/http';
+import {User} from '../models/user';
+import {tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private usersUrl = 'api/users';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getUsers() {
-    return USERS;
+    return this.http.get<User[]>(this.usersUrl)
+      .pipe(
+        tap(_ => console.log('Fetched Users'))
+      );
+  }
+
+  getUserById(id: number) {
+
   }
 }

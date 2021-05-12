@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {USERTABLE} from '../../../classes/my-configs';
 import {User} from '../../../models/user';
 import {UserService} from '../../../services/user.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-user-table',
@@ -16,7 +17,10 @@ export class UserTableComponent implements OnInit {
   users: User[];
 
   constructor(private service: UserService) {
-    this.users = this.service.getUsers();
+    this.service.getUsers()
+      .subscribe(
+        u => this.users = u
+    );
   }
 
   ngOnInit(): void {
