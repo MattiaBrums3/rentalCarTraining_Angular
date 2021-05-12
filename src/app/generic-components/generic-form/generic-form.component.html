@@ -4,15 +4,39 @@
   <div class="col-sm register-right">
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <ng-container *ngIf="outputEntity === 'users'">
-          <ng-container *ngIf="outputAction === 'new'; else editUser">
+        <ng-container *ngIf="entity === 'users'">
+          <ng-container *ngIf="action === 'new'; else editUser">
             <h1>Nuovo Utente</h1>
-            <ng-container *ngFor="let key of outputObject">
-              <p>{{key}}</p>
+            <ng-container *ngFor="let key of object.keys">
+              <p *ngIf="key.key !== 'id'">{{key.label}}</p>
             </ng-container>
           </ng-container>
           <ng-template #editUser>
             <h1>Modifica Utente</h1>
+          </ng-template>
+        </ng-container>
+
+        <ng-container *ngIf="entity === 'categories'">
+          <ng-container *ngIf="action === 'new'; else editCategory">
+            <h1>Nuova Categoria</h1>
+            <ng-container *ngFor="let key of object.keys">
+              <p *ngIf="key.key !== 'id'">{{key.label}}</p>
+            </ng-container>
+          </ng-container>
+          <ng-template #editCategory>
+            <h1>Modifica Categoria</h1>
+          </ng-template>
+        </ng-container>
+
+        <ng-container *ngIf="entity === 'vehicles'">
+          <ng-container *ngIf="action === 'new'; else editVehicle">
+            <h1>Nuovo Veicolo</h1>
+            <ng-container *ngFor="let key of object.keys">
+              <p *ngIf="key.key !== 'id'">{{key.label}}</p>
+            </ng-container>
+          </ng-container>
+          <ng-template #editVehicle>
+            <h1>Modifica Veicolo</h1>
           </ng-template>
         </ng-container>
       </div>
