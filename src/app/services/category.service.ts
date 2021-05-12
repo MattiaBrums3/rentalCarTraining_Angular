@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { CATEGORIES } from '../volatile_data/mock-categories';
+import {User} from '../models/user';
+import {tap} from 'rxjs/operators';
+import {Category} from '../models/category';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
+  private categoriesUrl = 'api/categories';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getCategories() {
-    return CATEGORIES;
+    return this.http.get<Category[]>(this.categoriesUrl)
+      .pipe(
+        tap(_ => console.log('Fetched Categories'))
+      );
   }
 }

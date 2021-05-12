@@ -16,7 +16,10 @@ export class CategoryTableComponent implements OnInit {
   categories: Category[];
 
   constructor(private service: CategoryService) {
-    this.categories = this.service.getCategories();
+    this.service.getCategories()
+      .subscribe(
+        c => this.categories = c
+      );
   }
 
   ngOnInit(): void {

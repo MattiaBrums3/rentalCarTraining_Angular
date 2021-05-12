@@ -16,7 +16,10 @@ export class VehicleTableComponent implements OnInit {
   vehicles: Vehicle[];
 
   constructor(private service: VehicleService) {
-    this.vehicles = this.service.getVehicles();
+    this.service.getVehicles()
+      .subscribe(
+        v => this.vehicles = v
+      );
   }
 
   ngOnInit() {

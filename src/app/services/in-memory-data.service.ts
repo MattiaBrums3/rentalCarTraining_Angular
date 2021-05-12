@@ -53,6 +53,6 @@ export class InMemoryDataService implements InMemoryDbService {
         yearOfRegistration: 2015},
     ];
 
-    return {users};
+    return {users, categories, vehicles};
   }
 }

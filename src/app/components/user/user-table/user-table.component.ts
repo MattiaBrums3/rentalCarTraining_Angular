@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {USERTABLE} from '../../../classes/my-configs';
 import {User} from '../../../models/user';
 import {UserService} from '../../../services/user.service';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-user-table',
