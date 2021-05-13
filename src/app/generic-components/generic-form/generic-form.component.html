@@ -16,7 +16,10 @@
             <ng-template #editUser>
               <h1>Modifica Utente</h1>
               <div class="row register-form d-flex justify-content-center">
-
+                <ng-container *ngFor="let key of object.keys">
+                  <input *ngIf="key.key !== 'id'" type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                         title="{{key.label}}" required="required" />&nbsp;
+                </ng-container>
               </div>
             </ng-template>
           </ng-container>

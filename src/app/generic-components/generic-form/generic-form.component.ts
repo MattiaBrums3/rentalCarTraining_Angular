@@ -1,5 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
-import {AppService} from '../../app-service.service';
+import {Component, Input, OnChanges, Output} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {CategoryService} from '../../services/category.service';
 import {VehicleService} from '../../services/vehicle.service';
@@ -9,7 +8,7 @@ import {VehicleService} from '../../services/vehicle.service';
   templateUrl: './generic-form.component.html',
   styleUrls: ['./generic-form.component.css']
 })
-export class GenericFormComponent implements OnInit {
+export class GenericFormComponent implements OnChanges {
   @Input() entity: string;
   @Input() action: string;
   @Input() object: any;
@@ -20,7 +19,7 @@ export class GenericFormComponent implements OnInit {
               private categoryService: CategoryService,
               private vehicleService: VehicleService) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.getService();
   }
 

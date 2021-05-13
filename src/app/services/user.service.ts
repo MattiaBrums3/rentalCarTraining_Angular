@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from '../models/user';
 import {tap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +19,10 @@ export class UserService {
   }
 
   getUserById(id: number) {
-
+    const url = `${this.usersUrl}/${id}`;
+    return this.http.get<User>(url)
+      .pipe(
+        tap(_ => console.log(`Fetched User ${id}`))
+      );
   }
 }
