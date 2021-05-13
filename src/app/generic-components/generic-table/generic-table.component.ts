@@ -14,7 +14,7 @@ export class GenericTableComponent implements OnChanges {
   @Input() tableConfig: MyTableConfig;
   @Input() data: any[];
 
-  @Output() onClick = new EventEmitter<any>();
+  @Output() emitResult = new EventEmitter<any>();
 
   defaultOrderColumn: string;
   defaultOrderType: string;
@@ -44,7 +44,7 @@ export class GenericTableComponent implements OnChanges {
 
     const btn = {button: rowId, action: event, record};
     console.log(btn);
-    this.onClick.emit(btn);
+    this.emitResult.emit(btn);
   }
 
   orderTable(orderColumn: string) {

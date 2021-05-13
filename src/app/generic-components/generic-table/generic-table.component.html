@@ -23,7 +23,7 @@
       </th>
       <th scope="col">
         <a routerLink="{{currentRoute}}/new" routerLinkActive="active">
-          <app-generic-button (onClick)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
+          <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
         </a>
       </th>
     </tr>
@@ -34,7 +34,7 @@
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action.text !== 'Inserisci'">
           <a routerLink="{{currentRoute}}/{{action.icon}}/{{d['id']}}" routerLinkActive="active">
-            <app-generic-button (onClick)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
+            <app-generic-button (emitter)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
           </a>
         </td>
       </ng-container>

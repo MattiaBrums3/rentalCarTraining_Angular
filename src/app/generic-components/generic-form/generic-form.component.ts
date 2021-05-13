@@ -1,17 +1,27 @@
-import {Component, Input, OnChanges, Output} from '@angular/core';
+import {
+  Component, Input, OnInit, OnChanges, Output,
+  EventEmitter
+} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {CategoryService} from '../../services/category.service';
 import {VehicleService} from '../../services/vehicle.service';
+import {FORMBUTTON, UNDOBUTTON} from '../../classes/my-configs';
+;
 
 @Component({
   selector: 'app-generic-form',
   templateUrl: './generic-form.component.html',
   styleUrls: ['./generic-form.component.css']
 })
-export class GenericFormComponent implements OnChanges {
+export class GenericFormComponent implements OnInit, OnChanges {
   @Input() entity: string;
   @Input() action: string;
   @Input() object: any;
+
+  @Output() emitter = new EventEmitter<any>();
+
+  saveButton = FORMBUTTON;
+  undoButton = UNDOBUTTON;
 
   service: any;
 
@@ -19,8 +29,11 @@ export class GenericFormComponent implements OnChanges {
               private categoryService: CategoryService,
               private vehicleService: VehicleService) { }
 
-  ngOnChanges(): void {
+  ngOnInit(): void {
     this.getService();
+  }
+
+  ngOnChanges(): void {
   }
 
   getService() {
@@ -35,5 +48,9 @@ export class GenericFormComponent implements OnChanges {
         this.service = this.vehicleService;
         break;
     }
+  }
+
+  btnClick(event: any) {
+    this.emitter.emit(event);
   }
 }

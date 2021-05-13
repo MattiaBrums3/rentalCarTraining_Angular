@@ -2,19 +2,19 @@ import { MyTableConfig, MyHeaders } from './my-table-config';
 import {MyButtonConfig} from './my-button-config';
 
 // BUTTONS
-export const NEWBUTTON: MyButtonConfig = {
+export const NEWTABLEBUTTON: MyButtonConfig = {
   customCssClass: 'btn btn-primary',
   text: 'Inserisci',
   icon: 'add'
 };
 
-export const EDITBUTTON: MyButtonConfig = {
+export const EDITTABLEBUTTON: MyButtonConfig = {
   customCssClass: 'btn btn-success',
   text: 'Modifica',
   icon: 'edit'
 };
 
-export const DELETEBUTTON: MyButtonConfig = {
+export const DELETETABLEBUTTON: MyButtonConfig = {
   customCssClass: 'btn btn-danger',
   text: 'Elimina',
   icon: 'delete'
@@ -31,6 +31,19 @@ export const PREVIOUSBUTTON: MyButtonConfig = {
   text: 'Indietro',
   icon: 'skip_previous'
 };
+
+export const FORMBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Salva',
+  icon: 'save'
+};
+
+export const UNDOBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-danger',
+  text: 'Annulla',
+  icon: 'close'
+};
+
 
 export const CATEGORYBUTTON: MyButtonConfig = {
   customCssClass: 'btn btn-primary rounded',
@@ -78,7 +91,7 @@ export const USERTABLE: MyTableConfig = {
     itemPerPage: 2,
     itemPerPageOptions: [2, 5, 10]
   },
-  actions: [NEWBUTTON, EDITBUTTON, DELETEBUTTON]
+  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
 };
 
 export const CATEGORYTABLE: MyTableConfig = {
@@ -89,7 +102,7 @@ export const CATEGORYTABLE: MyTableConfig = {
     itemPerPage: 2,
     itemPerPageOptions: [2, 5, 10]
   },
-  actions: [NEWBUTTON, EDITBUTTON, DELETEBUTTON]
+  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
 };
 
 export const VEHICLETABLE: MyTableConfig = {
@@ -100,5 +113,5 @@ export const VEHICLETABLE: MyTableConfig = {
     itemPerPage: 2,
     itemPerPageOptions: [2, 5, 10]
   },
-  actions: [NEWBUTTON, EDITBUTTON, DELETEBUTTON]
+  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
 };

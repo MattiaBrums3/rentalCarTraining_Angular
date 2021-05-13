@@ -25,4 +25,8 @@ export class UserTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  clickedRow(event: any) {
+    console.log(event);
+  }
+
 }

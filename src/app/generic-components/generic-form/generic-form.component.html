@@ -8,18 +8,32 @@
               <h1>Nuovo Utente</h1>
               <div class="row register-form d-flex justify-content-center">
                 <ng-container *ngFor="let key of object.keys">
-                  <input *ngIf="key.key !== 'id'" type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
-                         title="{{key.label}}" required="required" />&nbsp;
+                  <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]" type="text"
+                         class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                         title="{{key.label}}" required value="{{object[key.key] | customDate}}" />&nbsp;
                 </ng-container>
+                <div class="col-md-6 mt-4">
+                  <div class="form-group">
+                    <app-generic-button [buttonConfig]="saveButton" (emitter)="btnClick($event)"></app-generic-button>
+                  </div>
+                </div>
               </div>
             </ng-container>
             <ng-template #editUser>
               <h1>Modifica Utente</h1>
               <div class="row register-form d-flex justify-content-center">
                 <ng-container *ngFor="let key of object.keys">
-                  <input *ngIf="key.key !== 'id'" type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
-                         title="{{key.label}}" required="required" />&nbsp;
+                  <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]" type="text"
+                         class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                         title="{{key.label}}" required value="{{object[key.key] | customDate}}" />&nbsp;
                 </ng-container>
+                <div class="col-md-6 mt-4">
+                  <div class="form-group">
+                    <app-generic-button [buttonConfig]="saveButton" (emitter)="btnClick($event)"></app-generic-button>
+                    &nbsp;
+                    <app-generic-button [buttonConfig]="undoButton" (emitter)="btnClick($event)"></app-generic-button>
+                  </div>
+                </div>
               </div>
             </ng-template>
           </ng-container>

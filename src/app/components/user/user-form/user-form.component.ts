@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {USERHEADERS} from '../../../classes/my-configs';
 import {UserService} from '../../../services/user.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-user-form',
@@ -14,7 +15,8 @@ export class UserFormComponent implements OnInit {
   object: any;
 
   constructor(private router: ActivatedRoute,
-              private service: UserService) { }
+              private service: UserService,
+              private location: Location) { }
 
   ngOnInit(): void {
     this.getAction();
@@ -26,15 +28,33 @@ export class UserFormComponent implements OnInit {
   }
 
   getObject() {
-    this.object = {name: '', surname: '', dateOfBirth: new Date(), fiscalCode: '',
+    const date = new Date();
+    this.object = {name: '', surname: '', dateOfBirth: date.toISOString(), fiscalCode: '',
                     username: '', password: ''};
+    this.object.keys = USERHEADERS;
 
     if (this.action === 'edit') {
       const objId = +this.router.snapshot.url[1].path;
       this.service.getUserById(objId)
-        .subscribe(o => this.object = o);
+        .subscribe(o => {
+          this.object = o;
+          this.object.keys = USERHEADERS;
+        });
     }
+  }
 
-    this.object.keys = USERHEADERS;
+  doOperation(action: any) {
+    if (action === 'Salva') {
+      this.service.saveUser(this.object)
+        .subscribe(
+          () => this.goBack()
+        );
+    } else {
+      this.goBack();
+    }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

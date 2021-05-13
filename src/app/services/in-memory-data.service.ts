@@ -8,7 +8,7 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const users = [
       {
-        id: 1, name: 'Mattia', surname: 'Brumana', dateOfBirth: new Date('1996-04-03T11:44:00Z'),
+        id: 1, name: 'Mattia', surname: 'Brumana', dateOfBirth: new Date('1996-04-03T11:44:00.524Z'),
         fiscalCode: 'BRMMTT96D03A456E', superUser: true, username: 'm.brumana',
         password: 'admin'
       },

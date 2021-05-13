@@ -9,12 +9,12 @@ import { MyButtonConfig } from '../../classes/my-button-config';
 export class GenericButtonComponent {
   @Input() buttonConfig: MyButtonConfig;
 
-  @Output() onClick = new EventEmitter<any>();
+  @Output() emitter = new EventEmitter<any>();
 
   constructor() {
   }
 
   onClickButton(event: string) {
-    this.onClick.emit(event);
+    this.emitter.emit(event);
   }
 }

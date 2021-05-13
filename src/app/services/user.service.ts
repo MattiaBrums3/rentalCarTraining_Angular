@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../models/user';
 import {tap} from 'rxjs/operators';
 
@@ -8,6 +8,10 @@ import {tap} from 'rxjs/operators';
 })
 export class UserService {
   private usersUrl = 'api/users';
+
+  httpOptions = {
+   headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -24,5 +28,9 @@ export class UserService {
       .pipe(
         tap(_ => console.log(`Fetched User ${id}`))
       );
+  }
+
+  saveUser(user: User) {
+    return this.http.post<User>(this.usersUrl, user, this.httpOptions);
   }
 }
