@@ -2,7 +2,7 @@ import {
   Component, Input, OnChanges,
   Output, EventEmitter, SimpleChanges
 } from '@angular/core';
-import { MyTableConfig } from '../../classes/my-table-config';
+import { MyTableConfig } from '../../../classes/my-table-config';
 import {Router} from '@angular/router';
 
 @Component({

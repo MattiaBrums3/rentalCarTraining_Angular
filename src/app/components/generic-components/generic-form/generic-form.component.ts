@@ -2,10 +2,10 @@ import {
   Component, Input, OnInit, OnChanges, Output,
   EventEmitter
 } from '@angular/core';
-import {UserService} from '../../services/user.service';
-import {CategoryService} from '../../services/category.service';
-import {VehicleService} from '../../services/vehicle.service';
-import {FORMBUTTON, UNDOBUTTON} from '../../classes/my-configs';
+import {UserService} from '../../../services/user.service';
+import {CategoryService} from '../../../services/category.service';
+import {VehicleService} from '../../../services/vehicle.service';
+import {FORMBUTTON, UNDOBUTTON} from '../../../classes/my-configs';
 ;
 
 @Component({

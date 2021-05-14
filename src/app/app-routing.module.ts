@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminHomepageComponent } from './components/admin-homepage/admin-homepage.component';
-import {LoginComponent} from './components/login/login.component';
+import { AdminHomepageComponent } from './pages/admin-homepage/admin-homepage.component';
+import {LoginComponent} from './pages/login/login.component';
 import {CategoryTableComponent} from './components/category/category-table/category-table.component';
 import {VehicleTableComponent} from './components/vehicle/vehicle-table/vehicle-table.component';
-import {GenericFormComponent} from './generic-components/generic-form/generic-form.component';
+import {GenericFormComponent} from './components/generic-components/generic-form/generic-form.component';
 import {UserFormComponent} from './components/user/user-form/user-form.component';
 import {CategoryFormComponent} from './components/category/category-form/category-form.component';
 import {VehicleFormComponent} from './components/vehicle/vehicle-form/vehicle-form.component';
