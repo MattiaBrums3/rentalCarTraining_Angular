@@ -3,76 +3,21 @@
     <div class="col-sm register-right">
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <ng-container *ngIf="entity === 'users'">
-            <ng-container *ngIf="action === 'new'; else editUser">
-              <h1>Nuovo Utente</h1>
-              <div class="row register-form d-flex justify-content-center">
-                <ng-container *ngFor="let key of object.keys">
-                  <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]" type="text"
-                         class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
-                         title="{{key.label}}" required value="{{object[key.key] | customDate}}" />&nbsp;
-                </ng-container>
-                <div class="col-md-6 mt-4">
-                  <div class="form-group">
-                    <app-generic-button [buttonConfig]="saveButton" (emitter)="btnClick($event)"></app-generic-button>
-                  </div>
-                </div>
-              </div>
+          <h1>{{title}}</h1>
+          <div class="row register-form d-flex justify-content-center">
+            <ng-container *ngFor="let key of object.keys">
+              <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]" type="text"
+                     class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                     title="{{key.label}}" required value="{{object[key.key] | customDate}}" />&nbsp;
             </ng-container>
-            <ng-template #editUser>
-              <h1>Modifica Utente</h1>
-              <div class="row register-form d-flex justify-content-center">
-                <ng-container *ngFor="let key of object.keys">
-                  <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]" type="text"
-                         class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
-                         title="{{key.label}}" required value="{{object[key.key] | customDate}}" />&nbsp;
-                </ng-container>
-                <div class="col-md-6 mt-4">
-                  <div class="form-group">
-                    <app-generic-button [buttonConfig]="saveButton" (emitter)="btnClick($event)"></app-generic-button>
-                    &nbsp;
-                    <app-generic-button [buttonConfig]="undoButton" (emitter)="btnClick($event)"></app-generic-button>
-                  </div>
-                </div>
+            <div class="col-md-6 mt-4">
+              <div class="form-group">
+                <app-generic-button [buttonConfig]="saveButton" (emitter)="btnClick($event)"></app-generic-button>
+                &nbsp;
+                <app-generic-button [buttonConfig]="undoButton" (emitter)="btnClick($event)"></app-generic-button>
               </div>
-            </ng-template>
-          </ng-container>
-
-          <ng-container *ngIf="entity === 'categories'">
-            <ng-container *ngIf="action === 'new'; else editCategory">
-              <h1>Nuova Categoria</h1>
-              <div class="row register-form d-flex justify-content-center">
-                <ng-container *ngFor="let key of object.keys">
-                  <input *ngIf="key.key !== 'id'" type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
-                         title="{{key.label}}" required="required" />&nbsp;
-                </ng-container>
-              </div>
-            </ng-container>
-            <ng-template #editCategory>
-              <h1>Modifica Categoria</h1>
-              <div class="row register-form d-flex justify-content-center">
-
-              </div>
-            </ng-template>
-          </ng-container>
-
-          <ng-container *ngIf="entity === 'vehicles'">
-            <ng-container *ngIf="action === 'new'; else editVehicle">
-              <h1>Nuovo Veicolo</h1>
-              <div class="row register-form d-flex justify-content-center">
-                <ng-container *ngFor="let key of object.keys">
-                  <input *ngIf="key.key !== 'id'" type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
-                         title="{{key.label}}" required="required" />&nbsp;
-                </ng-container>
-              </div>
-            </ng-container>
-            <ng-template #editVehicle>
-              <h1>Modifica Veicolo</h1>
-              <div class="row register-form d-flex justify-content-center">
-
-              </div>
-            </ng-template>
-          </ng-container>
+            </div>
+          </div>
         </div>
       </div>
     </div>

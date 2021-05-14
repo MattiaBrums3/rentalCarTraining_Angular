@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehicle } from '../../../models/vehicle';
-import { VEHICLETABLE } from '../../../classes/my-configs';
+import { VEHICLETABLE } from '../../../configs/my-configs';
 import {VehicleService} from '../../../services/vehicle.service';
 
 @Component({

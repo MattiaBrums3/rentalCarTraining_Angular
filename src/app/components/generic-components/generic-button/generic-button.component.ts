@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { MyButtonConfig } from '../../../classes/my-button-config';
+import { MyButtonConfig } from '../../../configs/my-button-config';
 
 @Component({
   selector: 'app-generic-button',

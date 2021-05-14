@@ -5,7 +5,7 @@ import {
 import {UserService} from '../../../services/user.service';
 import {CategoryService} from '../../../services/category.service';
 import {VehicleService} from '../../../services/vehicle.service';
-import {FORMBUTTON, UNDOBUTTON} from '../../../classes/my-configs';
+import {FORMBUTTON, UNDOBUTTON} from '../../../configs/my-configs';
 ;
 
 @Component({
@@ -20,6 +20,8 @@ export class GenericFormComponent implements OnInit, OnChanges {
 
   @Output() emitter = new EventEmitter<any>();
 
+  title: string;
+
   saveButton = FORMBUTTON;
   undoButton = UNDOBUTTON;
 
@@ -31,6 +33,7 @@ export class GenericFormComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getService();
+    this.getTitle();
   }
 
   ngOnChanges(): void {
@@ -49,6 +52,32 @@ export class GenericFormComponent implements OnInit, OnChanges {
         break;
     }
   }
+
+  getTitle() {
+    switch (this.entity) {
+      case 'users':
+        if (this.action === 'new') {
+          this.title = 'Nuovo Utente';
+        } else {
+          this.title = 'Modifica Utente';
+        }
+        break;
+      case 'categories':
+        if (this.action === 'new') {
+          this.title = 'Nuova Categoria';
+        } else {
+          this.title = 'Modifica Categoria';
+        }
+        break;
+      case 'vehicles':
+        if (this.action === 'new') {
+          this.title = 'Nuovo Veicolo';
+        } else {
+          this.title = 'Modifica Veicolo';
+        }
+        break;
+    }
+}
 
   btnClick(event: any) {
     this.emitter.emit(event);

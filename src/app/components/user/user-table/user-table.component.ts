@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {USERTABLE} from '../../../classes/my-configs';
+import {USERTABLE} from '../../../configs/my-configs';
 import {User} from '../../../models/user';
 import {UserService} from '../../../services/user.service';
 

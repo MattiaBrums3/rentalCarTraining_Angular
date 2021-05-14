@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {VEHICLEHEADERS} from '../../../classes/my-configs';
+import {VEHICLEHEADERS} from '../../../configs/my-configs';
+import {VehicleService} from '../../../services/vehicle.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -11,9 +13,10 @@ export class VehicleFormComponent implements OnInit {
   entity = 'vehicles';
   action: string;
   object: any;
-  objId: number;
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute,
+              private service: VehicleService,
+              private location: Location) { }
 
   ngOnInit(): void {
     this.getAction();
@@ -25,14 +28,32 @@ export class VehicleFormComponent implements OnInit {
   }
 
   getObject() {
-    if (this.action === 'new') {
-      this.object = {model: '', manufacturer: '', licensePlate: '', yearOfRegistration: 0};
-    } else {
-      this.objId = +this.router.snapshot.url[1].path;
-      // search user by id in service
-    }
-
+    this.object = {model: '', manufacturer: '', licensePlate: '', yearOfRegistration: null};
     this.object.keys = VEHICLEHEADERS;
+
+    if (this.action === 'edit') {
+      const objId = +this.router.snapshot.url[1].path;
+      this.service.getVehicleById(objId)
+        .subscribe(o => {
+          this.object = o;
+          this.object.keys = VEHICLEHEADERS;
+        });
+    }
+  }
+
+  doOperation(action: any) {
+    if (action === 'Salva') {
+      this.service.saveVehicle(this.object)
+        .subscribe(
+          () => this.goBack()
+        );
+    } else {
+      this.goBack();
+    }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

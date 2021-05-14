@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {CATEGORYHEADERS} from '../../../classes/my-configs';
+import {CATEGORYHEADERS} from '../../../configs/my-configs';
+import {CategoryService} from '../../../services/category.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-category-form',
@@ -11,9 +13,10 @@ export class CategoryFormComponent implements OnInit {
   entity = 'categories';
   action: string;
   object: any;
-  objId: number;
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute,
+              private service: CategoryService,
+              private location: Location) { }
 
   ngOnInit(): void {
     this.getAction();
@@ -25,14 +28,32 @@ export class CategoryFormComponent implements OnInit {
   }
 
   getObject() {
-    if (this.action === 'new') {
-      this.object = {typology: ''};
-    } else {
-      this.objId = +this.router.snapshot.url[1].path;
-      // search category by id in service
-    }
-
+    this.object = {typology: ''};
     this.object.keys = CATEGORYHEADERS;
+
+    if (this.action === 'edit') {
+      const objId = +this.router.snapshot.url[1].path;
+      this.service.getCategoryById(objId)
+        .subscribe(o => {
+          this.object = o;
+          this.object.keys = CATEGORYHEADERS;
+        });
+    }
+  }
+
+  doOperation(action: any) {
+    if (action === 'Salva') {
+      this.service.saveCategory(this.object)
+        .subscribe(
+          () => this.goBack()
+        );
+    } else {
+      this.goBack();
+    }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

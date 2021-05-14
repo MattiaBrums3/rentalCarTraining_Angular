@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CATEGORYBUTTON, USERTABLE, VEHICLEBUTTON} from '../../classes/my-configs';
+import {CATEGORYBUTTON, USERTABLE, VEHICLEBUTTON} from '../../configs/my-configs';
 
 @Component({
   selector: 'app-admin-homepage',
