@@ -6,9 +6,9 @@
           <h1>{{title}}</h1>
           <div class="row register-form d-flex justify-content-center">
             <ng-container *ngFor="let key of object.keys">
-              <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]" type="text"
-                     class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
-                     title="{{key.label}}" required value="{{object[key.key] | customDate}}" />&nbsp;
+              <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]"
+                     type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                     title="{{key.label}}" value="{{object[key.key] | customDate}}" />&nbsp;
             </ng-container>
             <div class="col-md-6 mt-4">
               <div class="form-group">

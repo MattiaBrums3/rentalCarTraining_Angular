@@ -42,6 +42,11 @@ export class CategoryFormComponent implements OnInit {
   }
 
   doOperation(action: any) {
+    if (action === 'Salva' && !this.checkFields()) {
+      alert('Completa tutti i campi.');
+      return;
+    }
+
     if (action === 'Salva') {
       this.service.saveCategory(this.object)
         .subscribe(
@@ -49,6 +54,15 @@ export class CategoryFormComponent implements OnInit {
         );
     } else {
       this.goBack();
+    }
+  }
+
+  checkFields() {
+    // false if there is one empty field, true otherwise
+    if (this.object.typology !== '') {
+      return true;
+    } else {
+      return false;
     }
   }
 

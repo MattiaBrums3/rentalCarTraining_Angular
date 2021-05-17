@@ -42,6 +42,11 @@ export class VehicleFormComponent implements OnInit {
   }
 
   doOperation(action: any) {
+    if (action === 'Salva' && !this.checkFields()) {
+      alert('Completa tutti i campi.');
+      return;
+    }
+
     if (action === 'Salva') {
       this.service.saveVehicle(this.object)
         .subscribe(
@@ -49,6 +54,16 @@ export class VehicleFormComponent implements OnInit {
         );
     } else {
       this.goBack();
+    }
+  }
+
+  checkFields() {
+    // false if there is one empty field, true otherwise
+    if (this.object.model !== '' && this.object.manufacturer !== '' && this.object.licensePlate !== ''
+      && this.object.yearOfRegistration !== '') {
+      return true;
+    } else {
+      return false;
     }
   }
 

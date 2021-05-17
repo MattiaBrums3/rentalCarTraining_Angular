@@ -44,6 +44,11 @@ export class UserFormComponent implements OnInit {
   }
 
   doOperation(action: any) {
+    if (action === 'Salva' && !this.checkFields()) {
+      alert('Completa tutti i campi.');
+      return;
+    }
+
     if (action === 'Salva') {
       this.service.saveUser(this.object)
         .subscribe(
@@ -51,6 +56,16 @@ export class UserFormComponent implements OnInit {
         );
     } else {
       this.goBack();
+    }
+  }
+
+  checkFields() {
+    // false if there is one empty field, true otherwise
+    if (this.object.name !== '' && this.object.surname !== '' && this.object.dateOfBirth !== ''
+      && this.object.fiscalCode && this.object.username !== '' && this.object.password) {
+      return true;
+    } else {
+      return false;
     }
   }
 

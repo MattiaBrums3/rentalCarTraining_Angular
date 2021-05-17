@@ -74,7 +74,7 @@ export class GenericFormComponent implements OnInit {
         }
         break;
     }
-}
+  }
 
   btnClick(event: any) {
     this.emitter.emit(event);
