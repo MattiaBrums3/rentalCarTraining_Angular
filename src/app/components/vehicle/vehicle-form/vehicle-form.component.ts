@@ -28,10 +28,10 @@ export class VehicleFormComponent implements OnInit {
   }
 
   getObject() {
-    this.object = {model: '', manufacturer: '', licensePlate: '', yearOfRegistration: null};
-    this.object.keys = VEHICLEHEADERS;
-
-    if (this.action === 'edit') {
+    if (this.action === 'new') {
+      this.object = {model: '', manufacturer: '', licensePlate: '', yearOfRegistration: null};
+      this.object.keys = VEHICLEHEADERS;
+    } else {
       const objId = +this.router.snapshot.url[1].path;
       this.service.getVehicleById(objId)
         .subscribe(o => {

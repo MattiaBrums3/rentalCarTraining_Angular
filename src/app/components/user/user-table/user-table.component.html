@@ -1,4 +1,4 @@
-<div align="center">
+<div *ngIf="users !== undefined" align="center">
   <h2>{{title}}</h2>
 
   <app-generic-table (emitResult)="clickedRow($event)" [data]="users" [tableConfig]="tableConfigUser"></app-generic-table>

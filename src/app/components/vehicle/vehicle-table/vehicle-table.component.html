@@ -1,7 +1,17 @@
 <app-navbar></app-navbar>
 
-<div align="center">
-  <h1>{{title}}</h1>
+<div *ngIf="vehicles !== undefined" class="register">
+  <div class="row">
+    <div class="col-sm register-right">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div align="center">
+            <h1>{{title}}</h1>
 
-  <app-generic-table [data]="vehicles" [tableConfig]="tableConfigVehicles"></app-generic-table>
+            <app-generic-table [data]="vehicles" [tableConfig]="tableConfigVehicles"></app-generic-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

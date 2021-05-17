@@ -1,17 +1,25 @@
 <app-navbar></app-navbar>
 
-<div align="center">
-  <h1>{{title}}</h1>
+<div class="register">
+  <div class="row">
+    <div class="col-sm register-right">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h1 class="title">{{title}}</h1>
 
-  <div class="admin-links">
-    <a routerLink="/admin/category" routerLinkActive="active">
-      <app-generic-button [buttonConfig]="categoryButton"></app-generic-button>
-    </a>
-    &nbsp;&nbsp;
-    <a routerLink="/admin/vehicle" routerLinkActive="active">
-      <app-generic-button [buttonConfig]="vehicleButton"></app-generic-button>
-    </a>
+          <div class="admin-links">
+            <a routerLink="/admin/category" routerLinkActive="active">
+              <app-generic-button [buttonConfig]="categoryButton"></app-generic-button>
+            </a>
+            &nbsp;&nbsp;
+            <a routerLink="/admin/vehicle" routerLinkActive="active">
+              <app-generic-button [buttonConfig]="vehicleButton"></app-generic-button>
+            </a>
+          </div>
+
+          <app-user-table></app-user-table>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <app-user-table></app-user-table>
 </div>

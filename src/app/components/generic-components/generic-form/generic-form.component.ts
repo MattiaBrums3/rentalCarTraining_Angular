@@ -1,5 +1,5 @@
 import {
-  Component, Input, OnInit, OnChanges, Output,
+  Component, Input, OnInit, Output,
   EventEmitter
 } from '@angular/core';
 import {UserService} from '../../../services/user.service';
@@ -13,7 +13,7 @@ import {FORMBUTTON, UNDOBUTTON} from '../../../configs/my-configs';
   templateUrl: './generic-form.component.html',
   styleUrls: ['./generic-form.component.css']
 })
-export class GenericFormComponent implements OnInit, OnChanges {
+export class GenericFormComponent implements OnInit {
   @Input() entity: string;
   @Input() action: string;
   @Input() object: any;
@@ -34,9 +34,6 @@ export class GenericFormComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.getService();
     this.getTitle();
-  }
-
-  ngOnChanges(): void {
   }
 
   getService() {

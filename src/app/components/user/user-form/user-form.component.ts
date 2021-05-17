@@ -28,12 +28,12 @@ export class UserFormComponent implements OnInit {
   }
 
   getObject() {
-    const date = new Date();
-    this.object = {name: '', surname: '', dateOfBirth: date.toISOString(), fiscalCode: '',
-                    username: '', password: ''};
-    this.object.keys = USERHEADERS;
-
-    if (this.action === 'edit') {
+    if (this.action === 'new') {
+      const date = new Date();
+      this.object = {name: '', surname: '', dateOfBirth: date.toISOString(), fiscalCode: '',
+        username: '', password: ''};
+      this.object.keys = USERHEADERS;
+    } else {
       const objId = +this.router.snapshot.url[1].path;
       this.service.getUserById(objId)
         .subscribe(o => {

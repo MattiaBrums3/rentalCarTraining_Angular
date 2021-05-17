@@ -28,10 +28,10 @@ export class CategoryFormComponent implements OnInit {
   }
 
   getObject() {
-    this.object = {typology: ''};
-    this.object.keys = CATEGORYHEADERS;
-
-    if (this.action === 'edit') {
+    if (this.action === 'new') {
+      this.object = {typology: ''};
+      this.object.keys = CATEGORYHEADERS;
+    } else {
       const objId = +this.router.snapshot.url[1].path;
       this.service.getCategoryById(objId)
         .subscribe(o => {
