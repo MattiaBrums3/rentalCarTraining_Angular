@@ -16,21 +16,23 @@ export class VehicleService {
   constructor(private http: HttpClient) { }
 
   getVehicles() {
-    return this.http.get<Vehicle[]>(this.vehiclesUrl)
-      .pipe(
-        tap(_ => console.log('Fetched Vehicles'))
-      );
+    return this.http.get<Vehicle[]>(this.vehiclesUrl);
   }
 
   getVehicleById(id: number) {
     const url = `${this.vehiclesUrl}/${id}`;
-    return this.http.get<Vehicle>(url)
-      .pipe(
-        tap(_ => console.log(`Fetched Vehicle ${id}`))
-      );
+    return this.http.get<Vehicle>(url);
   }
 
   saveVehicle(vehicle: Vehicle) {
     return this.http.post<Vehicle>(this.vehiclesUrl, vehicle, this.httpOptions);
+  }
+
+  deleteVehicle(id: number) {
+    const url = `${this.vehiclesUrl}/${id}`;
+    return this.http.delete<Vehicle>(url, this.httpOptions)
+      .pipe(
+        tap(_ => console.log(`Deleted Vehicle ${id}`))
+      );
   }
 }
