@@ -4,4 +4,5 @@ export interface Vehicle {
   manufacturer: string;
   licensePlate: string;
   yearOfRegistration: number;
+  idCategory: number;
 }

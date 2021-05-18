@@ -4,6 +4,8 @@ import { VEHICLETABLE } from '../../../configs/my-configs';
 import {VehicleService} from '../../../services/vehicle.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {Category} from '../../../models/category';
+import {CategoryService} from '../../../services/category.service';
 
 @Component({
   selector: 'app-vehicle-table',
@@ -20,8 +22,9 @@ export class VehicleTableComponent implements OnInit {
   constructor(private location: Location,
               private router: Router,
               private route: ActivatedRoute,
-              private service: VehicleService) {
-    this.service.getVehicles()
+              private vehicleService: VehicleService,
+              private categoryService: CategoryService) {
+    this.vehicleService.getVehicles()
       .subscribe(
         v => this.vehicles = v
       );
@@ -35,7 +38,7 @@ export class VehicleTableComponent implements OnInit {
     const action = event.action;
 
     if (action === 'Elimina') {
-      this.service.deleteVehicle(event.record.id).subscribe(
+      this.vehicleService.deleteVehicle(event.record.id).subscribe(
         () => {
           alert('Veicolo eliminato con successo.');
           this.goBack();

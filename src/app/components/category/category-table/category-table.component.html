@@ -9,7 +9,7 @@
             <h1>{{title}}</h1>
 
             <div align="center">
-              <app-generic-table [data]="categories" [tableConfig]="tableConfigCategories"></app-generic-table>
+              <app-generic-table [data]="categories" [tableConfig]="tableConfigCategories" (emitResult)="doOperation($event)"></app-generic-table>
             </div>
           </div>
         </div>

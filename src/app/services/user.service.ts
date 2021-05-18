@@ -33,4 +33,12 @@ export class UserService {
   saveUser(user: User) {
     return this.http.post<User>(this.usersUrl, user, this.httpOptions);
   }
+
+  deleteUser(id: number) {
+    const url = `${this.usersUrl}/${id}`;
+    return this.http.delete<User>(url, this.httpOptions)
+      .pipe(
+        tap(_ => console.log(`Deleted User ${id}`))
+      );
+  }
 }

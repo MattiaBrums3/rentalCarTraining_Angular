@@ -78,7 +78,8 @@ export const VEHICLEHEADERS: MyHeaders[] = [
   { key: 'model', label: 'Modello'},
   { key: 'manufacturer', label: 'Casa Produttrice'},
   { key: 'licensePlate', label: 'Targa' },
-  { key: 'yearOfRegistration', label: 'Anno'}
+  { key: 'yearOfRegistration', label: 'Anno'},
+  { key: 'idCategory', label: 'Categoria'}
 ];
 
 // TABLES

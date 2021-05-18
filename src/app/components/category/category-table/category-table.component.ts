@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category} from '../../../models/category';
 import { CATEGORYTABLE } from '../../../configs/my-configs';
 import {CategoryService} from '../../../services/category.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-category-table',
@@ -15,7 +16,8 @@ export class CategoryTableComponent implements OnInit {
 
   categories: Category[];
 
-  constructor(private service: CategoryService) {
+  constructor(private service: CategoryService,
+              private location: Location) {
     this.service.getCategories()
       .subscribe(
         c => this.categories = c
@@ -23,5 +25,22 @@ export class CategoryTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  doOperation(event: any) {
+    const action = event.action;
+
+    if (action === 'Elimina') {
+      this.service.deleteCategory(event.record.id).subscribe(
+        () => {
+          alert('Categoria eliminata con successo.');
+          this.goBack();
+        }
+      )
+    }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

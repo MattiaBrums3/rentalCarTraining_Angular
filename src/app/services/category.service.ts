@@ -34,4 +34,12 @@ export class CategoryService {
   saveCategory(category: Category) {
     return this.http.post<Category>(this.categoriesUrl, category, this.httpOptions);
   }
+
+  deleteCategory(id: number) {
+    const url = `${this.categoriesUrl}/${id}`;
+    return this.http.delete<Category>(url, this.httpOptions)
+      .pipe(
+        tap(_ => console.log(`Deleted Category ${id}`))
+      );
+  }
 }

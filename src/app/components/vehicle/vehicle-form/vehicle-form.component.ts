@@ -29,7 +29,8 @@ export class VehicleFormComponent implements OnInit {
 
   getObject() {
     if (this.action === 'new') {
-      this.object = {model: '', manufacturer: '', licensePlate: '', yearOfRegistration: null};
+      this.object = {model: '', manufacturer: '', licensePlate: '',
+        yearOfRegistration: null, idCategory: null};
       this.object.keys = VEHICLEHEADERS;
     } else {
       const objId = +this.router.snapshot.url[1].path;
@@ -60,7 +61,7 @@ export class VehicleFormComponent implements OnInit {
   checkFields() {
     // false if there is one empty field, true otherwise
     if (this.object.model !== '' && this.object.manufacturer !== '' && this.object.licensePlate !== ''
-      && this.object.yearOfRegistration !== '') {
+      && this.object.yearOfRegistration !== '' && this.object.idCategory !== '') {
       return true;
     } else {
       return false;

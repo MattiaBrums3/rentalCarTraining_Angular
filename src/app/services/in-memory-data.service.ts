@@ -46,11 +46,11 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const vehicles = [
       {id: 1, model: '488 Pista', manufacturer: 'Ferrari', licensePlate: 'FZ235FG',
-        yearOfRegistration: 2019},
+        yearOfRegistration: 2019, idCategory: 1},
       {id: 2, model: 'Panda', manufacturer: 'Fiat', licensePlate: 'GX234RF',
-        yearOfRegistration: 2016},
+        yearOfRegistration: 2016, idCategory: 1},
       {id: 3, model: '999', manufacturer: 'Ducati', licensePlate: 'GG56789',
-        yearOfRegistration: 2015},
+        yearOfRegistration: 2015, idCategory: 2},
     ];
 
     return {users, categories, vehicles};

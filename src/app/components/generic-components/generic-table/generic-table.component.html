@@ -30,7 +30,9 @@
     </thead>
     <tbody>
     <tr *ngFor="let d of data | filterPipe: searchToken : searchKey | paginationPipe: currentPage : tableConfig.pagination.itemPerPage">
-      <td *ngFor="let value of tableConfig.headers">{{ d[value.key] | customDate }}</td>
+      <ng-container *ngFor="let value of tableConfig.headers">
+        <td>{{ d[value.key] | customDate }}</td>
+      </ng-container>
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action.text !== 'Inserisci'">
           <a routerLink="{{currentRoute}}/{{action.icon}}/{{d['id']}}" routerLinkActive="active">

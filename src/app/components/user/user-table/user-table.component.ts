@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {USERTABLE} from '../../../configs/my-configs';
 import {User} from '../../../models/user';
 import {UserService} from '../../../services/user.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-user-table',
@@ -15,7 +16,8 @@ export class UserTableComponent implements OnInit {
 
   users: User[];
 
-  constructor(private service: UserService) {
+  constructor(private service: UserService,
+              private location: Location) {
     this.service.getUsers()
       .subscribe(
         u => this.users = u
@@ -25,8 +27,20 @@ export class UserTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  clickedRow(event: any) {
-    console.log(event);
+  doOperation(event: any) {
+    const action = event.action;
+
+    if (action === 'Elimina') {
+      this.service.deleteUser(event.record.id).subscribe(
+        () => {
+          alert('Utente eliminato con successo.');
+          this.goBack();
+        }
+      );
+    }
   }
 
+  goBack() {
+    this.location.back();
+  }
 }
