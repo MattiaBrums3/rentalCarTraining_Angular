@@ -31,7 +31,8 @@
     <tbody>
     <tr *ngFor="let d of data | filterPipe: searchToken : searchKey | paginationPipe: currentPage : tableConfig.pagination.itemPerPage">
       <ng-container *ngFor="let value of tableConfig.headers">
-        <td>{{ d[value.key] | customDate }}</td>
+        <td *ngIf="value.key !== 'idCategory'">{{ d[value.key] | customDate }}</td>
+        <td *ngIf="value.key === 'idCategory'">{{d.category.typology}}</td>
       </ng-container>
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action.text !== 'Inserisci'">

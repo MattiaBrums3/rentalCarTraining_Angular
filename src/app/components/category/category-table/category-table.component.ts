@@ -17,14 +17,13 @@ export class CategoryTableComponent implements OnInit {
   categories: Category[];
 
   constructor(private service: CategoryService,
-              private location: Location) {
+              private location: Location) {}
+
+  ngOnInit(): void {
     this.service.getCategories()
       .subscribe(
         c => this.categories = c
       );
-  }
-
-  ngOnInit(): void {
   }
 
   doOperation(event: any) {

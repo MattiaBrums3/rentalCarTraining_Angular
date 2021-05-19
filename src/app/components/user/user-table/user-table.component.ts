@@ -17,14 +17,13 @@ export class UserTableComponent implements OnInit {
   users: User[];
 
   constructor(private service: UserService,
-              private location: Location) {
+              private location: Location) {}
+
+  ngOnInit(): void {
     this.service.getUsers()
       .subscribe(
         u => this.users = u
-    );
-  }
-
-  ngOnInit(): void {
+      );
   }
 
   doOperation(event: any) {

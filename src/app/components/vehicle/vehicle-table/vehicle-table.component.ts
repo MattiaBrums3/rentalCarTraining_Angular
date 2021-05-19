@@ -4,7 +4,6 @@ import { VEHICLETABLE } from '../../../configs/my-configs';
 import {VehicleService} from '../../../services/vehicle.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {Category} from '../../../models/category';
 import {CategoryService} from '../../../services/category.service';
 
 @Component({
@@ -18,20 +17,31 @@ export class VehicleTableComponent implements OnInit {
   tableConfigVehicles = VEHICLETABLE;
 
   vehicles: Vehicle[];
+  row: any = {id: null, model: '', manufacturer: '', licensePlate: '',
+    yearOfRegistration: null, idCategory: null, category: ''};
+  object: any[] = [];
 
   constructor(private location: Location,
               private router: Router,
               private route: ActivatedRoute,
               private vehicleService: VehicleService,
-              private categoryService: CategoryService) {
-    this.vehicleService.getVehicles()
-      .subscribe(
-        v => this.vehicles = v
-      );
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-  }
+              private categoryService: CategoryService) {}
 
   ngOnInit() {
+    this.vehicleService.getVehicles()
+      .subscribe(
+        vehicles => {
+          this.vehicles = vehicles;
+          vehicles.forEach(v => {
+            this.categoryService.getCategoryById(v.idCategory)
+              .subscribe(r => {
+                  this.row = v;
+                  this.row.category = r;
+                  this.object.push(this.row);
+              });
+          });
+        }
+      );
   }
 
   doOperation(event: any) {
