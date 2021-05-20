@@ -89,8 +89,8 @@ export const USERTABLE: MyTableConfig = {
   search: {columns: ['idUtente', 'Nome', 'Cognome', 'Data di Nascita', 'Codice Fiscale',
     'Username', 'Password']},
   pagination: {
-    itemPerPage: 2,
-    itemPerPageOptions: [2, 5, 10]
+    itemPerPage: 5,
+    itemPerPageOptions: [5, 10, 25]
   },
   actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
 };
@@ -100,8 +100,8 @@ export const CATEGORYTABLE: MyTableConfig = {
   order: { defaultColumn: 'idCategoria', orderType: 'asc' },
   search: {columns: ['idCategoria', 'Tipologia']},
   pagination: {
-    itemPerPage: 2,
-    itemPerPageOptions: [2, 5, 10]
+    itemPerPage: 5,
+    itemPerPageOptions: [5, 10, 25]
   },
   actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
 };
@@ -111,8 +111,8 @@ export const VEHICLETABLE: MyTableConfig = {
   order: { defaultColumn: 'idCategoria', orderType: 'asc' },
   search: {columns: ['idVeicolo', 'Modello', 'Casa Produttrice', 'Targa', 'Anno Immatr.']},
   pagination: {
-    itemPerPage: 2,
-    itemPerPageOptions: [2, 5, 10]
+    itemPerPage: 5,
+    itemPerPageOptions: [5, 10, 25]
   },
   actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
 };

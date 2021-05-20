@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
 
-<div align="center">
+<div align="center" *ngIf="object !== undefined">
   <app-generic-form [entity]="entity" [action]="action" [object]="object" (emitter)="doOperation($event)"></app-generic-form>
 </div>

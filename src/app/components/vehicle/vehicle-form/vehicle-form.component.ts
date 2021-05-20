@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {VEHICLEHEADERS} from '../../../configs/my-configs';
 import {VehicleService} from '../../../services/vehicle.service';
 import {Location} from '@angular/common';
+import {CategoryService} from '../../../services/category.service';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -15,7 +16,8 @@ export class VehicleFormComponent implements OnInit {
   object: any;
 
   constructor(private router: ActivatedRoute,
-              private service: VehicleService,
+              private vehicleService: VehicleService,
+              private categoryService: CategoryService,
               private location: Location) { }
 
   ngOnInit(): void {
@@ -30,14 +32,18 @@ export class VehicleFormComponent implements OnInit {
   getObject() {
     if (this.action === 'new') {
       this.object = {model: '', manufacturer: '', licensePlate: '',
-        yearOfRegistration: null, idCategory: null};
+        yearOfRegistration: null, idCategory: null, categories: ''};
       this.object.keys = VEHICLEHEADERS;
     } else {
       const objId = +this.router.snapshot.url[1].path;
-      this.service.getVehicleById(objId)
+      this.vehicleService.getVehicleById(objId)
         .subscribe(o => {
           this.object = o;
-          this.object.keys = VEHICLEHEADERS;
+          this.categoryService.getCategories()
+            .subscribe(c => {
+              this.object.categories = c;
+              this.object.keys = VEHICLEHEADERS;
+            });
         });
     }
   }
@@ -49,7 +55,7 @@ export class VehicleFormComponent implements OnInit {
     }
 
     if (action === 'Salva') {
-      this.service.saveVehicle(this.object)
+      this.vehicleService.saveVehicle(this.object)
         .subscribe(
           () => this.goBack()
         );
@@ -61,7 +67,7 @@ export class VehicleFormComponent implements OnInit {
   checkFields() {
     // false if there is one empty field, true otherwise
     if (this.object.model !== '' && this.object.manufacturer !== '' && this.object.licensePlate !== ''
-      && this.object.yearOfRegistration !== '' && this.object.idCategory !== '') {
+      && this.object.yearOfRegistration !== '' && this.object.idCategory !== null) {
       return true;
     } else {
       return false;

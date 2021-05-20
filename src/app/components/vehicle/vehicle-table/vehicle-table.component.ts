@@ -18,7 +18,7 @@ export class VehicleTableComponent implements OnInit {
 
   vehicles: Vehicle[];
   row: any = {id: null, model: '', manufacturer: '', licensePlate: '',
-    yearOfRegistration: null, idCategory: null, category: ''};
+    yearOfRegistration: null, idCategory: null, categories: ''};
   object: any[] = [];
 
   constructor(private location: Location,
@@ -33,11 +33,12 @@ export class VehicleTableComponent implements OnInit {
         vehicles => {
           this.vehicles = vehicles;
           vehicles.forEach(v => {
-            this.categoryService.getCategoryById(v.idCategory)
+            this.categoryService.getCategories()
               .subscribe(r => {
                   this.row = v;
-                  this.row.category = r;
+                  this.row.categories = r;
                   this.object.push(this.row);
+                  console.log(this.object);
               });
           });
         }

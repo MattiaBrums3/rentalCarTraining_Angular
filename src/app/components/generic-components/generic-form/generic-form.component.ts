@@ -79,4 +79,8 @@ export class GenericFormComponent implements OnInit {
   btnClick(event: any) {
     this.emitter.emit(event);
   }
+
+  changeCategoryValue(selection) {
+    this.object.idCategory = parseInt(selection);
+  }
 }

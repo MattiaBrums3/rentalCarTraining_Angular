@@ -41,7 +41,8 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const categories = [
       { id: 1, typology: 'Automobile' },
-      { id: 2, typology: 'Motocicletta' }
+      { id: 2, typology: 'Motocicletta' },
+      { id: 3, typology: 'Pullman'}
     ];
 
     const vehicles = [

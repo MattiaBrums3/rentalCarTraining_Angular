@@ -6,12 +6,30 @@
           <h1>{{title}}</h1>
           <div class="row register-form d-flex justify-content-center">
             <ng-container *ngFor="let key of object.keys">
-              <input *ngIf="key.key !== 'id' && key.key !== 'dateOfBirth'" [(ngModel)]="object[key.key]"
-                     type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
-                     title="{{key.label}}" value="{{ object[key.key] }}" />&nbsp;
-              <input *ngIf="key.key === 'dateOfBirth'" type="date" value="2020-02-02"
-                     [ngModel]="object[key.key] | customDate" (ngModelChange)="object[key.key]=$event" class="form-control" id="{{key.key}}"
-                     placeholder="{{key.label}}" title="{{key.label}}" />&nbsp;
+              <ng-container *ngIf="entity === 'users'">
+                <input *ngIf="key.key !== 'id' && key.key !== 'dateOfBirth'" [(ngModel)]="object[key.key]"
+                       type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                       title="{{key.label}}" value="{{ object[key.key] }}" />&nbsp;
+                <input *ngIf="key.key === 'dateOfBirth'" type="date" value="{{ object[key.key] }}"
+                       [ngModel]="object[key.key] | customDate" (ngModelChange)="object[key.key]=$event" class="form-control" id="{{key.key}}"
+                       placeholder="{{key.label}}" title="{{key.label}}" />&nbsp;
+              </ng-container>
+              <ng-container *ngIf="entity === 'vehicles'">
+                <input *ngIf="key.key !== 'id' && key.key !== 'idCategory'" [(ngModel)]="object[key.key]"
+                       type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                       title="{{key.label}}" value="{{ object[key.key] }}" />&nbsp;
+                <select *ngIf="key.key === 'idCategory'" [ngModel]="object[key.key]" (ngModelChange)="changeCategoryValue($event)"
+                        class="form-control" id="{{key.key}}" placeholder="{{key.label}}" title="{{key.label}}">
+                  <ng-container *ngFor="let c of object.categories">
+                    <option [selected]="c.id === object.idCategory" value="{{c.id}}">{{c.typology}}</option>
+                  </ng-container>
+                </select>
+              </ng-container>
+              <ng-container *ngIf="entity === 'categories'">
+                <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]"
+                       type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                       title="{{key.label}}" value="{{ object[key.key] }}" />&nbsp;
+              </ng-container>
             </ng-container>
             <div class="col-md-6 mt-4">
               <div class="form-group">
