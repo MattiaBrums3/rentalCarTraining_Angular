@@ -20,6 +20,12 @@ export const DELETETABLEBUTTON: MyButtonConfig = {
   icon: 'delete'
 };
 
+export const RENTALSTABLEBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Prenotazioni',
+  icon: 'car_rental'
+};
+
 export const NEXTBUTTON: MyButtonConfig = {
   customCssClass: 'btn btn-primary',
   text: 'Avanti',
@@ -74,12 +80,20 @@ export const CATEGORYHEADERS: MyHeaders[] = [
 ];
 
 export const VEHICLEHEADERS: MyHeaders[] = [
-  { key: 'id', label: 'idVeicolo'},
-  { key: 'model', label: 'Modello'},
-  { key: 'manufacturer', label: 'Casa Produttrice'},
+  { key: 'id', label: 'idVeicolo' },
+  { key: 'model', label: 'Modello' },
+  { key: 'manufacturer', label: 'Casa Produttrice' },
   { key: 'licensePlate', label: 'Targa' },
-  { key: 'yearOfRegistration', label: 'Anno'},
-  { key: 'idCategory', label: 'Categoria'}
+  { key: 'yearOfRegistration', label: 'Anno' },
+  { key: 'idCategory', label: 'Categoria' }
+];
+
+export const RENTALHEADERS: MyHeaders[] = [
+  { key: 'id', label: 'idPrenotazione' },
+  { key: 'idUser', label: 'Utente' },
+  { key: 'idVehicle', label: 'Veicolo' },
+  { key: 'dateStart', label: 'Data di Inizio' },
+  { key: 'dateEnd', label: 'Data di Fine' }
 ];
 
 // TABLES
@@ -92,7 +106,7 @@ export const USERTABLE: MyTableConfig = {
     itemPerPage: 5,
     itemPerPageOptions: [5, 10, 25]
   },
-  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
+  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON, RENTALSTABLEBUTTON]
 };
 
 export const CATEGORYTABLE: MyTableConfig = {
@@ -115,4 +129,15 @@ export const VEHICLETABLE: MyTableConfig = {
     itemPerPageOptions: [5, 10, 25]
   },
   actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
+};
+
+export const RENTALTABLE: MyTableConfig = {
+  headers: RENTALHEADERS,
+  order: { defaultColumn: 'idPrenotazione', orderType: 'asc' },
+  search: { columns: ['idPrenotazione', 'Utente', 'Veicolo', 'Data di Inizio', 'Data di Fine']},
+  pagination: {
+    itemPerPage: 5,
+    itemPerPageOptions: [5, 10, 25]
+  },
+  actions: [EDITTABLEBUTTON, DELETETABLEBUTTON]
 };

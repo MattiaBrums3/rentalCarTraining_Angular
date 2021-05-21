@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InMemoryDataService implements InMemoryDbService {
+  constructor() {}
+
   createDb() {
     const users = [
       {
@@ -54,6 +57,21 @@ export class InMemoryDataService implements InMemoryDbService {
         yearOfRegistration: 2015, idCategory: 2},
     ];
 
-    return {users, categories, vehicles};
+    const rentals = [
+      {id: 1, idUser: 2, idVehicle: 1, dateStart: '2021-04-01T11:44:00.524Z',
+        dateEnd: '2021-05-31T11:44:00.524Z', approved: true},
+      {id: 2, idUser: 3, idVehicle: 2, dateStart: '2021-05-20T11:44:00.524Z',
+        dateEnd: '2021-07-20T11:44:00.524Z', approved: false}
+    ];
+
+    return {users, categories, vehicles, rentals};
+  }
+
+  getRentalsByUser(id: number) {
+    const rentals = this.createDb().rentals;
+    const rentalsByUser = _.filter(rentals, {idUser: id});
+    console.log(rentalsByUser);
+
+    return {rentalsByUser};
   }
 }
