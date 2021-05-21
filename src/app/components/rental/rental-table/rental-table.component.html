@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="register">
+<div *ngIf="object.length !== 0" class="register">
   <div class="row">
     <div class="col-sm register-right">
       <div class="tab-content" id="myTabContent">
@@ -8,7 +8,7 @@
           <div align="center">
             <h1>{{title}}</h1>
 
-            <app-generic-table [data]="rentals" [tableConfig]="tableConfigRental" (emitResult)="doOperation($event)"></app-generic-table>
+            <app-generic-table [data]="object" [tableConfig]="tableConfigRental" (emitResult)="doOperation($event)"></app-generic-table>
           </div>
         </div>
       </div>

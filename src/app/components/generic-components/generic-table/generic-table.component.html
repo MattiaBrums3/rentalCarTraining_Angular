@@ -31,7 +31,9 @@
     <tbody>
     <tr *ngFor="let d of data | filterPipe: searchToken : searchKey | paginationPipe: currentPage : tableConfig.pagination.itemPerPage">
       <ng-container *ngFor="let value of tableConfig.headers">
-        <td *ngIf="value.key !== 'idCategory'">{{ d[value.key] | customDate }}</td>
+        <td *ngIf="value.key !== 'idCategory' && value.key !== 'idUser' && value.key !== 'idVehicle'">{{ d[value.key] | customDate }}</td>
+        <td *ngIf="value.key === 'idUser'">{{d['user'].name}} {{d['user'].surname}}</td>
+        <td *ngIf="value.key === 'idVehicle'">{{d['vehicle'].model}}</td>
         <ng-container *ngIf="value.key === 'idCategory'">
           <ng-container *ngFor="let c of d['categories']">
             <td *ngIf="c.id === d.idCategory">{{ c.typology }}</td>

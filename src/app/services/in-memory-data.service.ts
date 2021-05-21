@@ -70,8 +70,7 @@ export class InMemoryDataService implements InMemoryDbService {
   getRentalsByUser(id: number) {
     const rentals = this.createDb().rentals;
     const rentalsByUser = _.filter(rentals, {idUser: id});
-    console.log(rentalsByUser);
 
-    return {rentalsByUser};
+    return rentalsByUser;
   }
 }
