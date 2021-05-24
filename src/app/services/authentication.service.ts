@@ -16,7 +16,10 @@ export class AuthenticationService {
       .pipe(
         map(user => {
           this.user = user.body;
-          console.log(this.user);
+          sessionStorage.setItem('id', user.body.id);
+          sessionStorage.setItem('name', user.body.name);
+          sessionStorage.setItem('token', user.body.token);
+          return this.user;
         })
       );
   }

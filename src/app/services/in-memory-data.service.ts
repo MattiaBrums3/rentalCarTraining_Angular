@@ -93,7 +93,6 @@ export class InMemoryDataService implements InMemoryDbService {
     return this.ok({
       id: user.id,
       name: user.name,
-      username: user.username,
       token: `jwt-token-${role}`
     });
   }

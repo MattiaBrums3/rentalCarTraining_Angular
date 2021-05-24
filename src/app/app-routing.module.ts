@@ -8,31 +8,34 @@ import {UserFormComponent} from './components/user/user-form/user-form.component
 import {CategoryFormComponent} from './components/category/category-form/category-form.component';
 import {VehicleFormComponent} from './components/vehicle/vehicle-form/vehicle-form.component';
 import {RentalTableComponent} from './components/rental/rental-table/rental-table.component';
+import {AdminGuard} from './auth/admin.guard';
+import {CustomerHomepageComponent} from './pages/customer-homepage/customer-homepage.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'admin', children: [
-      {path: 'user', children: [
-          {path: '', component: AdminHomepageComponent},
-          {path: 'new', component: UserFormComponent},
-          {path: 'edit/:id', component: UserFormComponent},
-          {path: 'delete/:id', component: AdminHomepageComponent},
-          {path: 'car_rental/:id', component: RentalTableComponent}
+      {path: 'user', canActivate: [AdminGuard], children: [
+          {path: '', component: AdminHomepageComponent, canActivate: [AdminGuard]},
+          {path: 'new', component: UserFormComponent, canActivate: [AdminGuard]},
+          {path: 'edit/:id', component: UserFormComponent, canActivate: [AdminGuard]},
+          {path: 'delete/:id', component: AdminHomepageComponent, canActivate: [AdminGuard]},
+          {path: 'car_rental/:id', component: RentalTableComponent, canActivate: [AdminGuard]}
       ]},
       {path: 'category', children: [
-          {path: '', component: CategoryTableComponent},
-          {path: 'new', component: CategoryFormComponent},
-          {path: 'edit/:id', component: CategoryFormComponent},
-          {path: 'delete/:id', component: CategoryTableComponent}
+          {path: '', component: CategoryTableComponent, canActivate: [AdminGuard]},
+          {path: 'new', component: CategoryFormComponent, canActivate: [AdminGuard]},
+          {path: 'edit/:id', component: CategoryFormComponent, canActivate: [AdminGuard]},
+          {path: 'delete/:id', component: CategoryTableComponent, canActivate: [AdminGuard]}
       ]},
       {path: 'vehicle', children: [
-          {path: '', component: VehicleTableComponent},
-          {path: 'new', component: VehicleFormComponent},
-          {path: 'edit/:id', component: VehicleFormComponent},
-          {path: 'delete/:id', component: VehicleTableComponent}
+          {path: '', component: VehicleTableComponent, canActivate: [AdminGuard]},
+          {path: 'new', component: VehicleFormComponent, canActivate: [AdminGuard]},
+          {path: 'edit/:id', component: VehicleFormComponent, canActivate: [AdminGuard]},
+          {path: 'delete/:id', component: VehicleTableComponent, canActivate: [AdminGuard]}
       ]}
-  ]}
+  ]},
+  {path: 'user', component: CustomerHomepageComponent}
 ];
 
 @NgModule({

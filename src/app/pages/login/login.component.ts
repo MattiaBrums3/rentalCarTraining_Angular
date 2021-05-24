@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
-import {first} from 'rxjs/operators';
+import {first, ignoreElements} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +44,11 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.formFields.username.value, this.formFields.password.value)
       .subscribe(
         data => {
-          this.router.navigate([data]);
+          if (data.token === 'jwt-token-admin') {
+            this.router.navigate(['/admin/user']);
+          } else if (data.token === 'jwt-token-customer') {
+            this.router.navigate(['/user']);
+          }
         },
         error => {
           this.error = error;

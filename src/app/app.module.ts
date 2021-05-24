@@ -24,6 +24,7 @@ import { UserFormComponent } from './components/user/user-form/user-form.compone
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { RentalTableComponent } from './components/rental/rental-table/rental-table.component';
+import { CustomerHomepageComponent } from './pages/customer-homepage/customer-homepage.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { RentalTableComponent } from './components/rental/rental-table/rental-ta
         UserTableComponent,
         UserFormComponent,
         RentalTableComponent,
+        CustomerHomepageComponent,
     ],
     imports: [
         BrowserModule,
