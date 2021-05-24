@@ -6,6 +6,8 @@ import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../services/user.service';
 import {VehicleService} from '../../../services/vehicle.service';
 import {forkJoin} from 'rxjs';
+import {User} from '../../../models/user';
+import {Vehicle} from '../../../models/vehicle';
 
 @Component({
   selector: 'app-rental-table',
@@ -18,6 +20,9 @@ export class RentalTableComponent implements OnInit {
   tableConfigRental = RENTALTABLE;
 
   rentals: Rental[];
+  users: User[];
+  vehicles: Vehicle[];
+
   row: any = {id: null, idUser: null, idVehicle: null, dateStart: '',
               dateEnd: '', approved: '', user: '', vehicle: ''};
   object: any[] = [];
@@ -31,16 +36,18 @@ export class RentalTableComponent implements OnInit {
     const idUser = +this.router.snapshot.url[1].path;
     this.rentals = this.rentalService.getRentalsByUser(idUser);
 
-    this.rentals.forEach(r => {
-      this.row = r;
-      forkJoin([
-        this.userService.getUserById(this.row.idUser),
-        this.vehicleService.getVehicleById(this.row.idVehicle)
-      ]).subscribe(data => {
-        this.row.user = data[0];
-        this.row.vehicle = data[1];
-        this.object.push(this.row);
-      });
+    forkJoin([
+      this.userService.getUsers(),
+      this.vehicleService.getVehicles()
+    ]).subscribe(data => {
+        this.users = data[0];
+        this.vehicles = data[1];
+        this.rentals.forEach(r => {
+          this.row = r;
+          this.row.user = this.users.find(u => u.id === this.row.idUser);
+          this.row.vehicle = this.vehicles.find(v => v.id === this.row.idVehicle);
+          this.object.push(this.row);
+        });
     });
   }
 
