@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.formFields.username.value, this.formFields.password.value)
       .subscribe(
         data => {
-          this.router.navigate(['/admin/user']);
+          this.router.navigate([data]);
         },
         error => {
           this.error = error;

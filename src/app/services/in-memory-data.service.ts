@@ -82,12 +82,19 @@ export class InMemoryDataService implements InMemoryDbService {
 
     if (!user) { return this.error('Username e password errati.'); }
 
+    let role: string;
+
+    if (user.superUser) {
+      role = 'admin';
+    } else {
+      role = 'customer';
+    }
+
     return this.ok({
       id: user.id,
       name: user.name,
       username: user.username,
-      superUser: user.superUser,
-      token: `fake-jwt-token.${user.superUser}`
+      token: `jwt-token-${role}`
     });
   }
 

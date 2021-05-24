@@ -36,11 +36,7 @@
         <td *ngIf="value.key !== 'idCategory' && value.key !== 'idUser' && value.key !== 'idVehicle'">{{ d[value.key] | customDate }}</td>
         <td *ngIf="value.key === 'idUser'">{{d['user'].name}} {{d['user'].surname}}</td>
         <td *ngIf="value.key === 'idVehicle'">{{d['vehicle'].model}}</td>
-        <ng-container *ngIf="value.key === 'idCategory'">
-          <ng-container *ngFor="let c of d['categories']">
-            <td *ngIf="c.id === d.idCategory">{{ c.typology }}</td>
-          </ng-container>
-        </ng-container>
+        <td *ngIf="value.key === 'idCategory'">{{d['category'].typology}}</td>
       </ng-container>
       <ng-container *ngFor="let action of tableConfig.actions">
         <td *ngIf="action.text !== 'Inserisci'">

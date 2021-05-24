@@ -5,6 +5,7 @@ import {RentalService} from '../../../services/rental.service';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../services/user.service';
 import {VehicleService} from '../../../services/vehicle.service';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-rental-table',
@@ -32,15 +33,14 @@ export class RentalTableComponent implements OnInit {
 
     this.rentals.forEach(r => {
       this.row = r;
-      this.userService.getUserById(this.row.idUser)
-        .subscribe(
-          u => this.row.user = u
-        );
-      this.vehicleService.getVehicleById(this.row.idVehicle)
-        .subscribe(
-          v => this.row.vehicle = v
-        );
-      this.object.push(this.row);
+      forkJoin([
+        this.userService.getUserById(this.row.idUser),
+        this.vehicleService.getVehicleById(this.row.idVehicle)
+      ]).subscribe(data => {
+        this.row.user = data[0];
+        this.row.vehicle = data[1];
+        this.object.push(this.row);
+      });
     });
   }
 

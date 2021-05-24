@@ -5,6 +5,7 @@ import {VehicleService} from '../../../services/vehicle.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {CategoryService} from '../../../services/category.service';
+import {Category} from '../../../models/category';
 
 @Component({
   selector: 'app-vehicle-table',
@@ -17,6 +18,8 @@ export class VehicleTableComponent implements OnInit {
   tableConfigVehicles = VEHICLETABLE;
 
   vehicles: Vehicle[];
+  categories: Category[];
+
   row: any = {id: null, model: '', manufacturer: '', licensePlate: '',
     yearOfRegistration: null, idCategory: null, categories: ''};
   object: any[] = [];
@@ -28,21 +31,29 @@ export class VehicleTableComponent implements OnInit {
               private categoryService: CategoryService) {}
 
   ngOnInit() {
+    this.categoryService.getCategories()
+      .subscribe(c => {
+        this.categories = c;
+        this.getVehicles();
+      });
+  }
+
+  getVehicles() {
     this.vehicleService.getVehicles()
       .subscribe(
-        vehicles => {
-          this.vehicles = vehicles;
-          vehicles.forEach(v => {
-            this.categoryService.getCategories()
-              .subscribe(r => {
-                  this.row = v;
-                  this.row.categories = r;
-                  this.object.push(this.row);
-                  console.log(this.object);
-              });
+        v => {
+          this.vehicles = v;
+          this.vehicles.forEach(vehicle => {
+            this.generateRow(vehicle);
           });
         }
       );
+  }
+
+  generateRow(vehicle: any) {
+    this.row = vehicle;
+    this.row.category = this.categories.find(x => x.id === this.row.idCategory);
+    this.object.push(this.row);
   }
 
   doOperation(event: any) {
