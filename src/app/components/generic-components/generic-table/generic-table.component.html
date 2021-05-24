@@ -23,7 +23,9 @@
       </th>
       <th scope="col">
         <a routerLink="{{currentRoute}}/new" routerLinkActive="active">
-          <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
+          <ng-container *ngIf="tableConfig.actions[0].text === 'Inserisci'">
+            <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
+          </ng-container>
         </a>
       </th>
     </tr>
