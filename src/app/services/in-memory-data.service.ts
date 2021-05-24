@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import * as _ from 'lodash';
+import {HttpResponse} from '@angular/common/http';
+import {of, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -73,4 +75,28 @@ export class InMemoryDataService implements InMemoryDbService {
 
     return rentalsByUser;
   }
+
+  authenticate(body: any) {
+    const { username, password } = body;
+    const user = this.createDb().users.find(x => x.username === username && x.password === password);
+
+    if (!user) { return this.error('Username e password errati.'); }
+
+    return this.ok({
+      id: user.id,
+      name: user.name,
+      username: user.username,
+      superUser: user.superUser,
+      token: `fake-jwt-token.${user.superUser}`
+    });
+  }
+
+  ok(body?: any) {
+    return of(new HttpResponse({ status: 200, body }));
+  }
+
+  error(message: string) {
+    return throwError({ status: 400, error: message });
+  }
+
 }

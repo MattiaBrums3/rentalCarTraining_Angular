@@ -7,4 +7,5 @@ export interface User {
   superUser: boolean;
   username: string;
   password: string;
+  token?: string;
 }

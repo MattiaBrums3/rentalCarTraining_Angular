@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,16 +46,17 @@ import { RentalTableComponent } from './components/rental/rental-table/rental-ta
         UserFormComponent,
         RentalTableComponent,
     ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService
-    ),
-    AppRoutingModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        HttpClientInMemoryWebApiModule.forRoot(
+            InMemoryDataService
+        ),
+        AppRoutingModule,
+        NgbModule,
+        ReactiveFormsModule
+    ],
   providers: [CustomDatePipe, PaginationPipe],
   bootstrap: [AppComponent]
 })
