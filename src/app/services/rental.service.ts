@@ -17,6 +17,13 @@ export class RentalService {
   constructor(private http: HttpClient,
               private inMemory: InMemoryDataService) { }
 
+  getRentals() {
+    return this.http.get<Rental[]>(this.rentalsUrl)
+      .pipe(
+        tap(_ => console.log('Fetched Rentals'))
+      );
+  }
+
   getRentalsByUser(idUser: number) {
     return this.inMemory.getRentalsByUser(idUser);
   }

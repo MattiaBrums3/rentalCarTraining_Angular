@@ -26,16 +26,10 @@ export const RENTALSTABLEBUTTON: MyButtonConfig = {
   icon: 'car_rental'
 };
 
-export const NEXTBUTTON: MyButtonConfig = {
+export const RENTTABLEBUTTON: MyButtonConfig = {
   customCssClass: 'btn btn-primary',
-  text: 'Avanti',
-  icon: 'skip_next'
-};
-
-export const PREVIOUSBUTTON: MyButtonConfig = {
-  customCssClass: 'btn btn-primary',
-  text: 'Indietro',
-  icon: 'skip_previous'
+  text: 'Prenota',
+  icon: 'car_rental'
 };
 
 export const FORMBUTTON: MyButtonConfig = {
@@ -128,7 +122,7 @@ export const VEHICLETABLE: MyTableConfig = {
     itemPerPage: 5,
     itemPerPageOptions: [5, 10, 25]
   },
-  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
+  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON, RENTTABLEBUTTON]
 };
 
 export const RENTALTABLE: MyTableConfig = {

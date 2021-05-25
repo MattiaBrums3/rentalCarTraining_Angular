@@ -6,6 +6,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {CategoryService} from '../../../services/category.service';
 import {Category} from '../../../models/category';
+import {RentalService} from '../../../services/rental.service';
+import {forkJoin} from 'rxjs';
+import {Rental} from '../../../models/rental';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-vehicle-table',
@@ -15,45 +19,73 @@ import {Category} from '../../../models/category';
 export class VehicleTableComponent implements OnInit {
   title = 'Lista Veicoli';
 
+  token = sessionStorage.getItem('token');
+
   tableConfigVehicles = VEHICLETABLE;
 
   vehicles: Vehicle[];
   categories: Category[];
+  rentals: Rental[];
 
-  row: any = {id: null, model: '', manufacturer: '', licensePlate: '',
-    yearOfRegistration: null, idCategory: null, categories: ''};
   object: any[] = [];
 
   constructor(private location: Location,
               private router: Router,
               private route: ActivatedRoute,
               private vehicleService: VehicleService,
-              private categoryService: CategoryService) {}
+              private categoryService: CategoryService,
+              private rentalService: RentalService) {}
 
   ngOnInit() {
-    this.categoryService.getCategories()
-      .subscribe(c => {
-        this.categories = c;
-        this.getVehicles();
+    if (this.token === 'jwt-token-admin') {
+      forkJoin([
+        this.categoryService.getCategories(),
+        this.vehicleService.getVehicles()
+      ]).subscribe(data => {
+        this.categories = data[0];
+        this.vehicles = data[1];
+        this.generateRowAdmin(this.vehicles);
       });
+    } else {
+      forkJoin([
+        this.categoryService.getCategories(),
+        this.vehicleService.getVehicles(),
+        this.rentalService.getRentals()
+      ]).subscribe(data => {
+        this.categories = data[0];
+        this.vehicles = data[1];
+        this.rentals = data[2];
+        this.generateRowCustomer(this.vehicles);
+      });
+    }
   }
 
-  getVehicles() {
-    this.vehicleService.getVehicles()
-      .subscribe(
-        v => {
-          this.vehicles = v;
-          this.vehicles.forEach(vehicle => {
-            this.generateRow(vehicle);
-          });
+  generateRowAdmin(vehicles: any[]) {
+    let row: any = {id: null, model: '', manufacturer: '', licensePlate: '',
+      yearOfRegistration: null, idCategory: null, categories: ''};
+    vehicles.forEach(v => {
+      row = v;
+      row.category = this.categories.find(x => x.id === row.idCategory);
+      this.object.push(row);
+    });
+  }
+
+  generateRowCustomer(vehicles: any[]) {
+    let row: any = {id: null, model: '', manufacturer: '', licensePlate: '',
+      yearOfRegistration: null, idCategory: null, categories: '',
+      actuallyRented: false};
+    vehicles.forEach(v => {
+      row = v;
+      row.category = this.categories.find(x => x.id === row.idCategory);
+      this.rentals.forEach(r => {
+        console.log(r.dateEnd);
+        console.log(moment().toDate().toISOString());
+        if (r.idVehicle === row.id && r.dateEnd.toString() > moment().toISOString()) {
+          row.actuallyRented = true;
         }
-      );
-  }
-
-  generateRow(vehicle: any) {
-    this.row = vehicle;
-    this.row.category = this.categories.find(x => x.id === this.row.idCategory);
-    this.object.push(this.row);
+      });
+      this.object.push(row);
+    });
   }
 
   doOperation(event: any) {

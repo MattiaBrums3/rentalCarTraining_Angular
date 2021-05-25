@@ -21,11 +21,9 @@
         <span class="material-icons-sharp" *ngIf="defaultOrderType==='desc' && defaultOrderColumn===value.key">keyboard_arrow_up</span>
         <span class="material-icons-sharp" *ngIf="defaultOrderType==='asc' && defaultOrderColumn===value.key">keyboard_arrow_down</span>
       </th>
-      <th scope="col">
+      <th scope="col" *ngIf="token === 'jwt-token-admin' && tableConfig.actions[0].text === 'Inserisci'">
         <a routerLink="{{currentRoute}}/new" routerLinkActive="active">
-          <ng-container *ngIf="tableConfig.actions[0].text === 'Inserisci'">
-            <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
-          </ng-container>
+          <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
         </a>
       </th>
     </tr>
@@ -38,12 +36,26 @@
         <td *ngIf="value.key === 'idVehicle'">{{d['vehicle'].model}}</td>
         <td *ngIf="value.key === 'idCategory'">{{d['category'].typology}}</td>
       </ng-container>
-      <ng-container *ngFor="let action of tableConfig.actions">
-        <td *ngIf="action.text !== 'Inserisci'">
-          <a routerLink="{{currentRoute}}/{{action.icon}}/{{d['id']}}" routerLinkActive="active">
-            <app-generic-button (emitter)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
-          </a>
-        </td>
+      <ng-container *ngIf="token === 'jwt-token-admin'">
+        <ng-container *ngFor="let action of tableConfig.actions">
+          <td *ngIf="action.text !== 'Inserisci' && action.text !== 'Prenota'">
+            <a routerLink="{{currentRoute}}/{{action.icon}}/{{d['id']}}" routerLinkActive="active">
+              <app-generic-button (emitter)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
+            </a>
+          </td>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="token === 'jwt-token-customer'">
+        <ng-container *ngIf="tableConfig.headers[0].label === 'idVeicolo'">
+          <td *ngIf="!d['actuallyRented']">
+            <a routerLink="{{currentRoute}}/{{tableConfig.actions[3].icon}}/{{d['id']}}" routerLinkActive="active">
+              <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[3], d)" [buttonConfig]="tableConfig.actions[3]"></app-generic-button>
+            </a>
+          </td>
+          <td *ngIf="d['actuallyRented']">
+            Veicolo attualmente prenotato.
+          </td>
+        </ng-container>
       </ng-container>
     </tr>
     </tbody>

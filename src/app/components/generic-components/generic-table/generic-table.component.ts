@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { MyTableConfig } from '../../../configs/my-table-config';
 import {Router} from '@angular/router';
+import {RentalService} from '../../../services/rental.service';
 
 @Component({
   selector: 'app-generic-table',
@@ -16,6 +17,8 @@ export class GenericTableComponent implements OnChanges {
 
   @Output() emitResult = new EventEmitter<any>();
 
+  token = sessionStorage.getItem('token');
+
   defaultOrderColumn: string;
   defaultOrderType: string;
 
@@ -27,7 +30,8 @@ export class GenericTableComponent implements OnChanges {
 
   currentRoute: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private rentalService: RentalService) { }
 
   ngOnChanges() {
     this.defaultOrderColumn = this.tableConfig.order.defaultColumn;
