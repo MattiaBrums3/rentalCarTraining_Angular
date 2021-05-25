@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  constructor() {}
+  constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (sessionStorage.getItem('token') === 'jwt-token-admin') {
       return true;
     } else {
+      this.router.navigate(['login']);
       return false;
     }
   }

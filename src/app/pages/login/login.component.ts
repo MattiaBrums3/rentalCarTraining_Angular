@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           if (data.token === 'jwt-token-admin') {
-            this.router.navigate(['/admin/user']);
+            this.router.navigate(['admin/user']);
           } else if (data.token === 'jwt-token-customer') {
-            this.router.navigate(['/user']);
+            this.router.navigate(['user']);
           }
         },
         error => {
