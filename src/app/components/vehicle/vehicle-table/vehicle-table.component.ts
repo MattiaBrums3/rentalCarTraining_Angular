@@ -78,8 +78,6 @@ export class VehicleTableComponent implements OnInit {
       row = v;
       row.category = this.categories.find(x => x.id === row.idCategory);
       this.rentals.forEach(r => {
-        console.log(r.dateEnd);
-        console.log(moment().toDate().toISOString());
         if (r.idVehicle === row.id && r.dateEnd.toString() > moment().toISOString()) {
           row.actuallyRented = true;
         }

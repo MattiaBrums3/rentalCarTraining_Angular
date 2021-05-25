@@ -24,7 +24,24 @@ export class RentalService {
       );
   }
 
+  getRentalById(id: number) {
+    const url = `${this.rentalsUrl}/${id}`;
+    return this.http.get<Rental>(url)
+      .pipe(
+        tap(_ => console.log(`Fetched Rental ${id}`))
+      );
+  }
+
   getRentalsByUser(idUser: number) {
     return this.inMemory.getRentalsByUser(idUser);
+  }
+
+  saveRental(rental: Rental) {
+    return this.http.post<Rental>(this.rentalsUrl, rental, this.httpOptions);
+  }
+
+  deleteRental(id: number) {
+    const url = `${this.rentalsUrl}/${id}`;
+    return this.http.delete<Rental>(url, this.httpOptions);
   }
 }

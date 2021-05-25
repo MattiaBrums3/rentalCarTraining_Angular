@@ -30,6 +30,12 @@
                        type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
                        title="{{key.label}}" value="{{ object[key.key] }}" />&nbsp;
               </ng-container>
+              <ng-container *ngIf="entity === 'rentals'">
+                <input *ngIf="key.key !== 'id'" [(ngModel)]="object[key.key]"
+                       type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                       title="{{key.label}}" value="{{ object[key.key] }}" />&nbsp;
+
+              </ng-container>
             </ng-container>
             <div class="col-md-6 mt-4">
               <div class="form-group">

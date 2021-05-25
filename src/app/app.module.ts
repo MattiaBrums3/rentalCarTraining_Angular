@@ -26,6 +26,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { RentalTableComponent } from './components/rental/rental-table/rental-table.component';
 import { CustomerHomepageComponent } from './pages/customer-homepage/customer-homepage.component';
 import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
+import { RentalFormComponent } from './components/rental/rental-form/rental-form.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
         RentalTableComponent,
         CustomerHomepageComponent,
         AccessDeniedComponent,
+        RentalFormComponent,
     ],
     imports: [
         BrowserModule,

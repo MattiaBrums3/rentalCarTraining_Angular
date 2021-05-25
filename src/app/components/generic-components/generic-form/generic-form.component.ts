@@ -73,6 +73,12 @@ export class GenericFormComponent implements OnInit {
           this.title = 'Modifica Veicolo';
         }
         break;
+      case 'rentals':
+        if (this.action === 'new') {
+          this.title = 'Nuova Prenotazione';
+        } else {
+          this.title = 'Modifica Prenotazione';
+        }
     }
   }
 

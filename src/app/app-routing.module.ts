@@ -12,6 +12,7 @@ import {AdminGuard} from './auth/admin.guard';
 import {CustomerHomepageComponent} from './pages/customer-homepage/customer-homepage.component';
 import {AccessDeniedComponent} from './pages/access-denied/access-denied.component';
 import {CustomerGuard} from './auth/customer.guard';
+import {RentalFormComponent} from './components/rental/rental-form/rental-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -40,7 +41,10 @@ const routes: Routes = [
   ]},
   {path: 'user', component: CustomerHomepageComponent, canActivate: [CustomerGuard]},
   {path: 'editUser/:id', component: UserFormComponent, canActivate: [CustomerGuard]},
-  {path: 'vehicle', component: VehicleTableComponent, canActivate: [CustomerGuard]}
+  {path: 'vehicle', children: [
+      {path: '', component: VehicleTableComponent, canActivate: [CustomerGuard]},
+      {path: 'car_rental/:idRental/new', component: RentalFormComponent, canActivate: [CustomerGuard]}
+  ]}
 ];
 
 @NgModule({
