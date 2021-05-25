@@ -10,10 +10,12 @@ import {VehicleFormComponent} from './components/vehicle/vehicle-form/vehicle-fo
 import {RentalTableComponent} from './components/rental/rental-table/rental-table.component';
 import {AdminGuard} from './auth/admin.guard';
 import {CustomerHomepageComponent} from './pages/customer-homepage/customer-homepage.component';
+import {AccessDeniedComponent} from './pages/access-denied/access-denied.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
+  {path: 'access-denied', component: AccessDeniedComponent},
   {path: 'admin', children: [
       {path: 'user', canActivate: [AdminGuard], children: [
           {path: '', component: AdminHomepageComponent, canActivate: [AdminGuard]},

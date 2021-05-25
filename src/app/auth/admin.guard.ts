@@ -11,7 +11,7 @@ export class AdminGuard implements CanActivate {
     if (sessionStorage.getItem('token') === 'jwt-token-admin') {
       return true;
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['access-denied']);
       return false;
     }
   }
