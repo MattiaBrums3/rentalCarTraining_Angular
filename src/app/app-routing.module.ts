@@ -11,6 +11,7 @@ import {RentalTableComponent} from './components/rental/rental-table/rental-tabl
 import {AdminGuard} from './auth/admin.guard';
 import {CustomerHomepageComponent} from './pages/customer-homepage/customer-homepage.component';
 import {AccessDeniedComponent} from './pages/access-denied/access-denied.component';
+import {CustomerGuard} from './auth/customer.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -37,7 +38,9 @@ const routes: Routes = [
           {path: 'delete/:id', component: VehicleTableComponent, canActivate: [AdminGuard]}
       ]}
   ]},
-  {path: 'user', component: CustomerHomepageComponent}
+  {path: 'user', component: CustomerHomepageComponent, canActivate: [CustomerGuard]},
+  {path: 'editUser/:id', component: UserFormComponent, canActivate: [CustomerGuard]},
+  {path: 'vehicle', component: VehicleTableComponent, canActivate: [CustomerGuard]}
 ];
 
 @NgModule({

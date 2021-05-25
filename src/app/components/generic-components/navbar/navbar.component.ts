@@ -8,12 +8,23 @@ import {Router} from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  id = sessionStorage.getItem('id');
   name = sessionStorage.getItem('name');
+  token = sessionStorage.getItem('token');
 
   constructor(private service: AuthenticationService,
               private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  goToHomepage() {
+    if (this.token === 'jwt-token-admin') {
+      return this.router.navigate(['admin/user']);
+    } else {
+      return this.router.navigate(['user']);
+    }
+
   }
 
   logout() {

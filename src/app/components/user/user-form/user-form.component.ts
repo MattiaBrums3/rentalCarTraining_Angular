@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {USERHEADERS} from '../../../configs/my-configs';
 import {UserService} from '../../../services/user.service';
 import {Location} from '@angular/common';
@@ -14,7 +14,8 @@ export class UserFormComponent implements OnInit {
   action: string;
   object: any;
 
-  constructor(private router: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
+              private router: Router,
               private service: UserService,
               private location: Location) { }
 
@@ -24,7 +25,7 @@ export class UserFormComponent implements OnInit {
   }
 
   getAction() {
-    this.action = this.router.snapshot.url[0].path;
+    this.action = this.route.snapshot.url[0].path;
   }
 
   getObject() {
@@ -34,7 +35,11 @@ export class UserFormComponent implements OnInit {
         username: '', password: ''};
       this.object.keys = USERHEADERS;
     } else {
-      const objId = +this.router.snapshot.url[1].path;
+      const objId = +this.route.snapshot.url[1].path;
+      if (sessionStorage.getItem('token') !== 'jwt-token-admin' &&
+        objId !== +sessionStorage.getItem('id')) {
+        return this.router.navigate(['access-denied']);
+      }
       this.service.getUserById(objId)
         .subscribe(o => {
           this.object = o;

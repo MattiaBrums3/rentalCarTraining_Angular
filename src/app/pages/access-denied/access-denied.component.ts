@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-access-denied',
@@ -11,5 +12,4 @@ export class AccessDeniedComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
