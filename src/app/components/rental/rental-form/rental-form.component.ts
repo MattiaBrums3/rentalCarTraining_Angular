@@ -30,8 +30,7 @@ export class RentalFormComponent implements OnInit {
   getObject() {
     if (this.action === 'new') {
       const idUser = +sessionStorage.getItem('id');
-      const idVehicle = this.router.snapshot.url[1].path;
-      console.log(idVehicle);
+      const idVehicle = +this.router.snapshot.url[1].path;
       this.object = {idUser, idVehicle, dateStart: '', dateEnd: '', approved: false};
       this.object.keys = RENTALHEADERS;
     }
@@ -46,7 +45,11 @@ export class RentalFormComponent implements OnInit {
     if (action === 'Salva') {
       this.rentalService.saveRental(this.object)
         .subscribe(
-          () => this.goBack()
+          () => {
+            this.goBack();
+            this.rentalService.getRentals()
+              .subscribe(r => console.log(r));
+          }
           );
     } else {
       this.goBack();
