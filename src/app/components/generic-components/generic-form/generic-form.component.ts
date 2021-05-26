@@ -34,7 +34,6 @@ export class GenericFormComponent implements OnInit {
   ngOnInit(): void {
     this.getService();
     this.getTitle();
-    console.log(this.object);
   }
 
   getService() {

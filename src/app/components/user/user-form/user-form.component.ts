@@ -32,7 +32,7 @@ export class UserFormComponent implements OnInit {
     if (this.action === 'new') {
       const date = new Date();
       this.object = {name: '', surname: '', dateOfBirth: date.toISOString(), fiscalCode: '',
-        username: '', password: ''};
+        superUser: false, username: '', password: ''};
       this.object.keys = USERHEADERS;
     } else {
       const objId = +this.route.snapshot.url[1].path;
@@ -55,9 +55,14 @@ export class UserFormComponent implements OnInit {
     }
 
     if (action === 'Salva') {
+      delete this.object.keys;
       this.service.saveUser(this.object)
         .subscribe(
-          () => this.goBack()
+          () => {
+            this.goBack();
+            this.service.getUsers()
+              .subscribe(o => console.log(o));
+          }
         );
     } else {
       this.goBack();

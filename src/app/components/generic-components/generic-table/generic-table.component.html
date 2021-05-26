@@ -37,15 +37,43 @@
         <td *ngIf="value.key === 'idCategory'">{{d['category'].typology}}</td>
       </ng-container>
       <ng-container *ngIf="token === 'jwt-token-admin'">
-        <ng-container *ngFor="let action of tableConfig.actions">
-          <td *ngIf="action.text !== 'Inserisci' && action.text !== 'Prenota'">
-            <a routerLink="{{currentRoute}}/{{action.icon}}/{{d['id']}}" routerLinkActive="active">
-              <app-generic-button (emitter)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
+        <ng-container *ngIf="tableConfig.headers[0].label !== 'idPrenotazione'">
+          <ng-container *ngFor="let action of tableConfig.actions">
+            <td *ngIf="action.text !== 'Inserisci' && action.text !== 'Prenota'">
+              <a routerLink="{{currentRoute}}/{{action.icon}}/{{d['id']}}" routerLinkActive="active">
+                <app-generic-button (emitter)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
+              </a>
+            </td>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="tableConfig.headers[0].label === 'idPrenotazione'">
+          <td *ngIf="!d['approved']">
+            <a routerLink="{{currentRoute}}/{{tableConfig.actions[2].icon}}/{{d['id']}}" routerLinkActive="active">
+              <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[2], d)" [buttonConfig]="tableConfig.actions[2]"></app-generic-button>
+            </a>&nbsp;
+            <a routerLink="{{currentRoute}}/{{tableConfig.actions[3].icon}}/{{d['id']}}" routerLinkActive="active">
+              <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[3], d)" [buttonConfig]="tableConfig.actions[3]"></app-generic-button>
             </a>
+          </td>
+          <td *ngIf="d['approved']">
+            Prenotazione approvata.
           </td>
         </ng-container>
       </ng-container>
       <ng-container *ngIf="token === 'jwt-token-customer'">
+        <ng-container *ngIf="tableConfig.headers[0].label === 'idPrenotazione'">
+          <td *ngIf="!d['approved'] && d['dateStart'] === '2021-05-25T11:44:00.524Z'">
+            <a routerLink="/vehicle/car_rental/{{d['idVehicle']}}/edit/{{d['id']}}" routerLinkActive="active">
+              <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[0], d)" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
+            </a>&nbsp;
+            <a routerLink="/vehicle/car_rental/{{d['id']}}/delete" routerLinkActive="active">
+              <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[1], d)" [buttonConfig]="tableConfig.actions[1]"></app-generic-button>
+            </a>
+          </td>
+          <td *ngIf="d['approved']">
+            Prenotazione approvata.
+          </td>
+        </ng-container>
         <ng-container *ngIf="tableConfig.headers[0].label === 'idVeicolo'">
           <td *ngIf="!d['actuallyRented']">
             <a routerLink="{{currentRoute}}/{{tableConfig.actions[3].icon}}/{{d['id']}}/new" routerLinkActive="active">

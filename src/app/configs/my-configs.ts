@@ -32,6 +32,18 @@ export const RENTTABLEBUTTON: MyButtonConfig = {
   icon: 'car_rental'
 };
 
+export const ACCEPTRENTALBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Accetta',
+  icon: 'done'
+};
+
+export const DECLINERENTALBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Rifiuta',
+  icon: 'close'
+};
+
 export const FORMBUTTON: MyButtonConfig = {
   customCssClass: 'btn btn-primary',
   text: 'Salva',
@@ -133,5 +145,5 @@ export const RENTALTABLE: MyTableConfig = {
     itemPerPage: 5,
     itemPerPageOptions: [5, 10, 25]
   },
-  actions: [EDITTABLEBUTTON, DELETETABLEBUTTON]
+  actions: [EDITTABLEBUTTON, DELETETABLEBUTTON, ACCEPTRENTALBUTTON, DECLINERENTALBUTTON]
 };

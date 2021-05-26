@@ -43,7 +43,8 @@ const routes: Routes = [
   {path: 'editUser/:id', component: UserFormComponent, canActivate: [CustomerGuard]},
   {path: 'vehicle', children: [
       {path: '', component: VehicleTableComponent, canActivate: [CustomerGuard]},
-      {path: 'car_rental/:idRental/new', component: RentalFormComponent, canActivate: [CustomerGuard]}
+      {path: 'car_rental/:idVehicle/new', component: RentalFormComponent, canActivate: [CustomerGuard]},
+      {path: 'car_rental/:idVehicle/edit/:idRental', component: RentalFormComponent, canActivate: [CustomerGuard]}
   ]}
 ];
 
