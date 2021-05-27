@@ -58,11 +58,7 @@ export class UserFormComponent implements OnInit {
       delete this.object.keys;
       this.service.saveUser(this.object)
         .subscribe(
-          () => {
-            this.goBack();
-            this.service.getUsers()
-              .subscribe(o => console.log(o));
-          }
+          () => this.goBack()
         );
     } else {
       this.goBack();

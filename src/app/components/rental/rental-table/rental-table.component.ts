@@ -8,6 +8,7 @@ import {VehicleService} from '../../../services/vehicle.service';
 import {forkJoin} from 'rxjs';
 import {User} from '../../../models/user';
 import {Vehicle} from '../../../models/vehicle';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-rental-table',
@@ -30,7 +31,8 @@ export class RentalTableComponent implements OnInit {
   constructor(private rentalService: RentalService,
               private userService: UserService,
               private vehicleService: VehicleService,
-              private router: ActivatedRoute) { }
+              private router: ActivatedRoute,
+              private location: Location) { }
 
   ngOnInit(): void {
     const idUser = +this.router.snapshot.url[1].path;
@@ -51,8 +53,31 @@ export class RentalTableComponent implements OnInit {
     });
   }
 
-  doOperation(action: any) {
+  doOperation(event: any) {
+    const action = event.action;
 
+    if (action === 'Accetta') {
+      const idRental = +this.router.snapshot.url[1].path;
+      this.rentalService.getRentalById(idRental)
+        .subscribe(r => {
+          r.approved = true;
+          this.rentalService.saveRental(r)
+            .subscribe(
+              () => this.goBack()
+            );
+        });
+    }
+
+    if (action === 'Rifiuta') {
+      this.rentalService.deleteRental(event.record.id)
+        .subscribe(
+          () => this.goBack()
+        );
+    }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

@@ -47,6 +47,7 @@ export class GenericTableComponent implements OnChanges {
     }
 
     const btn = {button: rowId, action: event, record};
+    console.log(btn);
     this.emitResult.emit(btn);
   }
 

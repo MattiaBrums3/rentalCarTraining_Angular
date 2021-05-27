@@ -24,7 +24,9 @@ const routes: Routes = [
           {path: 'new', component: UserFormComponent, canActivate: [AdminGuard]},
           {path: 'edit/:id', component: UserFormComponent, canActivate: [AdminGuard]},
           {path: 'delete/:id', component: AdminHomepageComponent, canActivate: [AdminGuard]},
-          {path: 'car_rental/:id', component: RentalTableComponent, canActivate: [AdminGuard]}
+          {path: 'car_rental/:id', component: RentalTableComponent, canActivate: [AdminGuard]},
+          {path: 'car_rental/:id/done/:idRental', component: RentalTableComponent, canActivate: [AdminGuard]},
+          {path: 'car_rental/:id/close/:idRental', component: RentalTableComponent, canActivate: [AdminGuard]}
       ]},
       {path: 'category', children: [
           {path: '', component: CategoryTableComponent, canActivate: [AdminGuard]},
