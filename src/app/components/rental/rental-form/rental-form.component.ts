@@ -6,6 +6,7 @@ import {RentalService} from '../../../services/rental.service';
 import {forkJoin} from 'rxjs';
 import {UserService} from '../../../services/user.service';
 import {VehicleService} from '../../../services/vehicle.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-rental-form',
@@ -69,6 +70,11 @@ export class RentalFormComponent implements OnInit {
       return;
     }
 
+    if (!this.checkDates()) {
+      alert('Data di Fine >= Data di Inizio!');
+      return;
+    }
+
     if (action === 'Salva') {
       delete this.object.keys;
       delete this.object.user;
@@ -87,10 +93,21 @@ export class RentalFormComponent implements OnInit {
   }
 
   checkFields() {
-    if (this.object.dateStart !== '' && this.object.dateEnd !== '') {
+    if (this.object.dateStart !== null && this.object.dateEnd !== null) {
       return true;
     } else {
       return false;
+    }
+  }
+
+  checkDates() {
+    const dateStart = moment(this.object.dateStart).format('YYYY/MM/DD');
+    const dateEnd = moment(this.object.dateEnd).format('YYYY/MM/DD');
+
+    if (dateStart >= dateEnd) {
+      return false;
+    } else {
+      return true;
     }
   }
 

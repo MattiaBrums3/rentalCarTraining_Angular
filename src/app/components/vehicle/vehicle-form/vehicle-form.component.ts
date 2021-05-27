@@ -33,7 +33,11 @@ export class VehicleFormComponent implements OnInit {
     if (this.action === 'new') {
       this.object = {model: '', manufacturer: '', licensePlate: '',
         yearOfRegistration: null, idCategory: null, categories: ''};
-      this.object.keys = VEHICLEHEADERS;
+      this.categoryService.getCategories()
+        .subscribe(c => {
+          this.object.categories = c;
+          this.object.keys = VEHICLEHEADERS;
+        });
     } else {
       const objId = +this.router.snapshot.url[1].path;
       this.vehicleService.getVehicleById(objId)
