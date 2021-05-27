@@ -55,6 +55,7 @@ export class RentalTableComponent implements OnInit {
 
   doOperation(event: any) {
     const action = event.action;
+    console.log(action);
 
     if (action === 'Accetta') {
       const idRental = +this.router.snapshot.url[1].path;

@@ -42,6 +42,9 @@ export class RentalService {
 
   deleteRental(id: number) {
     const url = `${this.rentalsUrl}/${id}`;
-    return this.http.delete<Rental>(url, this.httpOptions);
+    return this.http.delete<Rental>(url, this.httpOptions)
+      .pipe(
+        tap(_ => console.log(`Deleted Rental ${id}`))
+      );
   }
 }

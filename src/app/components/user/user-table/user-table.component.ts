@@ -30,7 +30,8 @@ export class UserTableComponent implements OnInit {
     const action = event.action;
 
     if (action === 'Elimina') {
-      this.service.deleteUser(event.record.id).subscribe(
+      this.service.deleteUser(event.record.id)
+        .subscribe(
         () => {
           alert('Utente eliminato con successo.');
           this.goBack();

@@ -46,6 +46,7 @@ const routes: Routes = [
   {path: 'vehicle', children: [
       {path: '', component: VehicleTableComponent, canActivate: [CustomerGuard]},
       {path: 'car_rental/:idVehicle/new', component: RentalFormComponent, canActivate: [CustomerGuard]},
+      {path: 'car_rental/delete/:idRental', component: CustomerHomepageComponent, canActivate: [CustomerGuard]},
       {path: 'car_rental/:idVehicle/edit/:idRental', component: RentalFormComponent, canActivate: [CustomerGuard]}
   ]}
 ];
