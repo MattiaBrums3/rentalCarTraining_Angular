@@ -5,6 +5,7 @@ import {
 import { MyTableConfig } from '../../../configs/my-table-config';
 import {Router} from '@angular/router';
 import {RentalService} from '../../../services/rental.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-generic-table',
@@ -18,6 +19,9 @@ export class GenericTableComponent implements OnChanges {
   @Output() emitResult = new EventEmitter<any>();
 
   token = sessionStorage.getItem('token');
+
+  moment = moment;
+  today = new Date().getTime();
 
   defaultOrderColumn: string;
   defaultOrderType: string;
