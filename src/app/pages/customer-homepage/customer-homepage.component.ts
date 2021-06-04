@@ -34,21 +34,8 @@ export class CustomerHomepageComponent implements OnInit {
 
   ngOnInit(): void {
     const idUser = +sessionStorage.getItem('id');
-    this.rentals = this.rentalService.getRentalsByUser(idUser);
-
-    forkJoin([
-      this.userService.getUserById(idUser),
-      this.vehicleService.getVehicles()
-    ]).subscribe(data => {
-      this.user = data[0];
-      this.vehicles = data[1];
-      this.rentals.forEach(r => {
-        this.row = r;
-        this.row.user = this.user;
-        this.row.vehicle = this.vehicles.find(v => v.id === this.row.idVehicle);
-        this.object.push(this.row);
-      });
-    });
+    this.rentalService.getRentalsByUser(idUser)
+      .subscribe(r => this.object = r);
   }
 
   doOperation(event: any) {

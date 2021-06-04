@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import * as _ from 'lodash';
 import {HttpResponse} from '@angular/common/http';
 import {of, throwError} from 'rxjs';
 
@@ -71,13 +70,6 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     return {users, categories, vehicles, rentals};
-  }
-
-  getRentalsByUser(id: number) {
-    const rentals = this.createDb().rentals;
-    const rentalsByUser = _.filter(rentals, {idUser: id});
-
-    return rentalsByUser;
   }
 
   authenticate(body: any) {

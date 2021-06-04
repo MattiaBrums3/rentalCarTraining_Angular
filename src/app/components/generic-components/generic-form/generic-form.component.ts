@@ -88,5 +88,7 @@ export class GenericFormComponent implements OnInit {
 
   changeCategoryValue(selection) {
     this.object.idCategory = parseInt(selection);
+    this.categoryService.getCategoryById(this.object.idCategory)
+      .subscribe(c => this.object.category = c);
   }
 }

@@ -46,6 +46,7 @@ export class VehicleFormComponent implements OnInit {
           this.categoryService.getCategories()
             .subscribe(c => {
               this.object.categories = c;
+              this.object.idCategory = this.object.category.id;
               this.object.keys = VEHICLEHEADERS;
             });
         });

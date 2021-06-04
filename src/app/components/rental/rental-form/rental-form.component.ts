@@ -58,6 +58,8 @@ export class RentalFormComponent implements OnInit {
           ]).subscribe(data => {
             this.object.user = data[0];
             this.object.vehicle = data[1];
+            this.object.idUser = this.object.user.id;
+            this.object.idVehicle = this.object.vehicle.id;
             this.object.keys = RENTALHEADERS;
           });
         });
@@ -65,6 +67,11 @@ export class RentalFormComponent implements OnInit {
   }
 
   doOperation(action: any) {
+    if (action !== 'Salva') {
+      this.goBack();
+      return;
+    }
+
     if (action === 'Salva' && !this.checkFields()) {
       alert('Completa tutti i campi.');
       return;
@@ -76,9 +83,6 @@ export class RentalFormComponent implements OnInit {
     }
 
     if (action === 'Salva') {
-      delete this.object.keys;
-      delete this.object.user;
-      delete this.object.vehicle;
       this.rentalService.saveRental(this.object)
         .subscribe(
           () => {
@@ -87,13 +91,11 @@ export class RentalFormComponent implements OnInit {
               .subscribe(r => console.log(r));
           }
           );
-    } else {
-      this.goBack();
     }
   }
 
   checkFields() {
-    if (this.object.dateStart !== null && this.object.dateEnd !== null) {
+    if (this.object.dateOfStart !== null && this.object.dateOfEnd !== null) {
       return true;
     } else {
       return false;
@@ -101,8 +103,8 @@ export class RentalFormComponent implements OnInit {
   }
 
   checkDates() {
-    const dateStart = moment(this.object.dateStart).format('YYYY/MM/DD');
-    const dateEnd = moment(this.object.dateEnd).format('YYYY/MM/DD');
+    const dateStart = moment(this.object.dateOfStart).format('YYYY/MM/DD');
+    const dateEnd = moment(this.object.dateOfEnd).format('YYYY/MM/DD');
 
     if (dateStart >= dateEnd) {
       return false;

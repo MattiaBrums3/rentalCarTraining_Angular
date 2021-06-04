@@ -2,7 +2,7 @@ export interface Rental {
   id: number;
   idUser: number;
   idVehicle: number;
-  dateStart: Date;
-  dateEnd: Date;
+  dateOfStart: Date;
+  dateOfEnd: Date;
   approved: boolean;
 }

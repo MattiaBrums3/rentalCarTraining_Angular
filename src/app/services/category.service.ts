@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import {User} from '../models/user';
-import {tap} from 'rxjs/operators';
 import {Category} from '../models/category';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
@@ -8,7 +6,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class CategoryService {
-  private categoriesUrl = 'api/categories';
+  private categoriesUrl = 'http://localhost:8080/api/categories';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,18 +15,12 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategories() {
-    return this.http.get<Category[]>(this.categoriesUrl)
-      .pipe(
-        tap(_ => console.log('Fetched Categories'))
-      );
+    return this.http.get<Category[]>(this.categoriesUrl);
   }
 
   getCategoryById(id: number) {
     const url = `${this.categoriesUrl}/${id}`;
-    return this.http.get<Category>(url)
-      .pipe(
-        tap(_ => console.log(`Fetched Category ${id}`))
-      );
+    return this.http.get<Category>(url);
   }
 
   saveCategory(category: Category) {
@@ -37,9 +29,6 @@ export class CategoryService {
 
   deleteCategory(id: number) {
     const url = `${this.categoriesUrl}/${id}`;
-    return this.http.delete<Category>(url, this.httpOptions)
-      .pipe(
-        tap(_ => console.log(`Deleted Category ${id}`))
-      );
+    return this.http.delete<Category>(url, this.httpOptions);
   }
 }

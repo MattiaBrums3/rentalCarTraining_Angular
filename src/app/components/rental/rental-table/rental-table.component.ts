@@ -24,8 +24,6 @@ export class RentalTableComponent implements OnInit {
   users: User[];
   vehicles: Vehicle[];
 
-  row: any = {id: null, idUser: null, idVehicle: null, dateStart: '',
-              dateEnd: '', approved: '', user: '', vehicle: ''};
   object: any[] = [];
 
   constructor(private rentalService: RentalService,
@@ -36,26 +34,12 @@ export class RentalTableComponent implements OnInit {
 
   ngOnInit(): void {
     const idUser = +this.router.snapshot.url[1].path;
-    this.rentals = this.rentalService.getRentalsByUser(idUser);
-
-    forkJoin([
-      this.userService.getUsers(),
-      this.vehicleService.getVehicles()
-    ]).subscribe(data => {
-        this.users = data[0];
-        this.vehicles = data[1];
-        this.rentals.forEach(r => {
-          this.row = r;
-          this.row.user = this.users.find(u => u.id === this.row.idUser);
-          this.row.vehicle = this.vehicles.find(v => v.id === this.row.idVehicle);
-          this.object.push(this.row);
-        });
-    });
+    this.rentalService.getRentalsByUser(idUser)
+      .subscribe(r => this.object = r);
   }
 
   doOperation(event: any) {
     const action = event.action;
-    console.log(action);
 
     if (action === 'Accetta') {
       const idRental = +this.router.snapshot.url[1].path;

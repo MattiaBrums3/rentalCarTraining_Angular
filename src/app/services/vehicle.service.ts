@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Vehicle} from '../models/vehicle';
 
@@ -7,7 +6,7 @@ import {Vehicle} from '../models/vehicle';
   providedIn: 'root'
 })
 export class VehicleService {
-  private vehiclesUrl = 'api/vehicles';
+  private vehiclesUrl = 'http://localhost:8080/api/vehicles';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -30,9 +29,6 @@ export class VehicleService {
 
   deleteVehicle(id: number) {
     const url = `${this.vehiclesUrl}/${id}`;
-    return this.http.delete<Vehicle>(url, this.httpOptions)
-      .pipe(
-        tap(_ => console.log(`Deleted Vehicle ${id}`))
-      );
+    return this.http.delete<Vehicle>(url, this.httpOptions);
   }
 }

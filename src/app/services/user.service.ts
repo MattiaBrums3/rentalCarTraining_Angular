@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../models/user';
-import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private usersUrl = 'api/users';
+  private usersUrl = 'http://localhost:8080/api/users';
 
   httpOptions = {
    headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -16,18 +15,12 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get<User[]>(this.usersUrl)
-      .pipe(
-        tap(_ => console.log('Fetched Users'))
-      );
+    return this.http.get<User[]>(this.usersUrl);
   }
 
   getUserById(id: number) {
     const url = `${this.usersUrl}/${id}`;
-    return this.http.get<User>(url)
-      .pipe(
-        tap(_ => console.log(`Fetched User ${id}`))
-      );
+    return this.http.get<User>(url);
   }
 
   saveUser(user: User) {
@@ -36,9 +29,6 @@ export class UserService {
 
   deleteUser(id: number) {
     const url = `${this.usersUrl}/${id}`;
-    return this.http.delete<User>(url, this.httpOptions)
-      .pipe(
-        tap(_ => console.log(`Deleted User ${id}`))
-      );
+    return this.http.delete<User>(url, this.httpOptions);
   }
 }

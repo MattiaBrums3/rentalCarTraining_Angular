@@ -62,10 +62,11 @@ export class VehicleTableComponent implements OnInit {
 
   generateRowAdmin(vehicles: any[]) {
     let row: any = {id: null, model: '', manufacturer: '', licensePlate: '',
-      yearOfRegistration: null, idCategory: null, categories: ''};
+      yearOfRegistration: null, idCategory: null, categories: null};
     vehicles.forEach(v => {
       row = v;
-      row.category = this.categories.find(x => x.id === row.idCategory);
+      row.idCategory = row.category.id;
+      row.categories = this.categories;
       this.object.push(row);
     });
   }
@@ -74,11 +75,14 @@ export class VehicleTableComponent implements OnInit {
     let row: any = {id: null, model: '', manufacturer: '', licensePlate: '',
       yearOfRegistration: null, idCategory: null, categories: '',
       actuallyRented: false};
+    let temp: any = '';
     vehicles.forEach(v => {
       row = v;
-      row.category = this.categories.find(x => x.id === row.idCategory);
+      row.idCategory = row.category.id;
+      row.categories = this.categories;
       this.rentals.forEach(r => {
-        if (r.idVehicle === row.id && r.dateEnd.toString() > moment().toISOString()) {
+        temp = r;
+        if (temp.vehicle.id === row.id && moment(r.dateOfEnd).toISOString() > moment().toISOString()) {
           row.actuallyRented = true;
         }
       });

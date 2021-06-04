@@ -56,9 +56,6 @@ import { RentalFormComponent } from './components/rental/rental-form/rental-form
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(
-            InMemoryDataService
-        ),
         AppRoutingModule,
         NgbModule,
         ReactiveFormsModule

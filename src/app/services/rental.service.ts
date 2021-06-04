@@ -1,39 +1,31 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Rental} from '../models/rental';
-import {tap} from 'rxjs/operators';
-import {InMemoryDataService} from './in-memory-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentalService {
-  private rentalsUrl = 'api/rentals';
+  private rentalsUrl = 'http://localhost:8080/api/rentals';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient,
-              private inMemory: InMemoryDataService) { }
+  constructor(private http: HttpClient) { }
 
   getRentals() {
-    return this.http.get<Rental[]>(this.rentalsUrl)
-      .pipe(
-        tap(_ => console.log('Fetched Rentals'))
-      );
+    return this.http.get<Rental[]>(this.rentalsUrl);
   }
 
   getRentalById(id: number) {
     const url = `${this.rentalsUrl}/${id}`;
-    return this.http.get<Rental>(url)
-      .pipe(
-        tap(_ => console.log(`Fetched Rental ${id}`))
-      );
+    return this.http.get<Rental>(url);
   }
 
   getRentalsByUser(idUser: number) {
-    return this.inMemory.getRentalsByUser(idUser);
+    const url = `${this.rentalsUrl}/user/${idUser}`;
+    return this.http.get<Rental[]>(url);
   }
 
   saveRental(rental: Rental) {
@@ -42,9 +34,6 @@ export class RentalService {
 
   deleteRental(id: number) {
     const url = `${this.rentalsUrl}/${id}`;
-    return this.http.delete<Rental>(url, this.httpOptions)
-      .pipe(
-        tap(_ => console.log(`Deleted Rental ${id}`))
-      );
+    return this.http.delete<Rental>(url, this.httpOptions);
   }
 }

@@ -98,8 +98,8 @@ export const RENTALHEADERS: MyHeaders[] = [
   { key: 'id', label: 'idPrenotazione' },
   { key: 'idUser', label: 'Utente' },
   { key: 'idVehicle', label: 'Veicolo' },
-  { key: 'dateStart', label: 'Data di Inizio' },
-  { key: 'dateEnd', label: 'Data di Fine' }
+  { key: 'dateOfStart', label: 'Data di Inizio' },
+  { key: 'dateOfEnd', label: 'Data di Fine' }
 ];
 
 // TABLES

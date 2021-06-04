@@ -39,7 +39,7 @@
                         disabled placeholder="{{key.label}}" title="{{key.label}}">
                   <option selected value="{{object.vehicle.id}}">{{object.vehicle.model}}</option>
                 </select>&nbsp;
-                <input *ngIf="key.key === 'dateStart' || key.key === 'dateEnd'" type="date" value="{{ object[key.key] }}"
+                <input *ngIf="key.key === 'dateOfStart' || key.key === 'dateOfEnd'" type="date" value="{{ object[key.key] }}"
                        [ngModel]="object[key.key] | customDate" (ngModelChange)="object[key.key]=$event" class="form-control" id="{{key.key}}"
                        placeholder="{{key.label}}" title="{{key.label}}" />&nbsp;
               </ng-container>
