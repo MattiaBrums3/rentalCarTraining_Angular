@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthenticationService} from '../../services/authentication.service';
+import {AuthenticationService} from '../../services/auth/authentication.service';
 import {first, ignoreElements} from 'rxjs/operators';
+import {TokenStorageService} from '../../services/auth/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,50 +12,54 @@ import {first, ignoreElements} from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   title = 'Welcome to Rental Car!';
-  loginForm: FormGroup;
-  submitted = false;
-  loading = false;
-  error = '';
-
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  superUser: string;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private authenticationService: AuthenticationService) {}
+              private authenticationService: AuthenticationService,
+              private tokenStorage: TokenStorageService) {}
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
-
-  get formFields() {
-    return this.loginForm.controls;
+    if (this.tokenStorage.getToken()) {
+      console.log('token ready');
+    }
   }
 
   onSubmit() {
-    this.submitted = true;
-
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-    this.authenticationService.login(this.formFields.username.value, this.formFields.password.value)
+    this.authenticationService.login(this.form)
       .subscribe(
         data => {
-          if (data.token === 'jwt-token-admin') {
-            this.router.navigate(['admin/user']);
-          } else if (data.token === 'jwt-token-customer') {
-            this.router.navigate(['user']);
-          }
+          this.tokenStorage.saveToken(data.jwt);
+          console.log(this.tokenStorage.getToken());
+          this.tokenStorage.saveUser(data);
+
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.superUser = this.tokenStorage.getUser().superUser;
+          this.redirect();
         },
         error => {
-          this.error = error;
-          this.loading = false;
+          this.errorMessage = error.error.message;
+          this.isLoginFailed = true;
         }
       );
   }
 
+  redirect() {
+    window.sessionStorage.setItem('role', this.tokenStorage.getUser().role);
+    window.sessionStorage.setItem('id', this.tokenStorage.getUser().id);
+    window.sessionStorage.setItem('name', this.tokenStorage.getUser().username);
+    if (window.sessionStorage.getItem('role') === 'ROLE_ADMIN') {
+      window.sessionStorage.setItem('token', 'jwt-token-admin');
+      this.router.navigate(['admin/user']);
+    } else {
+      window.sessionStorage.setItem('token', 'jwt-token-customer');
+      this.router.navigate(['user']);
+    }
+  }
 }

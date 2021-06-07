@@ -21,8 +21,6 @@ import { VehicleTableComponent } from './components/vehicle/vehicle-table/vehicl
 import { VehicleFormComponent } from './components/vehicle/vehicle-form/vehicle-form.component';
 import { UserTableComponent } from './components/user/user-table/user-table.component';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
 import { RentalTableComponent } from './components/rental/rental-table/rental-table.component';
 import { CustomerHomepageComponent } from './pages/customer-homepage/customer-homepage.component';
 import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
@@ -55,10 +53,10 @@ import { RentalFormComponent } from './components/rental/rental-form/rental-form
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
         NgbModule,
-        ReactiveFormsModule
     ],
   providers: [CustomDatePipe, PaginationPipe],
   bootstrap: [AppComponent]

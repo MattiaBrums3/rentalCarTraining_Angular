@@ -3,7 +3,7 @@ import {
   HttpRequest, HttpHandler, HttpEvent, HttpInterceptor
 } from '@angular/common/http';
 import {throwError} from 'rxjs';
-import {AuthenticationService} from '../services/authentication.service';
+import {AuthenticationService} from '../services/auth/authentication.service';
 import {catchError} from 'rxjs/operators';
 
 @Injectable()

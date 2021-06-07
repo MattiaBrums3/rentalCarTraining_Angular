@@ -17,7 +17,9 @@
     <thead>
     <tr>
       <th scope="col" *ngFor="let value of tableConfig.headers" (click)="orderTable(value.key)">
-        {{ value.label }}
+        <ng-container *ngIf="value.key !== 'password'">
+          {{ value.label }}
+        </ng-container>
         <span class="material-icons-sharp" *ngIf="defaultOrderType==='desc' && defaultOrderColumn===value.key">keyboard_arrow_up</span>
         <span class="material-icons-sharp" *ngIf="defaultOrderType==='asc' && defaultOrderColumn===value.key">keyboard_arrow_down</span>
       </th>
@@ -31,7 +33,8 @@
     <tbody>
     <tr *ngFor="let d of data | filterPipe: searchToken : searchKey | paginationPipe: currentPage : tableConfig.pagination.itemPerPage">
       <ng-container *ngFor="let value of tableConfig.headers">
-        <td *ngIf="value.key !== 'idCategory' && value.key !== 'idUser' && value.key !== 'idVehicle'">{{ d[value.key] | customDate }}</td>
+        <td *ngIf="value.key !== 'idCategory' && value.key !== 'idUser'
+         && value.key !== 'idVehicle' && value.key !== 'password'">{{ d[value.key] | customDate }}</td>
         <td *ngIf="value.key === 'idUser'">{{d['user'].name}} {{d['user'].surname}}</td>
         <td *ngIf="value.key === 'idVehicle'">{{d['vehicle'].model}}</td>
         <td *ngIf="value.key === 'idCategory'">{{d['category'].typology}}</td>
