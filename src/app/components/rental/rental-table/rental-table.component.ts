@@ -42,7 +42,7 @@ export class RentalTableComponent implements OnInit {
     const action = event.action;
 
     if (action === 'Accetta') {
-      const idRental = +this.router.snapshot.url[1].path;
+      const idRental = event.record.id;
       this.rentalService.getRentalById(idRental)
         .subscribe(r => {
           r.approved = true;

@@ -94,12 +94,20 @@ export class VehicleTableComponent implements OnInit {
     const action = event.action;
 
     if (action === 'Elimina') {
-      this.vehicleService.deleteVehicle(event.record.id).subscribe(
-        () => {
-          alert('Veicolo eliminato con successo.');
-          this.goBack();
-        }
-      );
+      this.rentalService.getRentalsByVehicle(event.record.id)
+        .subscribe(r => {
+          if (r === null) {
+            this.vehicleService.deleteVehicle(event.record.id).subscribe(
+              () => {
+                alert('Veicolo eliminato con successo.');
+                this.goBack();
+              }
+            );
+          } else {
+            alert('Impossibile eliminare. Veicolo associato ad una o più prenotazioni.');
+            this.goBack();
+          }
+        });
     }
   }
 

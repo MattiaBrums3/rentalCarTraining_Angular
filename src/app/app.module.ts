@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,7 @@ import { RentalTableComponent } from './components/rental/rental-table/rental-ta
 import { CustomerHomepageComponent } from './pages/customer-homepage/customer-homepage.component';
 import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
 import { RentalFormComponent } from './components/rental/rental-form/rental-form.component';
+import {AuthInterceptor} from './services/auth/auth.interceptor';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,15 @@ import { RentalFormComponent } from './components/rental/rental-form/rental-form
         AppRoutingModule,
         NgbModule,
     ],
-  providers: [CustomDatePipe, PaginationPipe],
+  providers: [
+    CustomDatePipe,
+    PaginationPipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {map} from 'rxjs/operators';
 import {User} from '../../models/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
@@ -7,7 +6,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private authUrl = 'http://localhost:8080/api/login';
+  private authUrl = 'http://localhost:8080/auth/login';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

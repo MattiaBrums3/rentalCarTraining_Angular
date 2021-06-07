@@ -7,12 +7,15 @@
           <div class="row register-form d-flex justify-content-center">
             <ng-container *ngFor="let key of object.keys">
               <ng-container *ngIf="entity === 'users'">
-                <input *ngIf="key.key !== 'id' && key.key !== 'dateOfBirth'" [(ngModel)]="object[key.key]"
+                <input *ngIf="key.key !== 'id' && key.key !== 'dateOfBirth' && key.key !== 'password'" [(ngModel)]="object[key.key]"
                        type="text" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
                        title="{{key.label}}" value="{{ object[key.key] }}" />&nbsp;
                 <input *ngIf="key.key === 'dateOfBirth'" type="date" value="{{ object[key.key] }}"
                        [ngModel]="object[key.key] | customDate" (ngModelChange)="object[key.key]=$event" class="form-control" id="{{key.key}}"
                        placeholder="{{key.label}}" title="{{key.label}}" />&nbsp;
+                <input *ngIf="key.key === 'password'" [(ngModel)]="object[key.key]"
+                       type="password" class="form-control" id="{{key.key}}" placeholder="{{key.label}}"
+                       title="{{key.label}}" value="" />&nbsp;
               </ng-container>
               <ng-container *ngIf="entity === 'vehicles'">
                 <input *ngIf="key.key !== 'id' && key.key !== 'idCategory'" [(ngModel)]="object[key.key]"

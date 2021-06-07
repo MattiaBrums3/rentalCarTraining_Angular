@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.tokenStorage.saveToken(data.jwt);
-          console.log(this.tokenStorage.getToken());
           this.tokenStorage.saveUser(data);
 
           this.isLoginFailed = false;

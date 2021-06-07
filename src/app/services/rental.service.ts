@@ -6,7 +6,7 @@ import {Rental} from '../models/rental';
   providedIn: 'root'
 })
 export class RentalService {
-  private rentalsUrl = 'http://localhost:8080/api/rentals';
+  private rentalsUrl = 'http://localhost:8080/rentals';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,25 +15,32 @@ export class RentalService {
   constructor(private http: HttpClient) { }
 
   getRentals() {
-    return this.http.get<Rental[]>(this.rentalsUrl);
+    const url = `${this.rentalsUrl}/get/all`;
+    return this.http.get<Rental[]>(url);
   }
 
   getRentalById(id: number) {
-    const url = `${this.rentalsUrl}/${id}`;
+    const url = `${this.rentalsUrl}/get/${id}`;
     return this.http.get<Rental>(url);
   }
 
   getRentalsByUser(idUser: number) {
-    const url = `${this.rentalsUrl}/user/${idUser}`;
+    const url = `${this.rentalsUrl}/get-by-user/${idUser}`;
+    return this.http.get<Rental[]>(url);
+  }
+
+  getRentalsByVehicle(idVehicle: number) {
+    const url = `${this.rentalsUrl}/get-by-vehicle/${idVehicle}`;
     return this.http.get<Rental[]>(url);
   }
 
   saveRental(rental: Rental) {
-    return this.http.post<Rental>(this.rentalsUrl, rental, this.httpOptions);
+    const url = `${this.rentalsUrl}/post/edit`;
+    return this.http.post<Rental>(url, rental, this.httpOptions);
   }
 
   deleteRental(id: number) {
-    const url = `${this.rentalsUrl}/${id}`;
+    const url = `${this.rentalsUrl}/delete/${id}`;
     return this.http.delete<Rental>(url, this.httpOptions);
   }
 }

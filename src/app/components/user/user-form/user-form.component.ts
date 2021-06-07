@@ -43,6 +43,7 @@ export class UserFormComponent implements OnInit {
       this.service.getUserById(objId)
         .subscribe(o => {
           this.object = o;
+          this.object.password = '';
           this.object.keys = USERHEADERS;
         });
     }

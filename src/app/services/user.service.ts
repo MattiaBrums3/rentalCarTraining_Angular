@@ -6,7 +6,7 @@ import {User} from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  private usersUrl = 'http://localhost:8080/api/users';
+  private usersUrl = 'http://localhost:8080/users';
 
   httpOptions = {
    headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,20 +15,22 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get<User[]>(this.usersUrl);
+    const url = `${this.usersUrl}/get/all`;
+    return this.http.get<User[]>(url);
   }
 
   getUserById(id: number) {
-    const url = `${this.usersUrl}/${id}`;
+    const url = `${this.usersUrl}/get/${id}`;
     return this.http.get<User>(url);
   }
 
   saveUser(user: User) {
-    return this.http.post<User>(this.usersUrl, user, this.httpOptions);
+    const url = `${this.usersUrl}/post/edit`;
+    return this.http.post<User>(url, user, this.httpOptions);
   }
 
   deleteUser(id: number) {
-    const url = `${this.usersUrl}/${id}`;
+    const url = `${this.usersUrl}/delete/${id}`;
     return this.http.delete<User>(url, this.httpOptions);
   }
 }

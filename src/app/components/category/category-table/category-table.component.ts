@@ -3,6 +3,7 @@ import { Category} from '../../../models/category';
 import { CATEGORYTABLE } from '../../../configs/my-configs';
 import {CategoryService} from '../../../services/category.service';
 import {Location} from '@angular/common';
+import {VehicleService} from '../../../services/vehicle.service';
 
 @Component({
   selector: 'app-category-table',
@@ -17,6 +18,7 @@ export class CategoryTableComponent implements OnInit {
   categories: Category[];
 
   constructor(private service: CategoryService,
+              private vehicleService: VehicleService,
               private location: Location) {}
 
   ngOnInit(): void {
@@ -30,12 +32,22 @@ export class CategoryTableComponent implements OnInit {
     const action = event.action;
 
     if (action === 'Elimina') {
-      this.service.deleteCategory(event.record.id).subscribe(
-        () => {
-          alert('Categoria eliminata con successo.');
-          this.goBack();
-        }
-      )
+      this.vehicleService.getVehiclesByCategory(event.record.id)
+        .subscribe(c => {
+          if (c === null) {
+            this.service.deleteCategory(event.record.id).subscribe(
+              () => {
+                alert('Categoria eliminata con successo.');
+                this.goBack();
+              }
+            );
+          } else {
+            alert('Impossibile eliminare. Categoria associata ad uno o più veicoli.');
+            this.goBack();
+          }
+        });
+
+
     }
   }
 

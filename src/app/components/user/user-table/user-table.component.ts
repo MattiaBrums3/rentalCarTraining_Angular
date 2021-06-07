@@ -3,6 +3,7 @@ import {USERTABLE} from '../../../configs/my-configs';
 import {User} from '../../../models/user';
 import {UserService} from '../../../services/user.service';
 import {Location} from '@angular/common';
+import {RentalService} from '../../../services/rental.service';
 
 @Component({
   selector: 'app-user-table',
@@ -17,6 +18,7 @@ export class UserTableComponent implements OnInit {
   users: User[];
 
   constructor(private service: UserService,
+              private rentalService: RentalService,
               private location: Location) {}
 
   ngOnInit(): void {
@@ -30,13 +32,20 @@ export class UserTableComponent implements OnInit {
     const action = event.action;
 
     if (action === 'Elimina') {
-      this.service.deleteUser(event.record.id)
-        .subscribe(
-        () => {
-          alert('Utente eliminato con successo.');
-          this.goBack();
-        }
-      );
+      this.rentalService.getRentalsByUser(event.record.id)
+        .subscribe(r => {
+          if (r === null) {
+            this.service.deleteUser(event.record.id)
+              .subscribe(
+                () => {
+                  alert('Utente eliminato con successo.');
+                  this.goBack();
+                });
+          } else {
+            alert('Impossibile eliminare. Utente associato ad una o più prenotazioni.');
+            this.goBack();
+          }
+        });
     }
   }
 

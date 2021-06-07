@@ -85,11 +85,7 @@ export class RentalFormComponent implements OnInit {
     if (action === 'Salva') {
       this.rentalService.saveRental(this.object)
         .subscribe(
-          () => {
-            this.goBack();
-            this.rentalService.getRentals()
-              .subscribe(r => console.log(r));
-          }
+          () => this.goBack()
           );
     }
   }

@@ -6,7 +6,7 @@ import {Vehicle} from '../models/vehicle';
   providedIn: 'root'
 })
 export class VehicleService {
-  private vehiclesUrl = 'http://localhost:8080/api/vehicles';
+  private vehiclesUrl = 'http://localhost:8080/vehicles';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,20 +15,27 @@ export class VehicleService {
   constructor(private http: HttpClient) { }
 
   getVehicles() {
-    return this.http.get<Vehicle[]>(this.vehiclesUrl);
+    const url = `${this.vehiclesUrl}/get/all`;
+    return this.http.get<Vehicle[]>(url);
   }
 
   getVehicleById(id: number) {
-    const url = `${this.vehiclesUrl}/${id}`;
+    const url = `${this.vehiclesUrl}/get/${id}`;
     return this.http.get<Vehicle>(url);
   }
 
+  getVehiclesByCategory(id: number) {
+    const url = `${this.vehiclesUrl}/get-by-category/${id}`;
+    return this.http.get<Vehicle[]>(url);
+  }
+
   saveVehicle(vehicle: Vehicle) {
-    return this.http.post<Vehicle>(this.vehiclesUrl, vehicle, this.httpOptions);
+    const url = `${this.vehiclesUrl}/post/edit`;
+    return this.http.post<Vehicle>(url, vehicle, this.httpOptions);
   }
 
   deleteVehicle(id: number) {
-    const url = `${this.vehiclesUrl}/${id}`;
+    const url = `${this.vehiclesUrl}/delete/${id}`;
     return this.http.delete<Vehicle>(url, this.httpOptions);
   }
 }
