@@ -34,8 +34,7 @@ export class GenericTableComponent implements OnChanges {
 
   currentRoute: string;
 
-  constructor(private router: Router,
-              private rentalService: RentalService) { }
+  constructor(private router: Router) { }
 
   ngOnChanges() {
     this.defaultOrderColumn = this.tableConfig.order.defaultColumn;

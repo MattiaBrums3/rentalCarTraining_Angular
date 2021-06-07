@@ -8,7 +8,8 @@
   <div class="text-justify mt-2 mb-2 ml-2">
     Visualizza&nbsp;
     <select #itemsPerPage (change)="changeItemsPerPage(itemsPerPage.value)">
-      <option *ngFor="let page of tableConfig.pagination.itemPerPageOptions">{{page}}</option>
+      <option *ngFor="let page of tableConfig.pagination.itemPerPageOptions"
+              [selected]="page === tableConfig.pagination.itemPerPage">{{page}}</option>
     </select>
     &nbsp;elementi
   </div>
