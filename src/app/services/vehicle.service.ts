@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Vehicle} from '../models/vehicle';
 
 @Injectable({
@@ -32,6 +32,19 @@ export class VehicleService {
   saveVehicle(vehicle: Vehicle) {
     const url = `${this.vehiclesUrl}/post/edit`;
     return this.http.post<Vehicle>(url, vehicle, this.httpOptions);
+  }
+
+  saveVehiclesFromFile(file: File) {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${this.vehiclesUrl}/post/vehicles-from-file`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
   }
 
   deleteVehicle(id: number) {

@@ -26,6 +26,7 @@ import { CustomerHomepageComponent } from './pages/customer-homepage/customer-ho
 import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
 import { RentalFormComponent } from './components/rental/rental-form/rental-form.component';
 import {AuthInterceptor} from './services/auth/auth.interceptor';
+import { NewVehicleFromFileComponent } from './components/vehicle/new-vehicle-from-file/new-vehicle-from-file.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import {AuthInterceptor} from './services/auth/auth.interceptor';
         CustomerHomepageComponent,
         AccessDeniedComponent,
         RentalFormComponent,
+        NewVehicleFromFileComponent,
     ],
     imports: [
         BrowserModule,

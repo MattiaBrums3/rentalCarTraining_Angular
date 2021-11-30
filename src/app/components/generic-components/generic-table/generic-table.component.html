@@ -29,6 +29,14 @@
           <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[0])" [buttonConfig]="tableConfig.actions[0]"></app-generic-button>
         </a>
       </th>
+      <th scope="col" *ngIf="token === 'jwt-token-admin' && tableConfig.actions[4].text === 'Inserisci da File'">
+        <a routerLink="{{currentRoute}}/new-from-file" routerLinkActive="active">
+          <app-generic-button (emitter)="onClickButton($event, tableConfig.actions[4])" [buttonConfig]="tableConfig.actions[4]"></app-generic-button>
+        </a>
+      </th>
+      <th scope="col" *ngIf="token === 'jwt-token-customer' && tableConfig.actions[4].text === 'Scarica .xlsx'">
+        <app-generic-button (emitter)="downloadRentals()" [buttonConfig]="tableConfig.actions[4]"></app-generic-button>
+      </th>
     </tr>
     </thead>
     <tbody>
@@ -43,7 +51,8 @@
       <ng-container *ngIf="token === 'jwt-token-admin'">
         <ng-container *ngIf="tableConfig.headers[0].label !== 'idPrenotazione'">
           <ng-container *ngFor="let action of tableConfig.actions">
-            <td *ngIf="action.text !== 'Inserisci' && action.text !== 'Prenota'">
+            <td *ngIf="action.text !== 'Inserisci' && action.text !== 'Prenota'
+                        && action.text !== 'Inserisci da File' && action.text !== 'null'">
               <a routerLink="{{currentRoute}}/{{action.icon}}/{{d['id']}}" routerLinkActive="active">
                 <app-generic-button (emitter)="onClickButton($event, action, d)" [buttonConfig]="action"></app-generic-button>
               </a>

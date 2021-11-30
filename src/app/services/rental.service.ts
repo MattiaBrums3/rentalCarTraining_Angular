@@ -43,4 +43,9 @@ export class RentalService {
     const url = `${this.rentalsUrl}/delete/${id}`;
     return this.http.delete<Rental>(url, this.httpOptions);
   }
+
+  downloadRentals(id: number) {
+    const url = `${this.rentalsUrl}/post/download-rentals/${id}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }

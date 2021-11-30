@@ -13,6 +13,7 @@ import {CustomerHomepageComponent} from './pages/customer-homepage/customer-home
 import {AccessDeniedComponent} from './pages/access-denied/access-denied.component';
 import {CustomerGuard} from './auth/customer.guard';
 import {RentalFormComponent} from './components/rental/rental-form/rental-form.component';
+import {NewVehicleFromFileComponent} from './components/vehicle/new-vehicle-from-file/new-vehicle-from-file.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -37,6 +38,7 @@ const routes: Routes = [
       {path: 'vehicle', children: [
           {path: '', component: VehicleTableComponent, canActivate: [AdminGuard]},
           {path: 'new', component: VehicleFormComponent, canActivate: [AdminGuard]},
+          {path: 'new-from-file', component: NewVehicleFromFileComponent, canActivate: [AdminGuard]},
           {path: 'edit/:id', component: VehicleFormComponent, canActivate: [AdminGuard]},
           {path: 'delete/:id', component: VehicleTableComponent, canActivate: [AdminGuard]}
       ]}

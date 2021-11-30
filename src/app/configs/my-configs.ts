@@ -8,6 +8,12 @@ export const NEWTABLEBUTTON: MyButtonConfig = {
   icon: 'add'
 };
 
+export const NEWTABLEBUTTONFILE: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Inserisci da File',
+  icon: 'add'
+};
+
 export const EDITTABLEBUTTON: MyButtonConfig = {
   customCssClass: 'btn btn-success',
   text: 'Modifica',
@@ -69,6 +75,18 @@ export const VEHICLEBUTTON: MyButtonConfig = {
   icon: 'directions_car'
 };
 
+export const DOWNLOADBUTTON: MyButtonConfig = {
+  customCssClass: 'btn btn-primary',
+  text: 'Scarica .xlsx',
+  icon: 'file_download'
+};
+
+export const NULLBUTTON: MyButtonConfig = {
+  customCssClass: null,
+  text: 'null',
+  icon: null
+};
+
 // TABLE HEADERS
 export const USERHEADERS: MyHeaders[] = [
   { key: 'id', label: 'idUtente' },
@@ -112,7 +130,7 @@ export const USERTABLE: MyTableConfig = {
     itemPerPage: 5,
     itemPerPageOptions: [5, 10, 25]
   },
-  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON, RENTALSTABLEBUTTON]
+  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON, RENTALSTABLEBUTTON, NULLBUTTON]
 };
 
 export const CATEGORYTABLE: MyTableConfig = {
@@ -123,7 +141,7 @@ export const CATEGORYTABLE: MyTableConfig = {
     itemPerPage: 5,
     itemPerPageOptions: [5, 10, 25]
   },
-  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON]
+  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON, NULLBUTTON, NULLBUTTON]
 };
 
 export const VEHICLETABLE: MyTableConfig = {
@@ -134,7 +152,7 @@ export const VEHICLETABLE: MyTableConfig = {
     itemPerPage: 5,
     itemPerPageOptions: [5, 10, 25]
   },
-  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON, RENTTABLEBUTTON]
+  actions: [NEWTABLEBUTTON, EDITTABLEBUTTON, DELETETABLEBUTTON, RENTTABLEBUTTON, NEWTABLEBUTTONFILE]
 };
 
 export const RENTALTABLE: MyTableConfig = {
@@ -145,5 +163,6 @@ export const RENTALTABLE: MyTableConfig = {
     itemPerPage: 5,
     itemPerPageOptions: [5, 10, 25]
   },
-  actions: [EDITTABLEBUTTON, DELETETABLEBUTTON, ACCEPTRENTALBUTTON, DECLINERENTALBUTTON]
+  actions: [EDITTABLEBUTTON, DELETETABLEBUTTON, ACCEPTRENTALBUTTON, DECLINERENTALBUTTON,
+    DOWNLOADBUTTON, NULLBUTTON]
 };

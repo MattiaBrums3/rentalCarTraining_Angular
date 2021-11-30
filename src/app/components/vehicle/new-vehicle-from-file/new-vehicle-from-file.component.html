@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+
+<div align="center">
+  <div class="register">
+    <div class="row">
+      <div class="col-sm register-right">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h1>{{title}}</h1>
+            <div class="row register-form d-flex justify-content-center">
+              <input type="file" (change)="onFileChange($event)" multiple="false" />
+              <table class="vehicles-file-table table table-striped border mt-1">
+                <tr *ngFor="let row of data">
+                  <td *ngFor="let val of row">
+                    {{val}}
+                  </td>
+                </tr>
+              </table>
+              <div class="col-md-6 mt-4">
+                <div class="form-group">
+                  <app-generic-button [buttonConfig]="saveButton" (emitter)="btnClick($event)"></app-generic-button>
+                  &nbsp;
+                  <app-generic-button [buttonConfig]="undoButton" (emitter)="btnClick($event)"></app-generic-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

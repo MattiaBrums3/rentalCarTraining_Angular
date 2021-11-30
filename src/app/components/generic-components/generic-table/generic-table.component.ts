@@ -6,6 +6,7 @@ import { MyTableConfig } from '../../../configs/my-table-config';
 import {Router} from '@angular/router';
 import {RentalService} from '../../../services/rental.service';
 import * as moment from 'moment';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-generic-table',
@@ -34,7 +35,8 @@ export class GenericTableComponent implements OnChanges {
 
   currentRoute: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private rentalService: RentalService) { }
 
   ngOnChanges() {
     this.defaultOrderColumn = this.tableConfig.order.defaultColumn;
@@ -51,6 +53,14 @@ export class GenericTableComponent implements OnChanges {
 
     const btn = {button: rowId, action: event, record};
     this.emitResult.emit(btn);
+  }
+
+  downloadRentals() {
+    const id = sessionStorage.getItem('id');
+    this.rentalService.downloadRentals(+id)
+      .subscribe(
+        blob => saveAs(blob, 'Rentals.xlsx')
+      );
   }
 
   orderTable(orderColumn: string) {
